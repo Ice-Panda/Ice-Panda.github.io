@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[building]]></title>
-    <url>%2F2018%2F10%2F30%2Findex%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[线性回归的正规方程]]></title>
+    <url>%2F2018%2F10%2F30%2F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E6%AD%A3%E8%A7%84%E6%96%B9%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[线性回归的正规方程 本文阐述线性回归的正规方程推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。 多变量线性回归的梯度下降算法是用来求其代价函数最小值的算法，但是对于某些线性回归问题，可以直接使用正规方程的方法来找出使得代价函数最小的参数，即$\frac{\partial}{\partial\theta_j}J(\theta)=0$。梯度下降与正规方程的比较： 优缺点 梯度下降 正规方程(标准方程) 是否需要引入其他参数 需要选择学习率$\alpha$ 不需要 迭代或运算次数 需要多次迭代 一次运算得出 特征数量是否有影响 当特征数量$n$大时也能较好适用 需要计算$(X^TX)^{-1}$如果特征数量$n$较大则运算代价大，因为矩阵逆的计算时间复杂度为$O(n^3)$，通常来说$n$小于10000时还是可以接受的 适用模型类 适用于各种类型的模型 只适用于线性模型，不适合逻辑回归模型等其他模型 首先给出线性回归的代价函数(Cost Function)的向量化表示：$$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2$$其中假设函数$h_\theta(x) = \theta^TX=\theta_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$$m$为样本总数，参数$\theta$与特征矩阵$X$均为$n+1$维列向量。 将假设函数代入，并将向量表达式转化为矩阵表达式，即将$\sum\limits_{i=1}^m$写成矩阵相乘的形式：$$J(\theta) = \frac{1}{2}(X\theta-y)^2$$其中$X$为$m$行$n+1$列的矩阵，$m$为样本个数，$n+1$为特征个数，$\theta$为$n+1$维行向量，$y$为$m$维行向量。由于$X$非方阵，不存在逆矩阵，固对$J(\theta)$进行如下变换： $$J(\theta) = \frac{1}{2}(X\theta-y)^T(X\theta-y)$$ $$ = \frac{1}{2} [(X\theta)^T-y^T] (X\theta-y)$$ $$ = \frac{1}{2}(\theta^TX^T-y^T)(X\theta-y)$$ $$ = \frac{1}{2}(\theta^TX^TX\theta-\theta^TX^Ty-y^TX\theta+y^Ty)$$ 接下来对$J(\theta)$求偏导，需要用到以下几个矩阵对矩阵的分母布局求导法则：①$\frac{dAX}{dX}=A^T$②$\frac{dX^TAX}{dX}=2AX$③$\frac{dX^TA}{dX}=A$ 首先化简$\frac{\partial}{\partial\theta}J(\theta)$$$\frac{\partial}{\partial\theta}J(\theta)=\frac{1}{2}[2X^TX\theta-X^Ty-(y^TX)^T+0]$$$$=\frac{1}{2}[2X^TX\theta-X^Ty-X^Ty+0]$$$$=X^TX\theta-X^Ty$$ 再令$\frac{\partial}{\partial\theta}J(\theta)=X^TX\theta-X^Ty=0$$$X^TX\theta-X^Ty=0$$$$X^TX\theta=X^Ty$$ 不难发现，$(X^TX)$为方阵，则有$(X^TX)$的逆矩阵$(X^TX)^{-1}$，固在等式两边同时左乘$(X^TX)^{-1}$，并求出$\theta$$$(X^TX)^{-1}X^TX\theta=(X^TX)^{-1}X^Ty$$$$(X^TX)^{-1}(X^TX)\theta=(X^TX)^{-1}X^Ty$$$$E\theta=(X^TX)^{-1}X^Ty$$$$\theta=(X^TX)^{-1}X^Ty$$至此，完成线性回归的正规方程推导。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
       <tags>
-        <tag>1</tag>
-        <tag>2</tag>
+        <tag>线性回归</tag>
+        <tag>正规方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[线性回归代价函数的梯度下降算法]]></title>
+    <url>%2F2018%2F10%2F30%2F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[线性回归代价函数的梯度下降算法 本文阐述线性回归代价函数的梯度下降算法推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。 梯度下降(Gradient Descent)算法梯度下降是一个用来求函数最小值的算法，是迭代法的一种，可以用于求解最小二乘问题(线性和非线性都可以)。在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。在求解损失函数的最小值时，可以通过梯度下降法来一步步的迭代求解，得到最小化的损失函数和模型参数值。反过来，如果我们需要求解损失函数的最大值，这时就需要用梯度上升法来迭代了。在机器学习中，基于基本的梯度下降法发展了两种梯度下降方法，分别为随机梯度下降法(Stochastic Gradient Descent，简称SGD)和批量梯度下降法(Batch Gradient Descent，简称BGD)。随机梯度下降：随机梯度下降是每次迭代使用一个样本来对参数进行更新，其计算速度较快，但由于计算得到的并不是准确的一个梯度，即准确度较低，且容易陷入到局部最优解中，也不易于并行实现。批量梯度下降：批量梯度下降是最原始的形式，它是指在每一次迭代时使用所有样本来进行梯度的更新(这里的更新指同步更新)。相对的，批量梯度下降在样本数据较多的情况下，其计算速度较慢，但是可以获得全局最优解，且易于并行实现。 首先给出线性回归的代价函数(Cost Function)的向量化表示：$$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2$$其中假设函数$h_\theta(x) = \theta^TX=\theta_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$$m$为样本总数，参数$\theta$与特征矩阵$X$均为$n+1$维列向量。由于使用多变量进行梯度下降，固可以使用批量梯度下降法来获得全局最优解。 在参数$\theta$中引入学习速率$\alpha$：$$\theta_j=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta),(j=0,1,…,n)$$将$J(\theta)$代入：$$\theta_j=\theta_j-\alpha\frac{\partial}{\partial\theta_j}\frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2,(j=0,1,…,n)$$求偏导化简，得出多变量线性回归的批量梯度下降算法：$$\theta_j=\theta_j-\alpha\frac{1}{m}\sum\limits_{i=1}^m((h_\theta(x^{(i)})-y^{(i)})\cdot x_j^{(i)}),(j=0,1,…,n)$$]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>线性回归</tag>
+        <tag>梯度下降</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[积分微分表]]></title>
+    <url>%2F2018%2F10%2F30%2F%E7%A7%AF%E5%88%86%E5%BE%AE%E5%88%86%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[积分微分表基本积分表24个基本积分：两个由基本积分②推导的常用积分 基本微分表 矩阵微分表]]></content>
+      <tags>
+        <tag>utils</tag>
       </tags>
   </entry>
 </search>
