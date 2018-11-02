@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="线性回归,正规方程,">
 
 
 
@@ -101,13 +101,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Veluvana">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="线性回归的正规方程 本文阐述线性回归的正规方程推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。  多变量线性回归的梯度下降算法是用来求其代价函数最小值的算法，但是对于某些线性回归问题，可以直接使用正规方程的方法来找出使得代价函数最小的参数，即$\frac{\partial}{\partial\theta_j}J(\theta)=0$。梯度下降与正规方程的比较：    优缺点 梯度下降">
+<meta name="keywords" content="线性回归,正规方程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性回归的正规方程">
+<meta property="og:url" content="http://yoursite.com/2018/06/06/线性回归的正规方程/index.html">
 <meta property="og:site_name" content="Veluvana">
+<meta property="og:description" content="线性回归的正规方程 本文阐述线性回归的正规方程推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。  多变量线性回归的梯度下降算法是用来求其代价函数最小值的算法，但是对于某些线性回归问题，可以直接使用正规方程的方法来找出使得代价函数最小的参数，即$\frac{\partial}{\partial\theta_j}J(\theta)=0$。梯度下降与正规方程的比较：    优缺点 梯度下降">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-02T12:26:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Veluvana">
+<meta name="twitter:title" content="线性回归的正规方程">
+<meta name="twitter:description" content="线性回归的正规方程 本文阐述线性回归的正规方程推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。  多变量线性回归的梯度下降算法是用来求其代价函数最小值的算法，但是对于某些线性回归问题，可以直接使用正规方程的方法来找出使得代价函数最小的参数，即$\frac{\partial}{\partial\theta_j}J(\theta)=0$。梯度下降与正规方程的比较：    优缺点 梯度下降">
 
 
 
@@ -187,13 +192,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2018/06/06/线性回归的正规方程/">
 
 
 
 
 
-  <title>Veluvana</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>线性回归的正规方程 | Veluvana</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -218,9 +223,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-   page-home 
- ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -360,158 +363,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/信息论/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice-Panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Veluvana">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/信息论/" itemprop="url">信息论</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-02T20:14:56+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          信息论
-香农信息量：只考虑连续型随机变量的情况。设p为随机变量X的概率分布，即p(x)为随机变量X在X=x处的概率密度函数值，随机变量X在x处的香农信息量定义为：$$ -logp(x) = log\frac{1}{p(x)}$$香农信息量用于刻画消除随机变量X在x处的不确定性所需的信息量的大小。可以近似地将不确定性视为信息量。即一个消息带来的不确定性大，就是
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/02/信息论/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -541,9 +395,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/06/线性回归的正规方程/" itemprop="url">线性回归的正规方程</a></h1>
+          <h1 class="post-title" itemprop="name headline">线性回归的正规方程</h1>
         
 
         <div class="post-meta">
@@ -615,21 +467,49 @@
       
 
       
-        
-          
-          线性回归的正规方程
-本文阐述线性回归的正规方程推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。
+        <h3 id="线性回归的正规方程"><a href="#线性回归的正规方程" class="headerlink" title="线性回归的正规方程"></a>线性回归的正规方程</h3><ul>
+<li>本文阐述线性回归的正规方程推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。</li>
+</ul>
+<p>多变量线性回归的梯度下降算法是用来求其代价函数最小值的算法，但是对于某些线性回归问题，可以直接使用正规方程的方法来找出使得代价函数最小的参数，即$\frac{\partial}{\partial\theta_j}J(\theta)=0$。<br>梯度下降与正规方程的比较：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">优缺点</th>
+<th style="text-align:left">梯度下降</th>
+<th style="text-align:left">正规方程(标准方程)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">是否需要引入其他参数</td>
+<td style="text-align:left">需要选择学习率$\alpha$</td>
+<td style="text-align:left">不需要</td>
+</tr>
+<tr>
+<td style="text-align:left">迭代或运算次数</td>
+<td style="text-align:left">需要多次迭代</td>
+<td style="text-align:left">一次运算得出</td>
+</tr>
+<tr>
+<td style="text-align:left">特征数量是否有影响</td>
+<td style="text-align:left">当特征数量$n$大时也能较好适用</td>
+<td style="text-align:left">需要计算$(X^TX)^{-1}$如果特征数量$n$较大则运算代价大，因为矩阵逆的计算时间复杂度为$O(n^3)$，通常来说$n$小于10000时还是可以接受的</td>
+</tr>
+<tr>
+<td style="text-align:left">适用模型类</td>
+<td style="text-align:left">适用于各种类型的模型</td>
+<td style="text-align:left">只适用于线性模型，不适合逻辑回归模型等其他模型</td>
+</tr>
+</tbody>
+</table>
+<p>首先给出线性回归的<strong>代价函数(Cost Function)</strong>的向量化表示：<br>$$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2$$<br>其中假设函数$h_\theta(x) = \theta^TX=\theta_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$<br>$m$为样本总数，参数$\theta$与特征矩阵$X$均为$n+1$维列向量。</p>
+<p>将假设函数代入，并将向量表达式转化为矩阵表达式，即将$\sum\limits_{i=1}^m$写成矩阵相乘的形式：<br>$$J(\theta) = \frac{1}{2}(X\theta-y)^2$$<br>其中$X$为$m$行$n+1$列的矩阵，$m$为样本个数，$n+1$为特征个数，$\theta$为$n+1$维行向量，$y$为$m$维行向量。<br>由于$X$非方阵，不存在逆矩阵，固对$J(\theta)$进行如下变换：</p>
+<p>$$<br>\begin{split}<br>J(\theta) &amp; = \frac{1} {2} (X\theta-y)^T(X\theta-y) \\<br>&amp;= \frac{1}{2}[(X\theta)^T-y^T] (X\theta-y) \\<br>&amp;= \frac{1}{2}(\theta^TX^T-y^T) (X\theta-y) \\<br>&amp;= \frac{1}{2}(\theta^TX^TX\theta-\theta^TX^Ty-y^TX\theta+y^Ty)<br>\end{split}<br>$$</p>
+<p>接下来对$J(\theta)$求偏导，需要用到以下几个矩阵对矩阵的分母布局求导法则：<br>①$\frac{dAX}{dX}=A^T$<br>②$\frac{dX^TAX}{dX}=2AX$<br>③$\frac{dX^TA}{dX}=A$</p>
+<p>首先化简$\frac{\partial}{\partial\theta}J(\theta)$<br>$$\begin{split}\frac{\partial}{\partial\theta}J(\theta)&amp;=\frac{1}{2}[2X^TX\theta-X^Ty-(y^TX)^T+0]\\<br>&amp;=\frac{1}{2}[2X^TX\theta-X^Ty-X^Ty+0]\\<br>&amp;=X^TX\theta-X^Ty\end{split}$$</p>
+<p>再令$\frac{\partial}{\partial\theta}J(\theta)=X^TX\theta-X^Ty=0$<br>$$\begin{split}X^TX\theta-X^Ty&amp;=0\<br>X^TX\theta&amp;=X^Ty\end{split}$$</p>
+<p>不难发现，$(X^TX)$为方阵，则有$(X^TX)$的逆矩阵$(X^TX)^{-1}$，固在等式两边同时左乘$(X^TX)^{-1}$，并求出$\theta$<br>$$\begin{split}(X^TX)^{-1}X^TX\theta&amp;=(X^TX)^{-1}X^Ty\\<br>(X^TX)^{-1}(X^TX)\theta&amp;=(X^TX)^{-1}X^Ty\\<br>E\theta&amp;=(X^TX)^{-1}X^Ty\\<br>\theta&amp;=(X^TX)^{-1}X^Ty\end{split}$$<br>至此，完成线性回归的正规方程推导。</p>
 
-多变量线性回归的梯度下降算法是用来求其代价函数最小值的算法，但是对于某些线性回归问题，可以直接使用正规方程的方法来找出使得代价函数最小的参数，即$\frac{\partial}{\partial\theta_j}J(\theta)=0$。梯度下降与
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/06/线性回归的正规方程/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
     
@@ -644,316 +524,42 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/04/线性回归代价函数的梯度下降算法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice-Panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Veluvana">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/04/线性回归代价函数的梯度下降算法/" itemprop="url">线性回归代价函数的梯度下降算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-04T23:51:22+08:00">
-                2018-06-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/线性回归/" rel="tag"><i class="fa fa-tag"></i> 线性回归</a>
           
-
+            <a href="/tags/正规方程/" rel="tag"><i class="fa fa-tag"></i> 正规方程</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          线性回归的梯度下降算法
-本文阐述线性回归代价函数的梯度下降算法推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。
-
-首先给出线性回归的代价函数(Cost Function)的向量化表示：$$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2$$其中假设函
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/04/线性回归代价函数的梯度下降算法/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/04/线性回归代价函数的梯度下降算法/" rel="next" title="线性回归代价函数的梯度下降算法">
+                <i class="fa fa-chevron-left"></i> 线性回归代价函数的梯度下降算法
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/02/积分微分表/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice-Panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Veluvana">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/02/积分微分表/" itemprop="url">积分微分表</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-02T00:46:22+08:00">
-                2018-06-02
-              </time>
+              <a href="/2018/09/02/信息论/" rel="prev" title="信息论">
+                信息论 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/微积分/" itemprop="url" rel="index">
-                    <span itemprop="name">微积分</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          积分微分表基本积分表24个基本积分：两个由基本积分②推导的常用积分
-基本微分表
-矩阵微分表
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/02/积分微分表/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -963,136 +569,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/02/梯度下降法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice-Panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Veluvana">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/02/梯度下降法/" itemprop="url">梯度下降法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-02T00:22:20+08:00">
-                2018-06-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          梯度下降(Gradient Descent)算法梯度下降是一个用来求函数最小值的算法，是迭代法的一种，可以用于求解最小二乘问题(线性和非线性都可以)。在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。在求解损失函数的最小值时，可以通过梯度下降法来一步步的迭代求解，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/02/梯度下降法/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -1100,6 +581,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1120,8 +605,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ice-Panda">
           <p class="site-author-name" itemprop="name">Ice-Panda</p>
@@ -1194,6 +688,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性回归的正规方程"><span class="nav-number">1.</span> <span class="nav-text">线性回归的正规方程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1317,10 +827,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
