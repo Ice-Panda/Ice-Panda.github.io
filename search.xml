@@ -52,4 +52,67 @@
     <url>%2F2018%2F06%2F02%2F%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95%2F</url>
     <content type="text"><![CDATA[梯度下降(Gradient Descent)算法梯度下降是一个用来求函数最小值的算法，是迭代法的一种，可以用于求解最小二乘问题(线性和非线性都可以)。在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。在求解损失函数的最小值时，可以通过梯度下降法来一步步的迭代求解，得到最小化的损失函数和模型参数值。反过来，如果我们需要求解损失函数的最大值，这时就需要用梯度上升法来迭代了。在机器学习中，基于基本的梯度下降法发展了两种梯度下降方法，分别为随机梯度下降法(Stochastic Gradient Descent，简称SGD)和批量梯度下降法(Batch Gradient Descent，简称BGD)。随机梯度下降：随机梯度下降是每次迭代使用一个样本来对参数进行更新，其计算速度较快，但由于计算得到的并不是准确的一个梯度，即准确度较低，且容易陷入到局部最优解中，也不易于并行实现。批量梯度下降：批量梯度下降是最原始的形式，它是指在每一次迭代时使用所有样本来进行梯度的更新(这里的更新指同步更新)。相对的，批量梯度下降在样本数据较多的情况下，其计算速度较慢，但是可以获得全局最优解，且易于并行实现。]]></content>
   </entry>
+  <entry>
+    <title><![CDATA[闭包]]></title>
+    <url>%2F2017%2F08%2F06%2F%E9%97%AD%E5%8C%85%2F</url>
+    <content type="text"><![CDATA[闭包实现闭包的基石闭包的创建通常是利用嵌套函数来完成的。在PyCodeObject中，与嵌套函数相关的属性是co_cellvars和co_freevars。具体两者的的含义如下：co_cellvars：tuple，保存嵌套的作用域中使用的变量名集合co_freevars：tuple，保存使用了的外层作用域中的变量名集合closure.py会编译出3个PyCodeObject，其中有两个，一个与函数get_func对应，一个与函数inner_func对应，那么，与get_func对应的PyCodeObject对象中的co_cellvars就应该包含外层函数内的变量，即字符串”value”，因为其嵌套作用域(inner_func的作用域)中可以使用这个变量；同理，与函数inner_func对应的PyCodeObject对象中的co_freevars中应该也有该变量。在PyFrameObject对象中，也有一个属性与闭包的实现相关，这个属性就是f_localsplus，在PyFrame_New中的extras正是f_localsplus指向的那边内存的大小。1extras = code-&gt;co_stacksize + code-&gt;co_nlocals + ncells + nfrees; f_localsplus的完整内存布局：运行时栈(co_stacksize)、局部变量(co_nlocals)、cell对象(对应co_cellvars)、free对象(对应co_freevars) 闭包的实现创建 closure在python虚拟机执行CALL_FUNCTION指令时，会进入fast_function函数。而在fast_function函数中，由于当前的PyCodeObject为get_func对应之PyCodeObject，其中的co_flags为3(CO_OPTIMIZED|CO_NEWLOCALS)，所以最终不符合进入快速通道的条件，而会进入PyEval_EvalCodeEx。在PyEval_EvalCodeEx中，Python虚拟机会如同处理默认参数一样，将co_cellvars中的东西拷贝到新创建的PyFrameObject的f_localsplus中。嵌套函数有时候会很复杂，比如内层嵌套函数引用的不是外层嵌套函数的局部变量，而是外层嵌套函数的一个拥有默认值的参数。Python虚拟机会获得被内层嵌套函数引用的符号名，即字符串”value”，即获得被嵌套函数共享的符号名cellname，通过判断标识位found来处理被嵌套函数共享外层函数的默认参数，若found标识位为0时，Python虚拟机会创建一个cell对象——PyCellObject。cell对象仅维护一个ob_ref，指向一个Python中的对象。一开始cell对象维护的ob_ref指向了NULL，但当外层局部变量被创建时，即value=”inner”这个赋值语句执行的时候，这个cell对象会被拷贝到新创建的PyFrameObject对象的f_localsplus中，且这个对象呗拷贝到的位置是co-&gt;co_nlocals + i，说明在f_localsplus中，cell对象的位置是在局部变量之后的。 PyEval_CodeEx中的found标志位，指的是被内层嵌套函数引用的符号是否已经与某个值绑定的标识，或者说与某个对象建立了约束关系。只有在内层嵌套函数引用的是外层函数的一个有默认值的参数值时，这个标识才可能为1。 在处理co\cellvars即cell对象时，之前获得的cellname会被忽略，因为在get_func函数执行的过程中，对value这个cell变量的访问将通过基于索引访问f_localsplus完成，因而完全不需要再知道cellname了。这个cellname实际上是在处理内层嵌套函数引用外层函数的默认参数时产生的。在处理了cell对象之后，Python虚拟机将进入PyEval_EvalFrameEx，从而正是开始对函数get_func的调用过程。首先将PyStringObject对象(即外层函数的)压入到运行时栈，然后Python虚拟机开始执行STORE_DEREF。从运行时栈弹出的是PyStringObject对象”inner”，而从f_localsplus中取得的是PyCellObject对象，通过PyCell_Set来设置PyCellObject对象中的ob_ref。从而，f_localsplus就发生了变化。设置cell对象之后的get_func函数的PyFrameObject对象，如图： 在get_func的环境中，value符号对应着一个PyStringObject对象，但是closure的作用是将这个约束进行冻结，使得在嵌套函数inner_func被调用时还能使用这个约束。在执行”def inner_func()”表达式时，Python虚拟机就会将(value,”inner”)这个约束塞到PyFunctionObject中。首先将刚刚放置好的PyCellObject对象取出，并压入运行时栈，接着将PyCellObject对象打包进一个tuple中，tuple中可以放置多个PyCellObject。随后将inner_func对应的PyCodeObject对象也压入到运行时栈中，接着完成约束与PyCodeObject的绑定。表达式”def inner_func()”对应的将新创建的PyFunctionObject对象放置到了f_localsplus中，从而使f_localsplus发生了变化。设置function对象之后的get_func函数的PyFrameObject对象，如图：在get_func的最后，新建的PyFunctionObject对象作为返回值给了上一个栈帧，并被压入到该栈帧的运行时栈中。 使用 closureclosure是在get_func中被创建的，而对closure的使用，则是在inner_inner中。在执行”show_value()”对应的CALL_FUNCTION指令时，和inner_func对应的PyCodeObject中co_flags里包含了CO_NESTED，所以在fast_function中不能通过快速通道的验证，从而智能进入PyEval_EvalCodeEx。inner_func对应的PyCodeObject中的co_freevars里有引用的外层作用域中的富豪命，在PyEval_EvalCodeEx中，就会对这个co_freevars进行处理。其中的closure变量是作为最后一个函数参数传递进来的，即在PyFunctionObject对象中与PycodeObject对象绑定的装满PyCellObject对象的tuple。因此在PyEval_EvalCodeEx中，进行的动作就是讲这个PyCellObject对象一个一个放入到f_loaclsplus中相应的位置。在处理完closure之后，inner_func对应的PyFrameObject中的f_loaclsplus再次发生变化。设置cell对象之后的inner_func函数的PyFrameObject对象，如图：这里的动作与调用get_func是一致的，在inner_func调用的过程中，当引用外层作用域的符号时，其实是到f_localsplus中的free变量区域中获得符号对应的值。其实这就是inner_func函数中”print(value)”表达式对应的第一条字节码的意义。 闭包代码1234567def get_func():value = "inner"def inner_func():print(value) return inner_funcshow_value = get_func()show_value()]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>闭包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[图的拓扑排序]]></title>
+    <url>%2F2016%2F12%2F15%2F%E5%9B%BE%E7%9A%84%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[Python有向无环图的拓扑排序拓扑排序的官方定义为：由某个集合上的一个偏序得到该集合上的一个全序，这个操作称之为拓扑排序。而个人认为，拓扑排序即是在图的基本遍历法上引入了入度的概念并围绕入度来实现的排序方法，拓扑排序与Python多继承中mro规则的排序类似，若想深入研究mro规则的C3算法，不妨了解一下 DAG(有向无环图) 的拓扑排序。 入度：指有向图中某节点被指向数目之和有向无环图：Directed Acyclic Graph，简称DAG，若熟悉机器学习则肯定对DAG不陌生，如ANN、DNN、CNN等则都是典型的DAG模型，对这类模型此处不再过多敷述，有兴趣的可以自行学习。 以一个有向无环图为例，如下图：123456789# 定义图结构graph = &#123;"A": ["B","C"],"B": ["D","E"],"C": ["D","E"],"D": ["F"],"E": ["F"],"F": [],&#125; 如图A的指向的元素为B、CB的指向的元素为D、EC的指向的元素为D、ED的指向的元素为FE的指向的元素为FF的指向的元素为空即A的入度为0，B的入度为1，C的入度为1，D的入度为2，E的入度为2，F的入度为2在DAG的拓扑排序中，每次都选取入度为 0 的点加入拓扑队列中，再删除与这一点连接的所有边。首先找到入度为0的点A，把A从队列中取出，同时添加到结果中并把A相关的指向移除，即B、C的入度减少1变为0并将B，C添加到队列中，再从队列首部取出入度为0的节点，以此类推，最后输出结果，完成DAG的拓扑排序。123456789101112131415161718192021222324def TopologicalSort(G):# 创建入度字典in_degrees = dict((u, 0) for u in G)# 获取每个节点的入度for u in G:for v in G[u]:in_degrees[v] += 1# 使用列表作为队列并将入度为0的添加到队列中Q = [u for u in G if in_degrees[u] == 0]res = []# 当队列中有元素时执行while Q:# 从队列首部取出元素u = Q.pop()# 将取出的元素存入结果中res.append(u)# 移除与取出元素相关的指向，即将所有与取出元素相关的元素的入度减少1for v in G[u]:in_degrees[v] -= 1# 若被移除指向的元素入度为0，则添加到队列中if in_degrees[v] == 0:Q.append(v)return resprint(TopologicalSort(graph)) 输出结果：1['A', 'C', 'B', 'E', 'D', 'F'] 代码输出结果与上述分析相符]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[图的BFS与DFS]]></title>
+    <url>%2F2016%2F12%2F11%2F%E5%9B%BE%E7%9A%84BFS%E4%B8%8EDFS%2F</url>
+    <content type="text"><![CDATA[Python图的BFS与DFS BFS:Breadth First Search，广度优先搜索DFS:Depth First Search，深度优先搜索 BFS与DFS都属于图算法，BFS与DFS分别由队列和堆栈来实现，基本的定义与实现过程见前一篇文章，本篇文章基于树的BFS与DFS进行扩展，实现无向图(即没有指定方向的图结构)的BFS与DFS。以一个无向图为例，如下图：123456789# 定义图结构graph = &#123;"A": ["B","C"],"B": ["A", "C", "D"],"C": ["A", "B", "D","E"],"D": ["B", "C", "E","F"],"E": ["C", "D"],"F": ["D"],&#125; 如图A的相邻元素为B、CB的相邻元素为A、C、DC的相邻元素为A、B、D、ED的相邻元素为B、C、E、FE的相邻元素为C、DF的相邻元素为D BFS优先遍历当前节点的相邻节点，即若当前节点为A时，则继续遍历的节点为B和C；当A的所有相邻节点遍历完以后，再遍历A相邻节点B和C的所有相邻节点，以B为例，在遍历B的相邻节点时，由于A已被访问过，则需要标记为已访问，在遍历B的相邻节点时，不再需要访问A。以此类推，完成无向图的BFS。DFS优先遍历与当前节点0相邻的一个节点1，然后再访问与节点1相邻但与节点0不相邻的节点，即若当前节点为A，则继续遍历B或C，再访问与B或C节点相邻且与A节点不相邻的节点，即节点D或E，若没有未遍历过的相邻节点，则返回访问上一个有未被访问过相邻节点的节点进行访问，依此遍历整个图，完成无向图的DFS。代码中为了更直观地观察遍历顺序，采用直接打印遍历元素的方式输出遍历结果代码实现：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051def BFS(graph,vertex):# 使用列表作为队列queue = []# 将首个节点添加到队列中queue.append(vertex)# 使用集合来存放已访问过的节点looked = set()# 将首个节点添加到集合中表示已访问looked.add(vertex)# 当队列不为空时进行遍历while(len(queue)&gt;0):# 从队列头部取出一个节点并查询该节点的相邻节点temp = queue.pop(0)nodes = graph[temp]# 遍历该节点的所有相邻节点for w in nodes:# 判断节点是否存在于已访问集合中,即是否已被访问过if w not in looked:# 若未被访问,则添加到队列中,同时添加到已访问集合中,表示已被访问queue.append(w)looked.add(w)print(temp,end=' ')def DFS(graph,vertex):# 使用列表作为栈stack = []# 将首个元素添加到队列中stack.append(vertex)# 使用集合来存放已访问过的节点looked = set()# 将首个节点添加到集合中表示已访问looked.add(vertex)# 当队列不为空时进行遍历while len(stack)&gt;0:# 从栈尾取出一个节点并查询该节点的相邻节点temp = stack.pop()nodes = graph[temp]# 遍历该节点的所有相邻节点for w in nodes:# 判断节点是否存在于已访问集合中,即是否已被访问过if w not in looked:# 若未被访问,则添加到栈中,同时添加到已访问集合中,表示已被访问stack.append(w)looked.add(w)print(temp,end=' ')# 由于无向图无根节点，则需要手动传入首个节点，此处以"A"为例print("BFS",end=" ")BFS(graph,"A")print("")print("DFS",end=" ")DFS(graph,"A") 输出结果：12BFS A B C D E F DFS A C E D F B 代码输出结果与上述分析相符]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>图</tag>
+        <tag>图的遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[树的BFS与DFS]]></title>
+    <url>%2F2016%2F12%2F07%2F%E6%A0%91%E7%9A%84BFS%E4%B8%8EDFS%2F</url>
+    <content type="text"><![CDATA[Python树的BFS与DFS BFS:Breadth First Search，广度优先搜索DFS:Depth First Search，深度优先搜索 BFS与树的层序遍历类似，DFS则与树的后序遍历有着区别。 BFS(广度优先搜索)： 使用队列实现 每次从队列的头部取出一个元素，查看这个元素所有的下一级元素，再把它们放到队列的末尾。并把这个元素记为它下一级元素的前驱。 优先遍历取出元素下一级的同级元素 DFS(深度优先搜索): 使用栈实现 每次从栈的末尾弹出一个元素，搜索所有在它下一级的元素，把这些元素压入栈中。并把这个元素记为它下一级元素的前驱。 优先遍历弹出元素下一级的下一级元素 以一颗满二叉树为例，如下图123456789# 定义节点类class Node(object):def __init__(self,val,left=None,right=None):self.val = valself.left = leftself.right = right# 创建树模型node = Node("A",Node("B",Node("D"),Node("E")),Node("C",Node("F"),Node("G"))) 如图，A节点的下一级元素为B节点和C节点，B节点的下一级元素为D节点和E节点，C节点的下一级元素为F节点和G节点。BFS优先遍历当前节点下一级节点的同级元素，即若当前节点为A节点，则继续遍历的节点为B和C；当A的所有相邻节点遍历完以后，再遍历B节点的相邻节点D节点和E节点，以及C节点的相邻节点F节点和G节点。至此，所有节点遍历完成。DFS优先遍历当前节点下一级节点的下一级元素，即若当前节点为A节点，则继续遍历的节点为B节点和B节点的下一级节点D节点；D节点没有下一级节点，此时再返回D节点的上一级B节点处，再遍历B节点的另一个下一级元素E节点，若没有未遍历过的下一级元素，则返回上一级，依此规律遍历整个树，完成树的DFS。代码中为了更直观地观察遍历顺序，采用直接打印node.val的方式输出遍历结果代码实现：1234567891011121314151617181920212223242526272829303132333435363738394041def BFS(root):# 使用列表作为队列queue = []# 将首个根节点添加到队列中queue.append(root)# 当队列不为空时进行遍历while queue:# 从队列头部取出一个节点并判断其是否有左右节点# 若有子节点则把对应子节点添加到队列中，且优先判断左节点temp = queue.pop(0)left = temp.leftright = temp.rightif left:queue.append(left)if right:queue.append(right)print(temp.val,end=" ")def DFS(root):# 使用列表作为栈stack = []# 将首个根节点添加到栈中stack.append(root)# 当栈不为空时进行遍历while stack:# 从栈的末尾弹出一个节点并判断其是否有左右节点# 若有子节点则把对应子节点压入栈中，且优先判断右节点temp = stack.pop()left = temp.leftright = temp.rightif right:stack.append(right)if left:stack.append(left)print(temp.val,end=" ")print("BFS",end=" ")BFS(node)print("")print("DFS",end=" ")DFS(node) 输出结果：12BFS A B C D E F G DFS A B D E C F G 代码输出结果与上述分析相符]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+        <tag>树的遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[树的前序、中序、后序遍历]]></title>
+    <url>%2F2016%2F12%2F05%2F%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E3%80%81%E4%B8%AD%E5%BA%8F%E3%80%81%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[Python树的前序、中序、后序遍历树的基础遍历分为三种：前序遍历、中序遍历、后序遍历 前序遍历：根节点-&gt;左子树-&gt;右子树中序遍历：左子树-&gt;根节点-&gt;右子树后序遍历：左子树-&gt;右子树-&gt;根节点 首先自定义树模型 1234567class Node(object):def __init__(self,val,left=None,right=None):self.val = valself.left = leftself.right = rightnode = Node("A",Node("B",Node("D"),Node("E")),Node("C",Node("F"),Node("G"))) 代码中为了更直观地观察遍历顺序，采用直接打印node.val的方式输出遍历结果代码实现： 1234567891011121314151617181920212223242526272829303132# 前序遍历def PreTraverse(root):if root == None:returnprint(root.val,end=" ")PreTraverse(root.left)PreTraverse(root.right)# 中序遍历def MidTraverse(root):if root == None:returnMidTraverse(root.left)print(root.val,end=" ")MidTraverse(root.right)# 后序遍历def AfterTraverse(root):if root == None:returnAfterTraverse(root.left)AfterTraverse(root.right)print(root.val,end=" ")print("前序遍历",end="")PreTraverse(node)print("")print("中序遍历",end="")MidTraverse(node)print("")print("后序遍历",end="")AfterTraverse(node) 输出结果：123前序遍历 A B D E C F G 中序遍历 D B E A F C G 后序遍历 D E B F G C A 输入结果与上述分析一致]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+        <tag>树的遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[高斯消去求线性方程的解]]></title>
+    <url>%2F2016%2F11%2F03%2F%E9%AB%98%E6%96%AF%E6%B6%88%E5%8E%BB%E6%B1%82%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[数学上，高斯消元法（或译：高斯消去法），是线性代数规划中的一个算法，可用来为线性方程组求解。但其算法十分复杂，不常用于加减消元法，求出矩阵的秩，以及求出可逆方阵的逆矩阵。不过，如果有过百万条等式时，这个算法会十分省时。一些极大的方程组通常会用迭代法以及花式消元来解决。当用于一个矩阵时，高斯消元法会产生出一个“行梯阵式”。高斯消元法可以用在电脑中来解决数千条等式及未知数。亦有一些方法特地用来解决一些有特别排列的系数的方程组。1234567891011121314151617181920212223242526272829'''高斯消去法通过消元过程把一般方程组化成三角方程组再通过回代过程求出方程组的解'''def GaussianElimination(A,B):N = len(A)for i in range(1,N):for j in range(i,N):# 计算消元因子deltadelta = A[j][i-1]/A[i-1][i-1]# 从第i-1行开始消元for k in range(i-1,N):# 对A进行消元A[j][k] = A[j][k] - A[i-1][k]*delta# 对B进行消元B[j] = B[j]-B[i-1]*delta# 进行回代，直接将方程的解保留在B中B[N-1] = B[N-1]/A[N-1][N-1]for i in range(N-2,-1,-1):for j in range(N-1,i,-1):B[i] = B[i]- A[i][j]*B[j]B[i] = B[i]/A[i][i]# 返回所有解的列表return BmatrixA = [[1,3,3],[-2,3,-5],[2,5,6]]matrixB = [4,0,1]print('方程的解为',GaussianElimination(matrixA, matrixB)) 输出的结果：1方程的解为 [148.0, 7.0, -55.0]]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>解线性方程</tag>
+      </tags>
+  </entry>
 </search>
