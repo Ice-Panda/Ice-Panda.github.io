@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="神经网络,BPNN,">
 
 
 
@@ -101,14 +101,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="BP算法广义误差$二次方误差和E = \frac{1}{2}\sum\limits_{j=1}^{n_l}(期望输出 - 实际输出)^2$$$E = \frac{1}{2}\sum_{j=1}^{n_l} (y_j-a_j)^2$$将误差函数向量化$$E = \frac{1}{2}||y-a^{(n_l)}||^2$$将误差函数进行化简$$\begin{split}E &amp;amp;=\frac{1}">
+<meta name="keywords" content="神经网络,BPNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BP算法广义误差">
+<meta property="og:url" content="http://yoursite.com/2018/06/15/BP算法广义误差/index.html">
 <meta property="og:site_name" content="Veluvana">
+<meta property="og:description" content="BP算法广义误差$二次方误差和E = \frac{1}{2}\sum\limits_{j=1}^{n_l}(期望输出 - 实际输出)^2$$$E = \frac{1}{2}\sum_{j=1}^{n_l} (y_j-a_j)^2$$将误差函数向量化$$E = \frac{1}{2}||y-a^{(n_l)}||^2$$将误差函数进行化简$$\begin{split}E &amp;amp;=\frac{1}">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-01T04:19:43.000Z">
+<meta property="og:updated_time" content="2018-11-08T11:48:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="BP算法广义误差">
+<meta name="twitter:description" content="BP算法广义误差$二次方误差和E = \frac{1}{2}\sum\limits_{j=1}^{n_l}(期望输出 - 实际输出)^2$$$E = \frac{1}{2}\sum_{j=1}^{n_l} (y_j-a_j)^2$$将误差函数向量化$$E = \frac{1}{2}||y-a^{(n_l)}||^2$$将误差函数进行化简$$\begin{split}E &amp;amp;=\frac{1}">
 
 
 
@@ -188,13 +192,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/">
+  <link rel="canonical" href="http://yoursite.com/2018/06/15/BP算法广义误差/">
 
 
 
 
 
-  <title>tags | Veluvana</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>BP算法广义误差 | Veluvana</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -362,40 +366,173 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/BP算法广义误差/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ice-Panda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Veluvana">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                14 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/BPNN/" style="font-size: 12px; color: #ccc">BPNN</a> <a href="/tags/utils/" style="font-size: 12px; color: #ccc">utils</a> <a href="/tags/信息论/" style="font-size: 12px; color: #ccc">信息论</a> <a href="/tags/图/" style="font-size: 12px; color: #ccc">图</a> <a href="/tags/图的遍历/" style="font-size: 12px; color: #ccc">图的遍历</a> <a href="/tags/树/" style="font-size: 30px; color: #111">树</a> <a href="/tags/树的遍历/" style="font-size: 30px; color: #111">树的遍历</a> <a href="/tags/梯度下降/" style="font-size: 12px; color: #ccc">梯度下降</a> <a href="/tags/正规方程/" style="font-size: 12px; color: #ccc">正规方程</a> <a href="/tags/熵/" style="font-size: 12px; color: #ccc">熵</a> <a href="/tags/神经网络/" style="font-size: 12px; color: #ccc">神经网络</a> <a href="/tags/线性回归/" style="font-size: 30px; color: #111">线性回归</a> <a href="/tags/解线性方程/" style="font-size: 12px; color: #ccc">解线性方程</a> <a href="/tags/闭包/" style="font-size: 12px; color: #ccc">闭包</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">BP算法广义误差</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T21:06:49+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="BP算法广义误差"><a href="#BP算法广义误差" class="headerlink" title="BP算法广义误差"></a>BP算法广义误差</h3><p>$二次方误差和E = \frac{1}{2}\sum\limits_{j=1}^{n_l}(期望输出 - 实际输出)^2$<br>$$E = \frac{1}{2}\sum_{j=1}^{n_l} (y_j-a_j)^2$$<br>将误差函数向量化<br>$$E = \frac{1}{2}||y-a^{(n_l)}||^2$$<br>将误差函数进行化简<br>$$\begin{split}<br>E &amp;=\frac{1}{2}||y-a^{(n_l)}||^2\\<br>&amp;=\frac{1}{2}(y-a)^T(y-a)\\<br>&amp;=\frac{1}{2}(y^Ty-y^Ta-a^Ty+a^Ta)<br>\end{split}$$<br>首先给出定义：<br>$a\in\mathbb{R}^{n\times{1}}$ $y\in\mathbb{R}^{n\times{1}}$ $\delta\in\mathbb{R}^{n\times{1}}$<br>则输出层广义误差为：<br>$$\begin{split}\delta^{(n_l)} &amp;= \frac{\partial{E^{(n_l)}}}{\partial{z^{(n_l)}}} \\<br>&amp;=\frac{\partial{a^{(n_l)}}}{\partial{z^{(n_l)}}}\frac{\partial{E^{(n_l)}}}{\partial{a^{(n_l)}}} \\<br>&amp;=\frac{\partial{a^{(n_l)}}}{\partial{z^{(n_l)}}}\frac{\partial}{\partial{a^{(n_l)}}}[\frac{1}{2}(y^Ty-y^Ta-a^Ty+a^Ta)] \\<br>&amp;=\frac{\partial{a^{(n_l)}}}{\partial{z^{(n_l)}}}[\frac{1}{2}(0-y-y+2a^{(n_l)})] \\<br>&amp;=\frac{\partial{g(z^{(n_l)})}}{\partial{z^{(n_l)}}}(a^{(n_l)}-y)<br>\end{split}$$</p>
+<p>隐含层广义误差为：<br>$$\begin{split}\delta^{(n_l-1)}&amp;=\frac{\partial{E^{(n_l)}}}{\partial{z^{(n_l-1)}}}\\<br>&amp;=\frac{\partial{a^{(n_l)}}}{\partial{z^{(n_l-1)}}}\frac{\partial{E^{(n_l)}}}{\partial{a^{(n_l)}}}\\<br>&amp;=\frac{\partial{z^{(n_l)}}}{\partial{z^{(n_l-1)}}}\frac{\partial{a^{(n_l)}}}{\partial{z^{(n_l)}}}(a^{(n_l)}-y)\\<br>&amp;=\frac{\partial{z^{(n_l)}}}{\partial{z^{(n_l-1)}}}\delta^{(n_l)}\\<br>&amp;=\frac{\partial{\Theta^{(n_l-1)}g(z^{(n_l-1)})}}{\partial{z^{(n_l-1)}}}\delta^{(n_l)}\\<br>&amp;=\frac{\partial{g(z^{(n_l-1)})}}{\partial{z^{(n_l-1)}}}(\Theta^{(n_l-1)})^T\delta^{(n_l)}\\<br>\end{split}$$<br>$a^{(n_l)}=h_{\Theta}(x)=g(z^{(n_l)})$<br>由于sigmoid标量导数$g’(z)=g(z)[1-g(z)]$，固在向量化后$g’(z^{(n_l)})=a^{(n_l)}*(1-a^{(n_l)})$，所以可得隐含层广义误差与下一层广义误差的关系为：<br>$$\delta^{(n_l-1)}=(\Theta^{(n_l-1)})^T\delta^{(n_l)}*{g’(z^{(n_l-1)})} $$<br>从而实现BP算法</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+          
+            <a href="/tags/BPNN/" rel="tag"><i class="fa fa-tag"></i> BPNN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/06/线性回归的正规方程/" rel="next" title="线性回归的正规方程">
+                <i class="fa fa-chevron-left"></i> 线性回归的正规方程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/02/信息论/" rel="prev" title="信息论">
+                信息论 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -428,8 +565,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ice-Panda">
           <p class="site-author-name" itemprop="name">Ice-Panda</p>
@@ -502,6 +648,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#BP算法广义误差"><span class="nav-number">1.</span> <span class="nav-text">BP算法广义误差</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -625,10 +787,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
