@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[信息论]]></title>
-    <url>%2F2018%2F09%2F02%2F%E4%BF%A1%E6%81%AF%E8%AE%BA%2F</url>
+    <url>%2F2018%2F09%2F02%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%2F%E4%BF%A1%E6%81%AF%E8%AE%BA%2F</url>
     <content type="text"><![CDATA[信息论 香农信息量：只考虑连续型随机变量的情况。设p为随机变量X的概率分布，即p(x)为随机变量X在X=x处的概率密度函数值，随机变量X在x处的香农信息量定义为：$$ -logp(x) = log\frac{1}{p(x)}$$香农信息量用于刻画消除随机变量X在x处的不确定性所需的信息量的大小。可以近似地将不确定性视为信息量。即一个消息带来的不确定性大，就是带来的信息量大。 必定——信息量为0 高确定性——低信息量 高不确定性——高信息量 自信息：用来衡量单一事件发生时所包含的信息量多寡。互信息：是点间互信息的期望值，是度量两个时间集合之间的相关性。两个离散随机变量X和Y的互信息可以定义为：$$I(X;Y)$ = \sum\limits_{y\in Y}\sum\limits_{x\in X}p(x,y)log$\Big(\frac{p(x,y)}{p(x)p(y)}\Big)$$在连续随机变量的情形下，求和被替换成了二重定积分：$$I(X;Y) = \int_Y\int_Xp(x,y)log\Big(\frac{p(x,y)}{p(x)p(y)}\Big)dxdy$$其中$p(x,y)$是X和Y的联合概率分布函数，而$p(x)$和$p(y)$分别是X和Y的边缘概率分布函数。 熵/香农熵/信息熵：熵是接收的每条消息中包含的信息的平均量，又被称为信息熵、信源熵、平均自信息量。信息熵$H(p)$是香农信息量-log$p(x)$的数学期望，即所有X=x处的香农信息量的和，由于每一个x的出现概率不一样(用概率密度函数值$p(x)$衡量)，需要用$p(x)$加权求和。因此信息熵是用于刻画消除随机变量X的不确定性所需要的总体信息量的大小，其定义如下：$$ H(p)= H(X) = E_{x\to p(x)}[-logp(x)] = -\int{p(x)logp(x)dx}$$概率越大的时间，信息熵反而越小，哪些接近确定性的分布，香农熵比较低，而越是接近平均分布的，香农熵比较高。这个和发生概率越低的事情信息量越大的基本思想是一致的。从这个角度看，信息可以看做是不确定性的衡量，而信息熵就是对这种不确定性的数学描述。信息熵不仅定量衡量了信息的大小，并且为信息编码提供了理论上的最优值：使用的编码平均码长度的理论下界就是信息熵。或者说，信息熵就是数据压缩的极限。微分熵：当随机变量x是连续的，香农熵就被称为微分熵。相对熵：又称KL散度，信息散度，记为DKL(P||Q)。它度量当真实分布为p时，假设分布q的无效性。有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：(1)KL散度不是对称的；(2)KL散度不满足三角不等式。设P(x)和Q(x)是X取值的两个离散概率分布，则P对Q的相对熵为：$$D(P||Q) = \sum{P(x)log(\frac{P(x)}{Q(x)})}$$对于连续的随机变量，定义为：$$D(P||Q) = \int{P(x)log(\frac{P(x)}{Q(x)})dx}$$交叉熵：交叉熵主要用于度量两个分布间的差异性信息。语言模型的性能通常用交叉熵和复杂度来衡量。交叉熵可在神经网络(机器学习)中作为损失函数，p表示真实标记的分布，q则为训练后的模型的预测标记分布，交叉熵损失函数可以衡量p与q的相似性。交叉熵作为损失函数还有一个好处是使用sigmoid函数在梯度下降时能避免均方误差损失函数学习速率降低的问题，因为学习速率可以被输出的误差所控制。对KL散度进行变形可以得到d：$$\begin{split}D(P||Q) &amp;= \sum{P(x)log(\frac{P(x)}{Q(x)})dx}\\&amp;= \sum{P(x)log(P(x))}-\sum{P(x)log(Q(x))}\\&amp;= -H(p(x))+[-\sum{P(x)log(Q(x))]}\end{split}$$交叉熵的公式定义如下：$$H(P,Q) = -\sum{P(x)log(Q(x))}$$由于KL散度中的前一部分−H(y)不变，故在优化过程中，只需要关注交叉熵就可以了。所以一般在机器学习中直接用用交叉熵做loss，评估模型。]]></content>
       <categories>
         <category>机器学习</category>
@@ -13,8 +13,20 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[激活函数]]></title>
+    <url>%2F2018%2F06%2F21%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%2F%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[激活函数定义神经网络中的每个节点接受输入值，并将输入值传递给下一层，输入节点会将输入属性值直接传递给下一层(隐层或输出层)。在神经网络中，隐层和输出层节点的输入和输出之间具有函数关系，这个函数称之为激活函数。 作用如果不适用激活函数，每一层输出都是上一层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合，这种情况就是最原始的感知机(Perceptron)。如果使用激活函数，激活函数给神经元引入了非线性因素，使得神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中。 常用的激活函数Sigmoid函数Sigmoid函数是一个在生物学中常见的S型函数，也称为S型生长曲线。在信息科学中，由于其单增以及反函数单增等性质，Sigmoid函数常被用作神经网络的阈值函数，将变量映射到0,1之间。公式如下：$$f(x)=\frac{1}{1+e^{-x}}$$函数图像如下： tanh函数tanh是上去西安函数中的一个，tanh()为双曲正切。在数学中，双曲正切tanh是由基本双曲函数双曲正弦和双曲余弦推导而来。公式如下：$$f(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}=\frac{2}{1+e^{-2x}}-1=2sigmoid(2x)-1$$函数图像如下： softplus函数公式如下：$$f(x)=log(1+e^x)$$函数图像如下： softsign函数公式如下：$$f(x)=\frac{x}{|x|+1}$$函数图像如下： ReLU函数Relu激活函数(Rectified Linear Unit)，线性整流函数，又称修正线性单元，用于隐层神经元输出。ReLU函数其实就是一个取最大值函数，注意这并不是全区间可导的，但是我们可以取sub-gradient。ReLU虽然简单，但是却是近几年的重要成果，有以下几大优点： 1.解决了gradient vanishing问题 (在正区间) 2.计算速度非常快，只需要判断输入是否大于0 3.收敛速度远快于sigmoid和tanh ReLU也有几个需要特别注意的问题： 1.ReLU的输出不是zero-centered 2.Dead ReLU Problem，指的是某些神经元可能永远不会被激活，导致相应的参数永远不能被更新。有两个主要原因可能导致这种情况产生：1.非常不幸的参数初始化，这种情况比较少见2.learning rate太高导致在训练过程中参数更新太大，不幸使网络进入这种状态。解决方法是可以采用Xavier初始化方法，以及避免将learning rate设置太大或使用adagrad等自动调节learning rate的算法。 公式如下：$$f(x)=max(0,x)$$函数图像如下： ELU函数Exponential Linear unit，指数线性单元，ELU函数是针对ReLU函数的一个改进型，相对于ReLU函数，在输入为复数的情况下，是有一定的输出的，而且这部分输出还具有一定的抗干扰能力。这样可以消除ReLU死掉的问题，不过还是有梯度消失和指数运算的问题。公式如下：$$f(x)=\begin{cases}x,&amp; x&gt;0\\alpha(e^x-1),&amp; x \leq 0\end{cases} $$函数图像如下： LReLU函数即Leaky ReLU，泄漏整流线性单元，为了解决ReLU的死去问题，提出了将ReLU的前半段设为$\alpha{x}$而非0，通常$\alpha=0.01$。理论上来讲，LReLU函数有ReLU的所有优点，外加不会有ReLU死去问题，但是在实际操作当中，并没有完全证明LReLU总是优于ReLU。公式如下：$$f(x)=\begin{cases}x,&amp; x&gt;0\\alpha{x},&amp; x \leq 0\end{cases} $$其中$\alpha$是固定值，默认$\alpha=0.01$函数图像如下： PReLU函数另外一种解决ReLU死去问题的直观的想法是基于参数的方法，即Parametric ReLU函数，参数化修正线性单元。公式如下：$$f(x)=\begin{cases}x,&amp; x&gt;0\\alpha{x},&amp; x \leq 0\end{cases} $$其中$\alpha$是可以学习的。如果$\alpha=0$，那么PReLU退化为ReLU；如果$\alpha$是一个很小的固定值(如$\alpha=0.01$)，则PReLU退化为Leaky ReLU(LReLU)。PReLU只增加了极少量的参数，也就意味着网络的计算量以及过拟合的危险性都只增加了一点点。特别的，当不同通道使用相同的$\alpha$时候，参数就更少了。BP更新$\alpha$时，采用的是带动量的更新方式。 RReLU函数即Randomized Leaky ReLU函数，随机带泄露的修正线性单元，与Leaky ReLU以及PReLU很相似，为负责输入添加了一个线性项。而最关键的区别是，这个线性项的斜率在每一个节点上都是随机分配的(通常服从均匀分布)。 函数 优点 缺点 sigmoid函数 在整个定义域内可导。 梯度在饱和区域非常平缓，接近于0，很容易造成梯度消失的问题，减缓收敛速度。计算激活函数时(指数运算)，计算量大，反向传播求误差梯度时，求导涉及除法，计算量相对大。 tanh函数 在整个定义域内可导。 梯度在饱和区域非常平缓，接近于0，很容易造成梯度消失的问题，减缓收敛速度。计算激活函数时(指数运算)，计算量大，反向传播求误差梯度时，求导涉及除法，计算量相对大。 softplus函数 在整个定义域内可导。 梯度在饱和区域非常平缓，接近于0，很容易造成梯度消失的问题，减缓收敛速度。计算激活函数时(指数运算)，计算量大，反向传播求误差梯度时，求导涉及除法，计算量相对大。 ReLU函数 ReLU的梯度在大多数情况下是常数，有助于解决深层网络收敛问题。ReLU更容易学习优化。因为其分段线性性质，导致其前传、后传、求导都是分段线性。ReLU会使一部分神经元的输出为0.这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生，也更接近真实的神经元激活模型。 如果后层的某一个梯度特别大，导致W更新以后变得特别大，导致该层的输入&lt;0，输出为0，这时该层就会死去，没有更新。当学习率比较大时可能会有40%的神经元都会在训练开始就会死去，因此需要对学习率进行一个好的设置。 注意： tanh特征相差明显时的效果，在循环过程中会不断扩大特征效果显示出来，但是有，在特征相差比较复杂或是相差不是特别大时，需要更细微的分类判断的时候，sigmoid效果就好了。 sigmoid和tanh作为激活函数时，需要注意对input进行归一化，否则激活后的值都会进入平坦区，使隐层的输出全部趋同，但是ReLU并不需要输入归一化来放置它们达到饱和。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>神经网络</tag>
+        <tag>激活函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[BP算法广义误差]]></title>
-    <url>%2F2018%2F06%2F15%2FBP%E7%AE%97%E6%B3%95%E5%B9%BF%E4%B9%89%E8%AF%AF%E5%B7%AE%2F</url>
+    <url>%2F2018%2F06%2F15%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%2FBP%E7%AE%97%E6%B3%95%E5%B9%BF%E4%B9%89%E8%AF%AF%E5%B7%AE%2F</url>
     <content type="text"><![CDATA[BP算法广义误差$二次方误差和E = \frac{1}{2}\sum\limits_{j=1}^{n_l}(期望输出 - 实际输出)^2$$$E = \frac{1}{2}\sum_{j=1}^{n_l} (y_j-a_j)^2$$将误差函数向量化$$E = \frac{1}{2}||y-a^{(n_l)}||^2$$将误差函数进行化简$$\begin{split}E &amp;=\frac{1}{2}||y-a^{(n_l)}||^2\\&amp;=\frac{1}{2}(y-a)^T(y-a)\\&amp;=\frac{1}{2}(y^Ty-y^Ta-a^Ty+a^Ta)\end{split}$$首先给出定义：$a\in\mathbb{R}^{n\times{1}}$ $y\in\mathbb{R}^{n\times{1}}$ $\delta\in\mathbb{R}^{n\times{1}}$则输出层广义误差为：$$\begin{split}\delta^{(n_l)} &amp;= \frac{\partial{E^{(n_l)}}}{\partial{z^{(n_l)}}} \\&amp;=\frac{\partial{a^{(n_l)}}}{\partial{z^{(n_l)}}}\frac{\partial{E^{(n_l)}}}{\partial{a^{(n_l)}}} \\&amp;=\frac{\partial{a^{(n_l)}}}{\partial{z^{(n_l)}}}\frac{\partial}{\partial{a^{(n_l)}}}[\frac{1}{2}(y^Ty-y^Ta-a^Ty+a^Ta)] \\&amp;=\frac{\partial{a^{(n_l)}}}{\partial{z^{(n_l)}}}[\frac{1}{2}(0-y-y+2a^{(n_l)})] \\&amp;=\frac{\partial{g(z^{(n_l)})}}{\partial{z^{(n_l)}}}(a^{(n_l)}-y)\end{split}$$ 隐含层广义误差为：$$\begin{split}\delta^{(n_l-1)}&amp;=\frac{\partial{E^{(n_l)}}}{\partial{z^{(n_l-1)}}}\\&amp;=\frac{\partial{a^{(n_l)}}}{\partial{z^{(n_l-1)}}}\frac{\partial{E^{(n_l)}}}{\partial{a^{(n_l)}}}\\&amp;=\frac{\partial{z^{(n_l)}}}{\partial{z^{(n_l-1)}}}\frac{\partial{a^{(n_l)}}}{\partial{z^{(n_l)}}}(a^{(n_l)}-y)\\&amp;=\frac{\partial{z^{(n_l)}}}{\partial{z^{(n_l-1)}}}\delta^{(n_l)}\\&amp;=\frac{\partial{\Theta^{(n_l-1)}g(z^{(n_l-1)})}}{\partial{z^{(n_l-1)}}}\delta^{(n_l)}\\&amp;=\frac{\partial{g(z^{(n_l-1)})}}{\partial{z^{(n_l-1)}}}(\Theta^{(n_l-1)})^T\delta^{(n_l)}\\\end{split}$$$a^{(n_l)}=h_{\Theta}(x)=g(z^{(n_l)})$由于sigmoid标量导数$g’(z)=g(z)[1-g(z)]$，固在向量化后$g’(z^{(n_l)})=a^{(n_l)}*(1-a^{(n_l)})$，所以可得隐含层广义误差与下一层广义误差的关系为：$$\delta^{(n_l-1)}=(\Theta^{(n_l-1)})^T\delta^{(n_l)}*{g’(z^{(n_l-1)})} $$从而实现BP算法]]></content>
       <categories>
         <category>机器学习</category>
@@ -25,9 +37,21 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[同方差性与异方差性]]></title>
+    <url>%2F2018%2F06%2F10%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%2F%E5%90%8C%E6%96%B9%E5%B7%AE%E6%80%A7%E4%B8%8E%E5%BC%82%E6%96%B9%E5%B7%AE%E6%80%A7%2F</url>
+    <content type="text"><![CDATA[同方差性与异方差性所谓同方差，是为了保证回归参数估计量具有良好的统计性质，经典线性回归模型的一个重要假定，总体回归函数中的随机误差项满足同方差性，即它们都有相同的方差。如果这一假定不满足，即：随机误差项具有不同的方差，则称线性回归模型存在异方差性。 若线性回归模型存在异方差性，则用传统的最小二乘法(OLS)估计模型，得到的参数估计量不是有效估计量，甚至也不是渐进有效哦的估计量；此时也无法对模型参数进行有关显著性校验。 异方差的检测事实证明，实际问题中经常会出现异方差性，这将影响回归模型的估计、检验和应用。因此在建立回归模型时应检验模型是否存在异方差性。异方差性检验方法如下: 1.图示校验法 2.Goldfeld-Quandt校验 3.White校验发 4.Park校验法 5.Gleiser校验法 异方差破坏古典模型的基本假定在古典回归模型的假定下，普通最小二乘法估计量是线性、无偏、有效估计量，即在所有无偏估计量中，最小二乘法估计量具有最小方差性——它是个有效估计量。如果在其他假定不变的条件下，允许随机扰动项ui存在异方差性，即ui的方差随观测值的变化而变化，这就违背了最小二乘法估计的高斯——马尔柯夫假设，这时如果继续使用最小二乘法对参数进行估计，就会产生以下后果： 1.参数估计量仍然是线性无偏的，但不是有效的； 2.异方差模型中的方差不再具有最小方差性； 3.T检验失去作用； 4.模型的预测作用遭到破坏。 T检验，亦称student t检验(Student’s t test)，主要用户样本含量较小(例如n&lt;30)总体标准差$\sigma$未知的正态分布。T检验是用t分布理论来推论差异发生的概率，从而比较两个平均数的差异是否显著。它与F检验、卡方检验并列。T检验是戈斯特为了观测酿酒质量而发明的，并于1908年在Biometrika上发布。 存在异方差性解决方法: 对模型变换，当可以确定异方差的具体形式时，将模型作适当变换有可能消除或减轻异方差的影响。 使用加权最小二乘法，对原模型变换的方法与加权二乘法实际上是等价的，可以消除异方差。 对数变换，运用对数变换能使测定变量值的尺度缩小。它可以将两个数值之间原来10倍的差异缩小到只有2倍的差异。其次，经过对数变换后的线性模型，其残差表示相对误差，而相对误差往往比绝对误差有较小的差异。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>方差</tag>
+        <tag>概率论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[线性回归的正规方程]]></title>
-    <url>%2F2018%2F06%2F06%2F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E6%AD%A3%E8%A7%84%E6%96%B9%E7%A8%8B%2F</url>
-    <content type="text"><![CDATA[线性回归的正规方程 本文阐述线性回归的正规方程推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。 多变量线性回归的梯度下降算法是用来求其代价函数最小值的算法，但是对于某些线性回归问题，可以直接使用正规方程的方法来找出使得代价函数最小的参数，即$\frac{\partial}{\partial\theta_j}J(\theta)=0$。梯度下降与正规方程的比较： 优缺点 梯度下降 正规方程(标准方程) 是否需要引入其他参数 需要选择学习率$\alpha$ 不需要 迭代或运算次数 需要多次迭代 一次运算得出 特征数量是否有影响 当特征数量$n$大时也能较好适用 需要计算$(X^TX)^{-1}$如果特征数量$n$较大则运算代价大，因为矩阵逆的计算时间复杂度为$O(n^3)$，通常来说$n$小于10000时还是可以接受的 适用模型类 适用于各种类型的模型 只适用于线性模型，不适合逻辑回归模型等其他模型 首先给出线性回归的代价函数(Cost Function)的向量化表示：$$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2$$其中假设函数$h_\theta(x) = \theta^TX=\theta_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$$m$为样本总数，参数$\theta$与特征矩阵$X$均为$n+1$维列向量。 将假设函数代入，并将向量表达式转化为矩阵表达式，即将$\sum\limits_{i=1}^m$写成矩阵相乘的形式：$$J(\theta) = \frac{1}{2}(X\theta-y)^2$$其中$X$为$m$行$n+1$列的矩阵，$m$为样本个数，$n+1$为特征个数，$\theta$为$n+1$维行向量，$y$为$m$维行向量。由于$X$非方阵，不存在逆矩阵，固对$J(\theta)$进行如下变换： $$\begin{split}J(\theta) &amp; = \frac{1} {2} (X\theta-y)^T(X\theta-y) \\&amp;= \frac{1}{2}[(X\theta)^T-y^T] (X\theta-y) \\&amp;= \frac{1}{2}(\theta^TX^T-y^T) (X\theta-y) \\&amp;= \frac{1}{2}(\theta^TX^TX\theta-\theta^TX^Ty-y^TX\theta+y^Ty)\end{split}$$ 接下来对$J(\theta)$求偏导，需要用到以下几个矩阵对矩阵的分母布局求导法则：①$\frac{dAX}{dX}=A^T$②$\frac{dX^TAX}{dX}=2AX$③$\frac{dX^TA}{dX}=A$ 首先化简$\frac{\partial}{\partial\theta}J(\theta)$$$\begin{split}\frac{\partial}{\partial\theta}J(\theta)&amp;=\frac{1}{2}[2X^TX\theta-X^Ty-(y^TX)^T+0]\\&amp;=\frac{1}{2}[2X^TX\theta-X^Ty-X^Ty+0]\\&amp;=X^TX\theta-X^Ty\end{split}$$ 再令$\frac{\partial}{\partial\theta}J(\theta)=X^TX\theta-X^Ty=0$$$\begin{split}X^TX\theta-X^Ty&amp;=0\X^TX\theta&amp;=X^Ty\end{split}$$ 不难发现，$(X^TX)$为方阵，则有$(X^TX)$的逆矩阵$(X^TX)^{-1}$，固在等式两边同时左乘$(X^TX)^{-1}$，并求出$\theta$$$\begin{split}(X^TX)^{-1}X^TX\theta&amp;=(X^TX)^{-1}X^Ty\\(X^TX)^{-1}(X^TX)\theta&amp;=(X^TX)^{-1}X^Ty\\E\theta&amp;=(X^TX)^{-1}X^Ty\\\theta&amp;=(X^TX)^{-1}X^Ty\end{split}$$至此，完成线性回归的正规方程推导。]]></content>
+    <url>%2F2018%2F06%2F06%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%2F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E6%AD%A3%E8%A7%84%E6%96%B9%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[线性回归的正规方程 本文阐述线性回归的正规方程推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。 多变量线性回归的梯度下降算法是用来求其代价函数最小值的算法，但是对于某些线性回归问题，可以直接使用正规方程的方法来找出使得代价函数最小的参数，即$\frac{\partial}{\partial\theta_j}J(\theta)=0$。梯度下降与正规方程的比较： 优缺点 梯度下降 正规方程(标准方程) 是否需要引入其他参数 需要选择学习率$\alpha$ 不需要 迭代或运算次数 需要多次迭代 一次运算得出 特征数量是否有影响 当特征数量$n$大时也能较好适用 需要计算$(X^TX)^{-1}$如果特征数量$n$较大则运算代价大，因为矩阵逆的计算时间复杂度为$O(n^3)$，通常来说$n$小于10000时还是可以接受的 适用模型类 适用于各种类型的模型 只适用于线性模型，不适合逻辑回归模型等其他模型 首先给出线性回归的代价函数(Cost Function)的向量化表示：$$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2$$其中假设函数$h_\theta(x) = \theta^TX=\theta_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$$m$为样本总数，参数$\theta$与特征矩阵$X$均为$n+1$维列向量。 将假设函数代入，并将向量表达式转化为矩阵表达式，即将$\sum\limits_{i=1}^m$写成矩阵相乘的形式：$$J(\theta) = \frac{1}{2}(X\theta-y)^2$$其中$X$为$m$行$n+1$列的矩阵，$m$为样本个数，$n+1$为特征个数，$\theta$为$n+1$维行向量，$y$为$m$维行向量。由于$X$非方阵，不存在逆矩阵，固对$J(\theta)$进行如下变换： $$\begin{split}J(\theta) &amp; = \frac{1} {2} (X\theta-y)^T(X\theta-y) \\&amp;= \frac{1}{2}[(X\theta)^T-y^T] (X\theta-y) \\&amp;= \frac{1}{2}(\theta^TX^T-y^T) (X\theta-y) \\&amp;= \frac{1}{2}(\theta^TX^TX\theta-\theta^TX^Ty-y^TX\theta+y^Ty)\end{split}$$ 接下来对$J(\theta)$求偏导，需要用到以下几个矩阵对矩阵的分母布局求导法则：①$\frac{dAX}{dX}=A^T$②$\frac{dX^TAX}{dX}=2AX$③$\frac{dX^TA}{dX}=A$ 首先化简$\frac{\partial}{\partial\theta}J(\theta)$$$\begin{split}\frac{\partial}{\partial\theta}J(\theta)&amp;=\frac{1}{2}[2X^TX\theta-X^Ty-(y^TX)^T+0]\\&amp;=\frac{1}{2}[2X^TX\theta-X^Ty-X^Ty+0]\\&amp;=X^TX\theta-X^Ty\end{split}$$ 再令$\frac{\partial}{\partial\theta}J(\theta)=X^TX\theta-X^Ty=0$$$\begin{split}X^TX\theta-X^Ty&amp;=0\X^TX\theta&amp;=X^Ty\end{split}$$ 不难发现，$(X^TX)$为方阵，则有$(X^TX)$的逆矩阵$(X^TX)^{-1}$，固在等式两边同时左乘$(X^TX)^{-1}$，并求出$\theta$$$\begin{split}(X^TX)^{-1}X^TX\theta&amp;=(X^TX)^{-1}X^Ty\\(X^TX)^{-1}(X^TX)\theta&amp;=(X^TX)^{-1}X^Ty\\E\theta&amp;=(X^TX)^{-1}X^Ty\\\theta&amp;=(X^TX)^{-1}X^Ty\end{split}$$至此，完成线性回归的正规方程推导，代码实现如下：1234567891011121314151617181920212223242526272829303132import numpy as npimport pandas as pdimport matplotlib.pylab as pltdef NormalEquation(X,y):return ((X.T@X).I)@X.T@yif __name__ == '__main__':path = 'ex1data1.txt'data = pd.read_csv(path,header=None,names=['Population','Profit'])# insert the column of x0data.insert(0,'Ones',1)# get the matrix of X and the matrix of yx = data.iloc[:,:-1]y = data.iloc[:,-1:]X = np.mat(x.values)y = np.mat(y.values)theta = NormalEquation(X,y)x = np.linspace(data.Population.min(),data.Population.max(),100)f = theta[0,0] + theta[1,0] * x# display the resultfig,ax = plt.subplots(2,1,figsize=(8,12))ax[0].scatter(data.Population,data.Profit)ax[0].set_xlabel('Population')ax[0].set_ylabel('Profit')ax[0].set_title('Training Data')ax[1].plot(x,f,'r')ax[1].scatter(data.Population,data.Profit)ax[1].set_xlabel('Population')ax[1].set_ylabel('Profit')ax[1].set_title('Prediction Profit vs. Population Size')plt.show() 输出结果如下：]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -37,9 +61,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[线性回归代价函数的梯度下降算法]]></title>
-    <url>%2F2018%2F06%2F04%2F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[线性回归的梯度下降算法 本文阐述线性回归代价函数的梯度下降算法推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。 首先给出线性回归的代价函数(Cost Function)的向量化表示：$$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2$$其中假设函数$h_\theta(x) = \theta^TX=\theta_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$$m$为样本总数，参数$\theta$与特征矩阵$X$均为$n+1$维列向量。由于使用多变量进行梯度下降，固可以使用批量梯度下降法来获得全局最优解。 在参数$\theta$中引入学习速率$\alpha$：$$\theta_j=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta),(j=0,1,…,n)$$将$J(\theta)$代入：$$\theta_j=\theta_j-\alpha\frac{\partial}{\partial\theta_j}\frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2,(j=0,1,…,n)$$求偏导化简，得出多变量线性回归的批量梯度下降算法：$$\theta_j=\theta_j-\alpha\frac{1}{m}\sum\limits_{i=1}^m((h_\theta(x^{(i)})-y^{(i)})\cdot x_j^{(i)}),(j=0,1,…,n)$$]]></content>
+    <title><![CDATA[线性回归的梯度下降算法]]></title>
+    <url>%2F2018%2F06%2F04%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%2F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[线性回归的梯度下降算法 本文阐述线性回归代价函数的梯度下降算法推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。 首先给出线性回归的代价函数(Cost Function)的向量化表示：$$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2$$其中假设函数$h_\theta(x) = \theta^TX=\theta_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$$m$为样本总数，参数$\theta$与特征矩阵$X$均为$n+1$维列向量。由于使用多变量进行梯度下降，固可以使用批量梯度下降法来获得全局最优解。 在参数$\theta$中引入学习速率$\alpha$：$$\theta_j=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta),(j=0,1,…,n)$$将$J(\theta)$代入：$$\theta_j=\theta_j-\alpha\frac{\partial}{\partial\theta_j}\frac{1}{2m}\sum\limits_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2,(j=0,1,…,n)$$求偏导化简，得出多变量线性回归的批量梯度下降算法：$$\theta_j=\theta_j-\alpha\frac{1}{m}\sum\limits_{i=1}^m((h_\theta(x^{(i)})-y^{(i)})\cdot x_j^{(i)}),(j=0,1,…,n)$$ 将上述公式进行向量化：$\Theta\in\mathbb{R}^{n+1\times{1}}$ $X\in\mathbb{R}^{m\times{n+1}}$ $y\in\mathbb{R}^{m\times{1}}$则批量梯度下降算法可表示为：$$\Theta=\Theta-\frac{\alpha}{m}X^{T}(X\Theta-y)$$向量化后，可以使计算更简洁，并且也能保证各$\theta$的值保持同步更新，以下是代码实现：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647import numpy as npimport pandas as pdimport matplotlib.pylab as pltdef CostFunction(X, y, theta):return np.mean(np.power(X @ theta - y, 2)) / 2def Gradient(X, y, theta, alpha):return theta - alpha * (X.T @ (X @ theta - y)) / X.shape[0]def BatchGradientDecent(X, y, theta, alpha=0.01, iters=1000):cost = np.zeros(iters)for i in range(iters):theta = Gradient(X, y, theta, alpha)cost[i] = CostFunction(X, y, theta)return theta, costif __name__ == '__main__':path = 'ex1data1.txt'data = pd.read_csv(path,header=None,names=['Population','Profit'])# insert the column of x0data.insert(0,'Ones',1)# get the matrix of X and the matrix of yX = data.iloc[:,:-1]y = data.iloc[:,-1:]X = np.mat(X.values)y = np.mat(y.values)# init theta,alpha,iterstheta = np.mat([[0,0]])alpha = 0.01iters = 1000# batch gradientdecenttheta,cost = BatchGradientDecent(X,y,theta,alpha,iters)x = np.linspace(data.Population.min(),data.Population.max(),100)f = theta[0,0] + theta[0,1] * x# display the resultfig,ax = plt.subplots(2,1,figsize=(8,12))ax[0].scatter(data.Population,data.Profit)ax[0].set_xlabel('Population')ax[0].set_ylabel('Profit')ax[0].set_title('Training Data')ax[1].plot(x,f,'r')ax[1].scatter(data.Population,data.Profit)ax[1].set_xlabel('Population')ax[1].set_ylabel('Profit')ax[1].set_title('Prediction Profit vs. Population Size ')plt.show() 输出结果如下：]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -50,23 +74,24 @@
   </entry>
   <entry>
     <title><![CDATA[积分微分表]]></title>
-    <url>%2F2018%2F06%2F02%2F%E7%A7%AF%E5%88%86%E5%BE%AE%E5%88%86%E8%A1%A8%2F</url>
+    <url>%2F2018%2F06%2F02%2FUtils%2F%E7%A7%AF%E5%88%86%E5%BE%AE%E5%88%86%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[积分微分表基本积分表24个基本积分：两个由基本积分②推导的常用积分 基本微分表 矩阵微分表]]></content>
       <categories>
-        <category>微积分</category>
+        <category>Utils</category>
       </categories>
       <tags>
-        <tag>utils</tag>
+        <tag>Utils</tag>
+        <tag>微积分</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[梯度下降法]]></title>
-    <url>%2F2018%2F06%2F02%2F%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95%2F</url>
+    <url>%2F2018%2F06%2F02%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%2F%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95%2F</url>
     <content type="text"><![CDATA[梯度下降(Gradient Descent)算法梯度下降是一个用来求函数最小值的算法，是迭代法的一种，可以用于求解最小二乘问题(线性和非线性都可以)。在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。在求解损失函数的最小值时，可以通过梯度下降法来一步步的迭代求解，得到最小化的损失函数和模型参数值。反过来，如果我们需要求解损失函数的最大值，这时就需要用梯度上升法来迭代了。在机器学习中，基于基本的梯度下降法发展了两种梯度下降方法，分别为随机梯度下降法(Stochastic Gradient Descent，简称SGD)和批量梯度下降法(Batch Gradient Descent，简称BGD)。随机梯度下降：随机梯度下降是每次迭代使用一个样本来对参数进行更新，其计算速度较快，但由于计算得到的并不是准确的一个梯度，即准确度较低，且容易陷入到局部最优解中，也不易于并行实现。批量梯度下降：批量梯度下降是最原始的形式，它是指在每一次迭代时使用所有样本来进行梯度的更新(这里的更新指同步更新)。相对的，批量梯度下降在样本数据较多的情况下，其计算速度较慢，但是可以获得全局最优解，且易于并行实现。]]></content>
   </entry>
   <entry>
     <title><![CDATA[闭包]]></title>
-    <url>%2F2017%2F08%2F06%2F%E9%97%AD%E5%8C%85%2F</url>
+    <url>%2F2017%2F08%2F06%2FPython%2F%E9%97%AD%E5%8C%85%2F</url>
     <content type="text"><![CDATA[闭包实现闭包的基石闭包的创建通常是利用嵌套函数来完成的。在PyCodeObject中，与嵌套函数相关的属性是co_cellvars和co_freevars。具体两者的的含义如下：co_cellvars：tuple，保存嵌套的作用域中使用的变量名集合co_freevars：tuple，保存使用了的外层作用域中的变量名集合closure.py会编译出3个PyCodeObject，其中有两个，一个与函数get_func对应，一个与函数inner_func对应，那么，与get_func对应的PyCodeObject对象中的co_cellvars就应该包含外层函数内的变量，即字符串”value”，因为其嵌套作用域(inner_func的作用域)中可以使用这个变量；同理，与函数inner_func对应的PyCodeObject对象中的co_freevars中应该也有该变量。在PyFrameObject对象中，也有一个属性与闭包的实现相关，这个属性就是f_localsplus，在PyFrame_New中的extras正是f_localsplus指向的那边内存的大小。1extras = code-&gt;co_stacksize + code-&gt;co_nlocals + ncells + nfrees; f_localsplus的完整内存布局：运行时栈(co_stacksize)、局部变量(co_nlocals)、cell对象(对应co_cellvars)、free对象(对应co_freevars) 闭包的实现创建 closure在python虚拟机执行CALL_FUNCTION指令时，会进入fast_function函数。而在fast_function函数中，由于当前的PyCodeObject为get_func对应之PyCodeObject，其中的co_flags为3(CO_OPTIMIZED|CO_NEWLOCALS)，所以最终不符合进入快速通道的条件，而会进入PyEval_EvalCodeEx。在PyEval_EvalCodeEx中，Python虚拟机会如同处理默认参数一样，将co_cellvars中的东西拷贝到新创建的PyFrameObject的f_localsplus中。嵌套函数有时候会很复杂，比如内层嵌套函数引用的不是外层嵌套函数的局部变量，而是外层嵌套函数的一个拥有默认值的参数。Python虚拟机会获得被内层嵌套函数引用的符号名，即字符串”value”，即获得被嵌套函数共享的符号名cellname，通过判断标识位found来处理被嵌套函数共享外层函数的默认参数，若found标识位为0时，Python虚拟机会创建一个cell对象——PyCellObject。cell对象仅维护一个ob_ref，指向一个Python中的对象。一开始cell对象维护的ob_ref指向了NULL，但当外层局部变量被创建时，即value=”inner”这个赋值语句执行的时候，这个cell对象会被拷贝到新创建的PyFrameObject对象的f_localsplus中，且这个对象呗拷贝到的位置是co-&gt;co_nlocals + i，说明在f_localsplus中，cell对象的位置是在局部变量之后的。 PyEval_CodeEx中的found标志位，指的是被内层嵌套函数引用的符号是否已经与某个值绑定的标识，或者说与某个对象建立了约束关系。只有在内层嵌套函数引用的是外层函数的一个有默认值的参数值时，这个标识才可能为1。 在处理co\cellvars即cell对象时，之前获得的cellname会被忽略，因为在get_func函数执行的过程中，对value这个cell变量的访问将通过基于索引访问f_localsplus完成，因而完全不需要再知道cellname了。这个cellname实际上是在处理内层嵌套函数引用外层函数的默认参数时产生的。在处理了cell对象之后，Python虚拟机将进入PyEval_EvalFrameEx，从而正是开始对函数get_func的调用过程。首先将PyStringObject对象(即外层函数的)压入到运行时栈，然后Python虚拟机开始执行STORE_DEREF。从运行时栈弹出的是PyStringObject对象”inner”，而从f_localsplus中取得的是PyCellObject对象，通过PyCell_Set来设置PyCellObject对象中的ob_ref。从而，f_localsplus就发生了变化。设置cell对象之后的get_func函数的PyFrameObject对象，如图： 在get_func的环境中，value符号对应着一个PyStringObject对象，但是closure的作用是将这个约束进行冻结，使得在嵌套函数inner_func被调用时还能使用这个约束。在执行”def inner_func()”表达式时，Python虚拟机就会将(value,”inner”)这个约束塞到PyFunctionObject中。首先将刚刚放置好的PyCellObject对象取出，并压入运行时栈，接着将PyCellObject对象打包进一个tuple中，tuple中可以放置多个PyCellObject。随后将inner_func对应的PyCodeObject对象也压入到运行时栈中，接着完成约束与PyCodeObject的绑定。表达式”def inner_func()”对应的将新创建的PyFunctionObject对象放置到了f_localsplus中，从而使f_localsplus发生了变化。设置function对象之后的get_func函数的PyFrameObject对象，如图：在get_func的最后，新建的PyFunctionObject对象作为返回值给了上一个栈帧，并被压入到该栈帧的运行时栈中。 使用 closureclosure是在get_func中被创建的，而对closure的使用，则是在inner_inner中。在执行”show_value()”对应的CALL_FUNCTION指令时，和inner_func对应的PyCodeObject中co_flags里包含了CO_NESTED，所以在fast_function中不能通过快速通道的验证，从而智能进入PyEval_EvalCodeEx。inner_func对应的PyCodeObject中的co_freevars里有引用的外层作用域中的富豪命，在PyEval_EvalCodeEx中，就会对这个co_freevars进行处理。其中的closure变量是作为最后一个函数参数传递进来的，即在PyFunctionObject对象中与PycodeObject对象绑定的装满PyCellObject对象的tuple。因此在PyEval_EvalCodeEx中，进行的动作就是讲这个PyCellObject对象一个一个放入到f_loaclsplus中相应的位置。在处理完closure之后，inner_func对应的PyFrameObject中的f_loaclsplus再次发生变化。设置cell对象之后的inner_func函数的PyFrameObject对象，如图：这里的动作与调用get_func是一致的，在inner_func调用的过程中，当引用外层作用域的符号时，其实是到f_localsplus中的free变量区域中获得符号对应的值。其实这就是inner_func函数中”print(value)”表达式对应的第一条字节码的意义。 闭包代码1234567def get_func():value = "inner"def inner_func():print(value) return inner_funcshow_value = get_func()show_value()]]></content>
       <categories>
         <category>Python</category>
@@ -76,13 +101,104 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Matplotlib学习笔记——饼图绘制(scatter)]]></title>
+    <url>%2F2017%2F03%2F08%2FUtils%2FMatplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E9%A5%BC%E5%9B%BE%E7%BB%98%E5%88%B6(pie)%2F</url>
+    <content type="text"><![CDATA[Matplotlib学习笔记——饼图绘制(pie)饼图广泛得应用在各个领域，用于表示不同分类的占比情况，通过弧度大小来对比各种分类。饼图通过将一个圆饼按照分类的占比划分成多个区块，整个圆饼代表数据的总量，每个区块（圆弧）表示该分类占总体的比例大小，所有区块（圆弧）的加和等于 100%。 1.饼图绘制与显示 注意显示的百分比的位数 plt.pie(x, labels=,autopct=,colors) x:数量，自动算百分比 labels:每部分名称 autopct:占比显示指定%1.2f%% colors:每部分颜色123456789101112import matplotlib.pylab as plt# 1.准备数据x = ['A', 'B', 'C', 'D', 'E']y = [1984, 3514, 4566, 7812, 1392]# 2.创建画布plt.figure(figsize=(8, 6), dpi=100)# 3.绘制饼图plt.pie(y, labels=x, autopct="%1.2f%%", colors=['b','r','g','y','c'])# 显示图例plt.legend()# 4.显示图像plt.show() 2.圆形饼图在plt.show()前添加代码1plt.axis('equal') 3.饼图应用场景 分类的占比情况（不超过9个分类）例如：班级男女分布占比，公司销售额占比]]></content>
+      <categories>
+        <category>Utils</category>
+      </categories>
+      <tags>
+        <tag>Utils</tag>
+        <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Matplotlib学习笔记——直方图绘制(scatter)]]></title>
+    <url>%2F2017%2F03%2F07%2FUtils%2FMatplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%9B%B4%E6%96%B9%E5%9B%BE%E7%BB%98%E5%88%B6(histogram)%2F</url>
+    <content type="text"><![CDATA[Matplotlib学习笔记——直方图绘制(histogram)直方图，形状类似柱状图却有着与柱状图完全不同的含义。直方图涉及统计学概念，首先要对数据进行分组，然后统计每个分组内数据元的数量。在坐标系中，横轴标出每个组的端点，纵轴表示频数，每个矩形的高代表对应的频数，称这样的统计图为频数分布直方图。 1.相关概念 组数：在统计数据时，我们把数据按照不同的范围分成几个组，分成的组的个数称为组数 组距：每一组两个端点的差 高度：表示频数 面积：表示数量 2.直方图与柱状图的对比 柱状图是以矩形的长度表示每一组的频数或数量，其宽度(表示类别)则是固定的，利于较小的数据集分析。 直方图是以矩形的长度表示每一组的频数或数量，宽度则表示各组的组距，因此其高度与宽度均有意义，利于展示大量数据集的统计结果。 由于分组数据具有连续性，直方图的各矩形通常是连续排列，而柱状图则是分开排列。 3.直方图绘制与显示 matplotlib.pyplot.hist(x, bins=None, normed=None, **kwargs) Parameters:x : (n,) array or sequence of (n,) arrays bins : integer or sequence or ‘auto’, optional 设置组距 设置组数（通常对于数据较少的情况，分为5~12组，数据较多，更换图形显示方式） 通常设置组数会有相应公式：组数 = 极差/组距= (max-min)/distance1234567891011121314151617# 1.准备数据x = [1, 2, 1, 2, 3, 4, 5, 7, 7, 8, 3, 4, 5, 2, 4, 7, 8, 9, 0 ,9, 8, 0, 8, 8, 0, 7, 4, 8, 8, 9, 9, 9, 7, 8, 9, 5, 3]# 2.创建画布plt.figure(figsize=(8, 6), dpi=100)# 3.绘制直方图# 设置组距distance = 1# 计算组数bins = int((max(x) - min(x)) / distance)# 绘制直方图plt.hist(x, bins=bins)# 修改x轴刻度显示plt.xticks(range(min(x), max(x))[::1])# 添加网格显示plt.grid(linestyle=&quot;--&quot;, alpha=0.5)# 4.显示图像plt.show() 4.直方图的应用场景 用于表示分布情况 通过直方图还可以观察和估计哪些数据比较集中，异常或者孤立的数据分布在何处例如：用户年龄分布，商品价格分布]]></content>
+      <categories>
+        <category>Utils</category>
+      </categories>
+      <tags>
+        <tag>Utils</tag>
+        <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Matplotlib学习笔记——柱状图绘制(scatter)]]></title>
+    <url>%2F2017%2F03%2F07%2FUtils%2FMatplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9F%B1%E7%8A%B6%E5%9B%BE%E7%BB%98%E5%88%B6(bar)%2F</url>
+    <content type="text"><![CDATA[Matplotlib学习笔记——柱状图绘制(bar)1.柱状图绘制与显示 plt.bar(x, width, align=’center’, **kwargs) Parameters:x : sequence of scalars. width : scalar or array-like, optional柱状图的宽度 align : {‘center’, ‘edge’}, optional, default: ‘center’Alignment of the bars to the x coordinates:‘center’: Center the base on the x positions.‘edge’: Align the left edges of the bars with the x positions.每个柱状图的位置对齐方式 **kwargs :color:选择柱状图的颜色 Returns:.BarContainerContainer with all the bars and optionally errorbars.123456789101112import matplotlib.pylab as plt# 1.准备数据x = ['A', 'B', 'C', 'D', 'E']y = [1984, 3514, 4566, 7812, 1392]# 2.创建画布plt.figure(figsize=(8,6),dpi=100)# 3.绘制柱状图plt.bar(x, y, width=0.5, color=['b','r','g','y','c'])# 添加网格显示plt.grid(linestyle="--", alpha=0.5)# 4.显示图像plt.show() 2.柱状图对比1234567891011121314151617181920import matplotlib.pylab as plt# 1.准备数据A = ['A', 'B', 'C', 'D', 'E']x = range(len(A))y = [1984, 3514, 4566, 7812, 1392]x_ = [i+0.2 for i in x]y_ = [3154, 1571, 4566, 9858, 2689]# 2.创建画布plt.figure(figsize=(8,6),dpi=100)# 3.绘制柱状图plt.bar(x, y, width=0.2, label='1')plt.bar(x_,y_, width=0.2, label='2')# 显示图例plt.legend()# 修改x轴刻度显示plt.xticks([i+0.1 for i in x], A)# 添加网格显示plt.grid(linestyle="--", alpha=0.5)# 4.显示图像plt.show() 柱状图应用场景适合用在分类数据对比场景上 数量统计 用户数量对比分析]]></content>
+      <categories>
+        <category>Utils</category>
+      </categories>
+      <tags>
+        <tag>Utils</tag>
+        <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Matplotlib学习笔记——散点图绘制(scatter)]]></title>
+    <url>%2F2017%2F03%2F07%2FUtils%2FMatplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%95%A3%E7%82%B9%E5%9B%BE%E7%BB%98%E5%88%B6(scatter)%2F</url>
+    <content type="text"><![CDATA[Matplotlib学习笔记——散点图绘制(scatter)1.散点图绘制与显示12345678910import matplotlib.pylab as plt# 1.准备数据x = [6.1101,5.5277,8.5186,7.0032,5.8598,8.3829,7.4764,8.5781,6.4862,5.0546,5.7107,14.164,]y = [17.592,9.1302,13.662,11.854,6.8233,11.886,4.3483,12,6.5987,3.8166,3.2522,15.505]# 2.创建画布plt.figure(figsize=(8, 6), dpi=100)# 3.绘制散点图plt.scatter(x, y)# 4.显示图像plt.show() 2.散点形状修改代码12# marker:str,可以更改散点的形状plt.scatter(x, y, marker='x') 3.应用场景 探究不同变量之间的内在关系]]></content>
+      <categories>
+        <category>Utils</category>
+      </categories>
+      <tags>
+        <tag>Utils</tag>
+        <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Matplotlib学习笔记——折线图绘制(plot)]]></title>
+    <url>%2F2017%2F03%2F07%2FUtils%2FMatplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%BB%98%E5%88%B6%E4%B8%8E%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87(plot)%2F</url>
+    <content type="text"><![CDATA[Matplotlib学习笔记——折线图绘制(plot)1.matplotlib.pyplot模块matplotlib.pytplot包含了一系列类似于matlab的画图函数。 它的函数作用于当前图形(figure)的当前坐标系(axes)。1import matplotlib.pyplot as plt 2.折线图绘制与显示12345678910111213# 1.创建画布(容器层)# figsize:指定图的长宽# dpi:图像的清晰度# plt.figure()返回fig对象plt.figure(figsize=(6, 4), dpi=100)# 2.绘制折线图(图像层)# 需要保证x,y维度一致# label:str,标签名x = [1, 2, 3, 4, 5, 6, 7]y = [4, 5, 6, 8, 9, 2, 3]plt.plot(x, y, label='A')# 3.显示图像plt.show() 3.图片保存1234# 1.创建画布，并设置画布属性plt.figure(figsize=(20, 8), dpi=80)# 2.保存图片到指定路径plt.savefig(path) 注意:plt.show()会释放figure资源，如果在显示图像之后保存图片将只能保存空图片。 4.添加自定义x,y刻度 plt.xticks(x, **kwargs)x:要显示的刻度值 plt.yticks(y, **kwargs)y:要显示的刻度值 在plt.show()前添加代码1234567# 构造x轴刻度标签x_ticks = range(10)# 构造y轴刻度y_ticks = range(10)# 修改x,y轴坐标的刻度显示plt.xticks(x_ticks[::2])plt.yticks(y_ticks[::2]) 5.添加网格显示在plt.show()前添加代码1234# True:显示网格# linestyle:str,网格线条形状# alpha:int,0到1,透明度plt.grid(True, linestyle='--', alpha=0.5) 6.添加描述信息添加x轴、y轴描述信息及标题在plt.show()前添加代码123456# 设置x轴描述信息plt.xlabel("x")# 设置y轴描述信息plt.ylabel("y")# 设置z轴描述信息plt.title("title") 注意:若使用中文需根据各操作系统添加中文支持 7.多次plot在plt.show()前添加代码123x_ = [1, 2, 3, 4, 5, 6, 7]y_ = [2, 3, 4, 2, 1, 0, 9]plt.plot(x_, y_, label="B") 8.设置图形风格 颜色字符 风格字符 r 红色 - 实线 g 绿色 - - 虚线 b 蓝色 -. 点划线 w 白色 : 点虚线 c 青色 ‘ ‘ 留空、空格 m 洋红 y 黄色 k 黑色 修改代码1plt.plot(x_, y_, 'r', linestyle='--', label="B") 9.显示图例在plt.show()前添加代码使用Location String1plt.legend(loc="best") 或者使用Location Code1plt.legend(loc=0) 颜色字符 风格字符 ‘best’ 0 ‘upper right’ 1 ‘upper left’ 2 ‘lower left’ 3 ‘lower right’ 4 ‘right’ 5 ‘center left’ 6 ‘center right’ 7 ‘lower center’ 8 ‘upper center’ 9 ‘center ‘ 10 折线图的应用场景 呈现公司产品(不同区域)每天活跃用户数 呈现app每天下载数量 呈现产品新功能上线后,用户点击次数随时间的变化 拓展：画各种数学函数图像 注意：plt.plot()除了可以画折线图，也可以用于画各种数学函数图像]]></content>
+      <categories>
+        <category>Utils</category>
+      </categories>
+      <tags>
+        <tag>Utils</tag>
+        <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Matplotlib学习笔记——Matplotlib介绍]]></title>
+    <url>%2F2017%2F03%2F07%2FUtils%2FMatplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Matplotlib%E4%BB%8B%E7%BB%8D%2F</url>
+    <content type="text"><![CDATA[Matplotlib学习笔记——Matplotlib介绍Matplotlib基本介绍 专门用于开发2D图表(包括3D图表) 使用起来及其简单 以渐进、交互式方式实现数据可视化 Matplotlib作用可视化是在整个数据挖掘的关键辅助工具，可以清晰的理解数据，从而调整我们的分析方法。 能将数据进行可视化,更直观的呈现 使数据更加客观、更具说服力 Matplotlib图像结构 Matplotlib三层结构1.容器层容器层主要由Canvas、Figure、Axes组成。Canvas是位于最底层的系统层，在绘图的过程中充当画板的角色，即放置画布(Figure)的工具。Figure是Canvas上方的第一层，也是需要用户来操作的应用层的第一层，在绘图的过程中充当画布的角色。Axes是应用层的第二层，在绘图的过程中相当于画布上的绘图区的角色。Figure:指整个图形(可以通过plt.figure()设置画布的大小和分辨率等)Axes(坐标系):数据的绘图区域Axis(坐标轴)：坐标系中的一条轴，包含大小限制、刻度和刻度标签特点为：一个figure(画布)可以包含多个axes(坐标系/绘图区)，但是一个axes只能属于一个figure。一个axes(坐标系/绘图区)可以包含多个axis(坐标轴)，包含两个即为2d坐标系，3个即为3d坐标系 2.辅助显示层辅助显示层为Axes(绘图区)内的除了根据数据绘制出的图像以外的内容，主要包括Axes外观(facecolor)、边框线(spines)、坐标轴(axis)、坐标轴名称(axis label)、坐标轴刻度(tick)、坐标轴刻度标签(tick label)、网格线(grid)、图例(legend)、标题(title)等内容。该层的设置可使图像显示更加直观更加容易被用户理解，但又不会对图像产生实质的影响。 3.图像层图像层指Axes内通过plot、scatter、bar、histogram、pie等函数根据数据绘制出的图像。 总结： Canvas（画板）位于最底层，用户一般接触不到 Figure（画布）建立在Canvas之上 Axes（绘图区）建立在Figure之上 坐标轴（axis）、图例（legend）等辅助显示层以及图像层都是建立在Axes之上 Matplotlib基本api]]></content>
+      <categories>
+        <category>Utils</category>
+      </categories>
+      <tags>
+        <tag>Utils</tag>
+        <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Jupyter Notebook使用]]></title>
+    <url>%2F2017%2F03%2F05%2FUtils%2FJupyter%20Notebook%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[Jupyter Notebook使用使用pip命令安装 pip install jupyter 打开Jupyter Notebook # 终端输入jupyter notebook 本地notebook的默认URL为：http://localhost:8888想让notebook打开指定目录，只要进入此目录后执行命令即可 新建notebook文档 notebook的文档格式是.ipynb 内容界面操作-helloworld点击run 标题栏： 点击标题（如Untitled）修改文档名 菜单栏 导航-File-Download as，另存为其他格式 导航-Kernel Interrupt，中断代码执行（程序卡死时） Restart，重启Python内核（执行太慢时重置全部资源） Restart &amp; Clear Output，重启并清除所有输出 Restart &amp; Run All，重启并重新运行所有代码 cell操作cell：一对In Out会话被视作一个代码单元，称为cellJupyter支持两种模式： 编辑模式（Enter） 命令模式下回车Enter或鼠标双击cell进入编辑模式 可以操作cell内文本或代码，剪切／复制／粘贴移动等操作 命令模式（Esc） 按Esc退出编辑，进入命令模式 可以操作cell单元本身进行剪切／复制／粘贴／移动等操作 1.鼠标操作2.快捷键操作 两种模式通用快捷键 Shift+Enter，执行本单元代码，并跳转到下一单元 Ctrl+Enter，执行本单元代码，留在本单元 cell行号前的 * ，表示代码正在运行 命令模式：按ESC进入 Y，cell切换到Code模式 M，cell切换到Markdown模式 A，在当前cell的上面添加cell B，在当前cell的下面添加cell 双击D：删除当前cell Z，回退 L，为当前cell加上行号 &lt;!– Ctrl+Shift+P，对话框输入命令直接运行 快速跳转到首个cell，Crtl+Home 快速跳转到最后一个cell，Crtl+End –&gt; 编辑模式：按Enter进入 多光标操作：Ctrl键点击鼠标（Mac:CMD+点击鼠标） 回退：Ctrl+Z（Mac:CMD+Z） 重做：Ctrl+Y（Mac:CMD+Y) 补全代码：变量、方法后跟Tab键 为一行或多行代码添加/取消注释：Ctrl+/（Mac:CMD+/） 屏蔽自动输出信息：可在最后一条语句之后加一个分号]]></content>
+      <categories>
+        <category>Utils</category>
+      </categories>
+      <tags>
+        <tag>Utils</tag>
+        <tag>Jupyter Notebook</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[图的拓扑排序]]></title>
-    <url>%2F2016%2F12%2F15%2F%E5%9B%BE%E7%9A%84%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%2F</url>
+    <url>%2F2016%2F12%2F15%2FPython%2F%E5%9B%BE%E7%9A%84%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[Python有向无环图的拓扑排序拓扑排序的官方定义为：由某个集合上的一个偏序得到该集合上的一个全序，这个操作称之为拓扑排序。而个人认为，拓扑排序即是在图的基本遍历法上引入了入度的概念并围绕入度来实现的排序方法，拓扑排序与Python多继承中mro规则的排序类似，若想深入研究mro规则的C3算法，不妨了解一下 DAG(有向无环图) 的拓扑排序。 入度：指有向图中某节点被指向数目之和有向无环图：Directed Acyclic Graph，简称DAG，若熟悉机器学习则肯定对DAG不陌生，如ANN、DNN、CNN等则都是典型的DAG模型，对这类模型此处不再过多敷述，有兴趣的可以自行学习。 以一个有向无环图为例，如下图：123456789# 定义图结构graph = &#123;"A": ["B","C"],"B": ["D","E"],"C": ["D","E"],"D": ["F"],"E": ["F"],"F": [],&#125; 如图A的指向的元素为B、CB的指向的元素为D、EC的指向的元素为D、ED的指向的元素为FE的指向的元素为FF的指向的元素为空即A的入度为0，B的入度为1，C的入度为1，D的入度为2，E的入度为2，F的入度为2在DAG的拓扑排序中，每次都选取入度为 0 的点加入拓扑队列中，再删除与这一点连接的所有边。首先找到入度为0的点A，把A从队列中取出，同时添加到结果中并把A相关的指向移除，即B、C的入度减少1变为0并将B，C添加到队列中，再从队列首部取出入度为0的节点，以此类推，最后输出结果，完成DAG的拓扑排序。123456789101112131415161718192021222324def TopologicalSort(G):# 创建入度字典in_degrees = dict((u, 0) for u in G)# 获取每个节点的入度for u in G:for v in G[u]:in_degrees[v] += 1# 使用列表作为队列并将入度为0的添加到队列中Q = [u for u in G if in_degrees[u] == 0]res = []# 当队列中有元素时执行while Q:# 从队列首部取出元素u = Q.pop()# 将取出的元素存入结果中res.append(u)# 移除与取出元素相关的指向，即将所有与取出元素相关的元素的入度减少1for v in G[u]:in_degrees[v] -= 1# 若被移除指向的元素入度为0，则添加到队列中if in_degrees[v] == 0:Q.append(v)return resprint(TopologicalSort(graph)) 输出结果：1['A', 'C', 'B', 'E', 'D', 'F'] 代码输出结果与上述分析相符]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>图</tag>
+        <tag>图的遍历</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[图的BFS与DFS]]></title>
-    <url>%2F2016%2F12%2F11%2F%E5%9B%BE%E7%9A%84BFS%E4%B8%8EDFS%2F</url>
+    <url>%2F2016%2F12%2F11%2FPython%2F%E5%9B%BE%E7%9A%84BFS%E4%B8%8EDFS%2F</url>
     <content type="text"><![CDATA[Python图的BFS与DFS BFS:Breadth First Search，广度优先搜索DFS:Depth First Search，深度优先搜索 BFS与DFS都属于图算法，BFS与DFS分别由队列和堆栈来实现，基本的定义与实现过程见前一篇文章，本篇文章基于树的BFS与DFS进行扩展，实现无向图(即没有指定方向的图结构)的BFS与DFS。以一个无向图为例，如下图：123456789# 定义图结构graph = &#123;"A": ["B","C"],"B": ["A", "C", "D"],"C": ["A", "B", "D","E"],"D": ["B", "C", "E","F"],"E": ["C", "D"],"F": ["D"],&#125; 如图A的相邻元素为B、CB的相邻元素为A、C、DC的相邻元素为A、B、D、ED的相邻元素为B、C、E、FE的相邻元素为C、DF的相邻元素为D BFS优先遍历当前节点的相邻节点，即若当前节点为A时，则继续遍历的节点为B和C；当A的所有相邻节点遍历完以后，再遍历A相邻节点B和C的所有相邻节点，以B为例，在遍历B的相邻节点时，由于A已被访问过，则需要标记为已访问，在遍历B的相邻节点时，不再需要访问A。以此类推，完成无向图的BFS。DFS优先遍历与当前节点0相邻的一个节点1，然后再访问与节点1相邻但与节点0不相邻的节点，即若当前节点为A，则继续遍历B或C，再访问与B或C节点相邻且与A节点不相邻的节点，即节点D或E，若没有未遍历过的相邻节点，则返回访问上一个有未被访问过相邻节点的节点进行访问，依此遍历整个图，完成无向图的DFS。代码中为了更直观地观察遍历顺序，采用直接打印遍历元素的方式输出遍历结果代码实现：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051def BFS(graph,vertex):# 使用列表作为队列queue = []# 将首个节点添加到队列中queue.append(vertex)# 使用集合来存放已访问过的节点looked = set()# 将首个节点添加到集合中表示已访问looked.add(vertex)# 当队列不为空时进行遍历while(len(queue)&gt;0):# 从队列头部取出一个节点并查询该节点的相邻节点temp = queue.pop(0)nodes = graph[temp]# 遍历该节点的所有相邻节点for w in nodes:# 判断节点是否存在于已访问集合中,即是否已被访问过if w not in looked:# 若未被访问,则添加到队列中,同时添加到已访问集合中,表示已被访问queue.append(w)looked.add(w)print(temp,end=' ')def DFS(graph,vertex):# 使用列表作为栈stack = []# 将首个元素添加到队列中stack.append(vertex)# 使用集合来存放已访问过的节点looked = set()# 将首个节点添加到集合中表示已访问looked.add(vertex)# 当队列不为空时进行遍历while len(stack)&gt;0:# 从栈尾取出一个节点并查询该节点的相邻节点temp = stack.pop()nodes = graph[temp]# 遍历该节点的所有相邻节点for w in nodes:# 判断节点是否存在于已访问集合中,即是否已被访问过if w not in looked:# 若未被访问,则添加到栈中,同时添加到已访问集合中,表示已被访问stack.append(w)looked.add(w)print(temp,end=' ')# 由于无向图无根节点，则需要手动传入首个节点，此处以"A"为例print("BFS",end=" ")BFS(graph,"A")print("")print("DFS",end=" ")DFS(graph,"A") 输出结果：12BFS A B C D E F DFS A C E D F B 代码输出结果与上述分析相符]]></content>
       <categories>
         <category>Python</category>
@@ -94,7 +210,7 @@
   </entry>
   <entry>
     <title><![CDATA[树的BFS与DFS]]></title>
-    <url>%2F2016%2F12%2F07%2F%E6%A0%91%E7%9A%84BFS%E4%B8%8EDFS%2F</url>
+    <url>%2F2016%2F12%2F07%2FPython%2F%E6%A0%91%E7%9A%84BFS%E4%B8%8EDFS%2F</url>
     <content type="text"><![CDATA[Python树的BFS与DFS BFS:Breadth First Search，广度优先搜索DFS:Depth First Search，深度优先搜索 BFS与树的层序遍历类似，DFS则与树的后序遍历有着区别。 BFS(广度优先搜索)： 使用队列实现 每次从队列的头部取出一个元素，查看这个元素所有的下一级元素，再把它们放到队列的末尾。并把这个元素记为它下一级元素的前驱。 优先遍历取出元素下一级的同级元素 DFS(深度优先搜索): 使用栈实现 每次从栈的末尾弹出一个元素，搜索所有在它下一级的元素，把这些元素压入栈中。并把这个元素记为它下一级元素的前驱。 优先遍历弹出元素下一级的下一级元素 以一颗满二叉树为例，如下图123456789# 定义节点类class Node(object):def __init__(self,val,left=None,right=None):self.val = valself.left = leftself.right = right# 创建树模型node = Node("A",Node("B",Node("D"),Node("E")),Node("C",Node("F"),Node("G"))) 如图，A节点的下一级元素为B节点和C节点，B节点的下一级元素为D节点和E节点，C节点的下一级元素为F节点和G节点。BFS优先遍历当前节点下一级节点的同级元素，即若当前节点为A节点，则继续遍历的节点为B和C；当A的所有相邻节点遍历完以后，再遍历B节点的相邻节点D节点和E节点，以及C节点的相邻节点F节点和G节点。至此，所有节点遍历完成。DFS优先遍历当前节点下一级节点的下一级元素，即若当前节点为A节点，则继续遍历的节点为B节点和B节点的下一级节点D节点；D节点没有下一级节点，此时再返回D节点的上一级B节点处，再遍历B节点的另一个下一级元素E节点，若没有未遍历过的下一级元素，则返回上一级，依此规律遍历整个树，完成树的DFS。代码中为了更直观地观察遍历顺序，采用直接打印node.val的方式输出遍历结果代码实现：1234567891011121314151617181920212223242526272829303132333435363738394041def BFS(root):# 使用列表作为队列queue = []# 将首个根节点添加到队列中queue.append(root)# 当队列不为空时进行遍历while queue:# 从队列头部取出一个节点并判断其是否有左右节点# 若有子节点则把对应子节点添加到队列中，且优先判断左节点temp = queue.pop(0)left = temp.leftright = temp.rightif left:queue.append(left)if right:queue.append(right)print(temp.val,end=" ")def DFS(root):# 使用列表作为栈stack = []# 将首个根节点添加到栈中stack.append(root)# 当栈不为空时进行遍历while stack:# 从栈的末尾弹出一个节点并判断其是否有左右节点# 若有子节点则把对应子节点压入栈中，且优先判断右节点temp = stack.pop()left = temp.leftright = temp.rightif right:stack.append(right)if left:stack.append(left)print(temp.val,end=" ")print("BFS",end=" ")BFS(node)print("")print("DFS",end=" ")DFS(node) 输出结果：12BFS A B C D E F G DFS A B D E C F G 代码输出结果与上述分析相符]]></content>
       <categories>
         <category>Python</category>
@@ -106,7 +222,7 @@
   </entry>
   <entry>
     <title><![CDATA[树的前序、中序、后序遍历]]></title>
-    <url>%2F2016%2F12%2F05%2F%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E3%80%81%E4%B8%AD%E5%BA%8F%E3%80%81%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
+    <url>%2F2016%2F12%2F05%2FPython%2F%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E3%80%81%E4%B8%AD%E5%BA%8F%E3%80%81%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
     <content type="text"><![CDATA[Python树的前序、中序、后序遍历树的基础遍历分为三种：前序遍历、中序遍历、后序遍历 前序遍历：根节点-&gt;左子树-&gt;右子树中序遍历：左子树-&gt;根节点-&gt;右子树后序遍历：左子树-&gt;右子树-&gt;根节点 首先自定义树模型 1234567class Node(object):def __init__(self,val,left=None,right=None):self.val = valself.left = leftself.right = rightnode = Node("A",Node("B",Node("D"),Node("E")),Node("C",Node("F"),Node("G"))) 代码中为了更直观地观察遍历顺序，采用直接打印node.val的方式输出遍历结果代码实现： 1234567891011121314151617181920212223242526272829303132# 前序遍历def PreTraverse(root):if root == None:returnprint(root.val,end=" ")PreTraverse(root.left)PreTraverse(root.right)# 中序遍历def MidTraverse(root):if root == None:returnMidTraverse(root.left)print(root.val,end=" ")MidTraverse(root.right)# 后序遍历def AfterTraverse(root):if root == None:returnAfterTraverse(root.left)AfterTraverse(root.right)print(root.val,end=" ")print("前序遍历",end="")PreTraverse(node)print("")print("中序遍历",end="")MidTraverse(node)print("")print("后序遍历",end="")AfterTraverse(node) 输出结果：123前序遍历 A B D E C F G 中序遍历 D B E A F C G 后序遍历 D E B F G C A 输入结果与上述分析一致]]></content>
       <categories>
         <category>Python</category>
@@ -118,7 +234,7 @@
   </entry>
   <entry>
     <title><![CDATA[高斯消去求线性方程的解]]></title>
-    <url>%2F2016%2F11%2F03%2F%E9%AB%98%E6%96%AF%E6%B6%88%E5%8E%BB%E6%B1%82%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E8%A7%A3%2F</url>
+    <url>%2F2016%2F11%2F03%2FPython%2F%E9%AB%98%E6%96%AF%E6%B6%88%E5%8E%BB%E6%B1%82%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E8%A7%A3%2F</url>
     <content type="text"><![CDATA[数学上，高斯消元法（或译：高斯消去法），是线性代数规划中的一个算法，可用来为线性方程组求解。但其算法十分复杂，不常用于加减消元法，求出矩阵的秩，以及求出可逆方阵的逆矩阵。不过，如果有过百万条等式时，这个算法会十分省时。一些极大的方程组通常会用迭代法以及花式消元来解决。当用于一个矩阵时，高斯消元法会产生出一个“行梯阵式”。高斯消元法可以用在电脑中来解决数千条等式及未知数。亦有一些方法特地用来解决一些有特别排列的系数的方程组。1234567891011121314151617181920212223242526272829'''高斯消去法通过消元过程把一般方程组化成三角方程组再通过回代过程求出方程组的解'''def GaussianElimination(A,B):N = len(A)for i in range(1,N):for j in range(i,N):# 计算消元因子deltadelta = A[j][i-1]/A[i-1][i-1]# 从第i-1行开始消元for k in range(i-1,N):# 对A进行消元A[j][k] = A[j][k] - A[i-1][k]*delta# 对B进行消元B[j] = B[j]-B[i-1]*delta# 进行回代，直接将方程的解保留在B中B[N-1] = B[N-1]/A[N-1][N-1]for i in range(N-2,-1,-1):for j in range(N-1,i,-1):B[i] = B[i]- A[i][j]*B[j]B[i] = B[i]/A[i][i]# 返回所有解的列表return BmatrixA = [[1,3,3],[-2,3,-5],[2,5,6]]matrixB = [4,0,1]print('方程的解为',GaussianElimination(matrixA, matrixB)) 输出的结果：1方程的解为 [148.0, 7.0, -55.0]]]></content>
       <categories>
         <category>Python</category>
