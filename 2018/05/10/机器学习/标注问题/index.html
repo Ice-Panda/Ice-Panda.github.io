@@ -110,7 +110,7 @@
 <meta property="og:description" content="标注问题标注(tagging)也是一个监督学习问题。可以认为标注问题是分类问题的一个推广，标注问题有时更负责的结构预测(structure prediction)问题的简单形式。标注问题的输入是一个观测序列，输出是一个标记序列或状态序列。标注问题的目标在于学习一个模型，使它能够对观测序列给出标记序列作为预测。注意，可能的标记个数是有限的，但其组合所成的标记序列的个数是依序列长度呈指数级别增长的。标">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/分类标注回归/标注问题.png">
-<meta property="og:updated_time" content="2018-11-14T12:39:33.000Z">
+<meta property="og:updated_time" content="2018-11-15T06:43:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="标注问题">
 <meta name="twitter:description" content="标注问题标注(tagging)也是一个监督学习问题。可以认为标注问题是分类问题的一个推广，标注问题有时更负责的结构预测(structure prediction)问题的简单形式。标注问题的输入是一个观测序列，输出是一个标记序列或状态序列。标注问题的目标在于学习一个模型，使它能够对观测序列给出标记序列作为预测。注意，可能的标记个数是有限的，但其组合所成的标记序列的个数是依序列长度呈指数级别增长的。标">
@@ -469,7 +469,7 @@
       
 
       
-        <h3 id="标注问题"><a href="#标注问题" class="headerlink" title="标注问题"></a>标注问题</h3><p>标注(tagging)也是一个监督学习问题。可以认为标注问题是分类问题的一个推广，标注问题有时更负责的结构预测(structure prediction)问题的简单形式。标注问题的输入是一个观测序列，输出是一个标记序列或状态序列。标注问题的目标在于学习一个模型，使它能够对观测序列给出标记序列作为预测。注意，可能的标记个数是有限的，但其组合所成的标记序列的个数是依序列长度呈指数级别增长的。<br>标注问题分为学习和标注两个过程(如下图所示)。首先给定一个训练数据集：<br>$$T={(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$$<br>这里，$x_i=(x_i^{(1)},x_i^{(2)},\cdots,x_i^{(n)})^T,i=1,2,\cdots,N$，是输入观测序列，$y_i=(y_i^{(1)},y_i^{(2)},\cdots,y_i^{(n)})^T,i=1,2,\cdots,N$，是响应的输出标记序列，$n$是序列的长度，对不同样本可以有不同的值。学习系统基于训练数据集构建一个模型，表示为条件概率分布：<br>$$P(Y^{(1)},Y^{(2)},\cdots,Y^{(n)}|X^{(1)},X^{(2)},\cdots,X^{(n)})$$<br>这里，每一个$X^{(i)}(i=1,2,\cdots,n)$取值为所有可能的观测，每一个$Y^{(i)}(i=1,2,\cdots,n)$取值为所有坑你的标记，一般$n&lt;&lt;N$。标注系统按照学习得到的条件概率分布模型，对新的输入观测序列找到相应的输出标记序列。具体地，对一个观测序列$x_{N+1}=(x_{N+1}^{(1)},x_{N+1}^{(2)},\cdots,x_{N+1}^{(n)})^T$找到使条件概率$P((y_{N+1}^{(1)},y_{N+1}^{(2)},\cdots,y_{N+1}^{(n)})^T|(x_{N+1}^{(1)},x_{N+1}^{(2)},\cdots,x_{N+1}^{(n)})^T)$最大标记序列$y_{N+1}=(y_{N+1}^{(1)},y_{N+1}^{(2)},\cdots,y_{N+1}^{(n)})^T$。<br><img src="/images/分类标注回归/标注问题.png" alt="Alt text"><br>评价标注模型的指标与评价分类模型的指标一样，常用的有标注准确率、青雀率和召回率。其定义与分类模型相同。<br>标注常用的统计学习方法有：隐马尔可夫模型、条件随机场。<br>标注问题在信息抽取、自然语言处理等领域被广泛应用，是这些领域的基本问题。例如，自然语言处理中的词性标注(part of speech tagging)就是一个典型的标注问题：给定一个由单词组成的句子，对这个句子中的每一个单词进行词性标注，即对一个单词序列预测其对应的词性标标记序列。<br>举一个信息抽取的例子。从英文文章中抽取基本名词短语(base noun phrase)。为此，要对文章进行标注。英文单词是一个观测，英文句子是一个观测序列，标记表示名词短语的“开始”、“结束”或“其他”(分别以B，E，O表示)，标记序列表示英文句子中基本名词短语的所在位置。信息抽取时，将标记“开始”到标记“结束”的单词作为名词短语。列入，给出以下的观测序列，即英文句子，标注系统产生相应的标记序列，即给出句子中的基本名词短语。<br>输入：At Microsoft Research, we have an insatiable curiosity and the desire to create new technology that will help define the computing experience.<br>输出：At/O Microsoft/B Research/E, we/O have/O an/O insatiable/B curiosity/E and/O the/O desire/BE to/O create/O new/B technology/E that/O will/O help/O define/O the/O computing/B experience/E.</p>
+        <h3 id="标注问题"><a href="#标注问题" class="headerlink" title="标注问题"></a>标注问题</h3><p>标注(tagging)也是一个监督学习问题。可以认为标注问题是分类问题的一个推广，标注问题有时更负责的结构预测(structure prediction)问题的简单形式。标注问题的输入是一个观测序列，输出是一个标记序列或状态序列。标注问题的目标在于学习一个模型，使它能够对观测序列给出标记序列作为预测。注意，可能的标记个数是有限的，但其组合所成的标记序列的个数是依序列长度呈指数级别增长的。<br>标注问题分为学习和标注两个过程(如下图所示)。首先给定一个训练数据集：<br>$$T=\lbrace(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\rbrace$$<br>这里，$x_i=(x_i^{(1)},x_i^{(2)},\cdots,x_i^{(n)})^T,i=1,2,\cdots,N$，是输入观测序列，$y_i=(y_i^{(1)},y_i^{(2)},\cdots,y_i^{(n)})^T,i=1,2,\cdots,N$，是响应的输出标记序列，$n$是序列的长度，对不同样本可以有不同的值。学习系统基于训练数据集构建一个模型，表示为条件概率分布：<br>$$P(Y^{(1)},Y^{(2)},\cdots,Y^{(n)}|X^{(1)},X^{(2)},\cdots,X^{(n)})$$<br>这里，每一个$X^{(i)}(i=1,2,\cdots,n)$取值为所有可能的观测，每一个$Y^{(i)}(i=1,2,\cdots,n)$取值为所有坑你的标记，一般$n&lt;&lt;N$。标注系统按照学习得到的条件概率分布模型，对新的输入观测序列找到相应的输出标记序列。具体地，对一个观测序列$x_{N+1}=(x_{N+1}^{(1)},x_{N+1}^{(2)},\cdots,x_{N+1}^{(n)})^T$找到使条件概率$P((y_{N+1}^{(1)},y_{N+1}^{(2)},\cdots,y_{N+1}^{(n)})^T|(x_{N+1}^{(1)},x_{N+1}^{(2)},\cdots,x_{N+1}^{(n)})^T)$最大标记序列$y_{N+1}=(y_{N+1}^{(1)},y_{N+1}^{(2)},\cdots,y_{N+1}^{(n)})^T$。<br><img src="/images/分类标注回归/标注问题.png" alt="Alt text"><br>评价标注模型的指标与评价分类模型的指标一样，常用的有标注准确率、青雀率和召回率。其定义与分类模型相同。<br>标注常用的统计学习方法有：隐马尔可夫模型、条件随机场。<br>标注问题在信息抽取、自然语言处理等领域被广泛应用，是这些领域的基本问题。例如，自然语言处理中的词性标注(part of speech tagging)就是一个典型的标注问题：给定一个由单词组成的句子，对这个句子中的每一个单词进行词性标注，即对一个单词序列预测其对应的词性标标记序列。<br>举一个信息抽取的例子。从英文文章中抽取基本名词短语(base noun phrase)。为此，要对文章进行标注。英文单词是一个观测，英文句子是一个观测序列，标记表示名词短语的“开始”、“结束”或“其他”(分别以B，E，O表示)，标记序列表示英文句子中基本名词短语的所在位置。信息抽取时，将标记“开始”到标记“结束”的单词作为名词短语。列入，给出以下的观测序列，即英文句子，标注系统产生相应的标记序列，即给出句子中的基本名词短语。<br>输入：At Microsoft Research, we have an insatiable curiosity and the desire to create new technology that will help define the computing experience.<br>输出：At/O Microsoft/B Research/E, we/O have/O an/O insatiable/B curiosity/E and/O the/O desire/BE to/O create/O new/B technology/E that/O will/O help/O define/O the/O computing/B experience/E.</p>
 
       
     </div>
@@ -587,7 +587,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -609,7 +609,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
