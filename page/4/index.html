@@ -375,7 +375,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/07/Utils/Matplotlib/Matplotlib学习笔记——折线图绘制与保存图片(plot)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/07/Matplotlib/Matplotlib学习笔记——柱状图绘制(bar)/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -394,7 +394,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/07/Utils/Matplotlib/Matplotlib学习笔记——折线图绘制与保存图片(plot)/" itemprop="url">Matplotlib学习笔记——折线图绘制(plot)</a></h1>
+                <a class="post-title-link" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——柱状图绘制(bar)/" itemprop="url">Matplotlib学习笔记——柱状图绘制(scatter)</a></h1>
         
 
         <div class="post-meta">
@@ -406,7 +406,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T22:12:31+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T22:52:35+08:00">
                 2017-03-07
               </time>
             
@@ -429,8 +429,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Utils/" itemprop="url" rel="index">
-                    <span itemprop="name">Utils</span>
+                  <a href="/categories/Matplotlib/" itemprop="url" rel="index">
+                    <span itemprop="name">Matplotlib</span>
                   </a>
                 </span>
 
@@ -468,12 +468,21 @@
       
         
           
-          Matplotlib学习笔记——折线图绘制(plot)1.matplotlib.pyplot模块matplotlib.pytplot包含了一系列类似于matlab的画图函数。 它的函数作用于当前图形(figure)的当前坐标系(axes)。1import matplotlib.pyplot as plt
-2.折线图绘制与显示12345678910111213
+          Matplotlib学习笔记——柱状图绘制(bar)1.柱状图绘制与显示
+plt.bar(x, width, align=’center’, **kwargs)
+Parameters:x : sequence of scalars.
+
+
+
+
+width : scalar or array-like, optional柱状图的宽度
+
+
+align : {‘ce
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/07/Utils/Matplotlib/Matplotlib学习笔记——折线图绘制与保存图片(plot)/#more" rel="contents">
+            <a class="btn" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——柱状图绘制(bar)/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -524,7 +533,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/07/Utils/Matplotlib/Matplotlib学习笔记——Matplotlib介绍/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/07/Matplotlib/Matplotlib学习笔记——散点图绘制(scatter)/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -543,7 +552,304 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/07/Utils/Matplotlib/Matplotlib学习笔记——Matplotlib介绍/" itemprop="url">Matplotlib学习笔记——Matplotlib介绍</a></h1>
+                <a class="post-title-link" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——散点图绘制(scatter)/" itemprop="url">Matplotlib学习笔记——散点图绘制(scatter)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T22:37:26+08:00">
+                2017-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Matplotlib/" itemprop="url" rel="index">
+                    <span itemprop="name">Matplotlib</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Matplotlib学习笔记——散点图绘制(scatter)1.散点图绘制与显示12345678910import matplotlib.pylab as plt# 1.准备数据x = [6.1101,5.5277,8.5186,7.0032,5.8598,8.3829,7.4764,8.5781,6.4862,5.0546,5.7107,14.164,]y
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——散点图绘制(scatter)/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/07/Matplotlib/Matplotlib学习笔记——折线图绘制与保存图片(plot)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ice-Panda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Veluvana">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——折线图绘制与保存图片(plot)/" itemprop="url">Matplotlib学习笔记——折线图绘制(plot)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T22:12:31+08:00">
+                2017-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Matplotlib/" itemprop="url" rel="index">
+                    <span itemprop="name">Matplotlib</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Matplotlib学习笔记——折线图绘制(plot)1.matplotlib.pyplot模块matplotlib.pytplot包含了一系列类似于matlab的画图函数。 它的函数作用于当前图形(figure)的当前坐标系(axes)。1import matplotlib.pyplot as plt
+2.折线图绘制与显示12345678910111213
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——折线图绘制与保存图片(plot)/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/07/Matplotlib/Matplotlib学习笔记——Matplotlib介绍/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ice-Panda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Veluvana">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——Matplotlib介绍/" itemprop="url">Matplotlib学习笔记——Matplotlib介绍</a></h1>
         
 
         <div class="post-meta">
@@ -578,8 +884,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Utils/" itemprop="url" rel="index">
-                    <span itemprop="name">Utils</span>
+                  <a href="/categories/Matplotlib/" itemprop="url" rel="index">
+                    <span itemprop="name">Matplotlib</span>
                   </a>
                 </span>
 
@@ -631,7 +937,7 @@ Matp
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/07/Utils/Matplotlib/Matplotlib学习笔记——Matplotlib介绍/#more" rel="contents">
+            <a class="btn" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——Matplotlib介绍/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1585,159 +1891,11 @@ BFS(广度优先搜索)：
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/03/Python/高斯消去求线性方程的解/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice-Panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Veluvana">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/11/03/Python/高斯消去求线性方程的解/" itemprop="url">高斯消去求线性方程的解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-03T19:26:21+08:00">
-                2016-11-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          数学上，高斯消元法（或译：高斯消去法），是线性代数规划中的一个算法，可用来为线性方程组求解。但其算法十分复杂，不常用于加减消元法，求出矩阵的秩，以及求出可逆方阵的逆矩阵。不过，如果有过百万条等式时，这个算法会十分省时。一些极大的方程组通常会用迭代法以及花式消元来解决。当用于一个矩阵时，高斯消元法会产生出一个“行梯阵式”。高斯消元法可以用在电脑中来解决数千条等
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/11/03/Python/高斯消去求线性方程的解/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1781,7 +1939,7 @@ BFS(广度优先搜索)：
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1792,7 +1950,7 @@ BFS(广度优先搜索)：
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1803,7 +1961,7 @@ BFS(广度优先搜索)：
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

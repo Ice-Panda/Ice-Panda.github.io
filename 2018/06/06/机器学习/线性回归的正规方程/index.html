@@ -109,12 +109,12 @@
 <meta property="og:site_name" content="Veluvana">
 <meta property="og:description" content="线性回归的正规方程 本文阐述线性回归的正规方程推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。  多变量线性回归的梯度下降算法是用来求其代价函数最小值的算法，但是对于某些线性回归问题，可以直接使用正规方程的方法来找出使得代价函数最小的参数，即$\frac{\partial}{\partial\theta_j}J(\theta)=0$。梯度下降与正规方程的比较：    优缺点 梯度下降">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/images/1541914595148.png">
-<meta property="og:updated_time" content="2018-11-11T05:39:10.000Z">
+<meta property="og:image" content="http://yoursite.com/images/练习/线性回归正规方程.png">
+<meta property="og:updated_time" content="2018-11-18T10:53:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性回归的正规方程">
 <meta name="twitter:description" content="线性回归的正规方程 本文阐述线性回归的正规方程推导过程，为满足广义性，采用多变量的线性回归代价函数进行推导。  多变量线性回归的梯度下降算法是用来求其代价函数最小值的算法，但是对于某些线性回归问题，可以直接使用正规方程的方法来找出使得代价函数最小的参数，即$\frac{\partial}{\partial\theta_j}J(\theta)=0$。梯度下降与正规方程的比较：    优缺点 梯度下降">
-<meta name="twitter:image" content="http://yoursite.com/images/1541914595148.png">
+<meta name="twitter:image" content="http://yoursite.com/images/练习/线性回归正规方程.png">
 
 
 
@@ -510,8 +510,8 @@
 <p>接下来对$J(\theta)$求偏导，需要用到以下几个矩阵对矩阵的分母布局求导法则：<br>①$\frac{dAX}{dX}=A^T$<br>②$\frac{dX^TAX}{dX}=2AX$<br>③$\frac{dX^TA}{dX}=A$</p>
 <p>首先化简$\frac{\partial}{\partial\theta}J(\theta)$<br>$$\begin{split}\frac{\partial}{\partial\theta}J(\theta)&amp;=\frac{1}{2}[2X^TX\theta-X^Ty-(y^TX)^T+0]\\<br>&amp;=\frac{1}{2}[2X^TX\theta-X^Ty-X^Ty+0]\\<br>&amp;=X^TX\theta-X^Ty\end{split}$$</p>
 <p>再令$\frac{\partial}{\partial\theta}J(\theta)=X^TX\theta-X^Ty=0$<br>$$\begin{split}X^TX\theta-X^Ty&amp;=0\<br>X^TX\theta&amp;=X^Ty\end{split}$$</p>
-<p>不难发现，$(X^TX)$为方阵，则有$(X^TX)$的逆矩阵$(X^TX)^{-1}$，固在等式两边同时左乘$(X^TX)^{-1}$，并求出$\theta$<br>$$\begin{split}(X^TX)^{-1}X^TX\theta&amp;=(X^TX)^{-1}X^Ty\\<br>(X^TX)^{-1}(X^TX)\theta&amp;=(X^TX)^{-1}X^Ty\\<br>E\theta&amp;=(X^TX)^{-1}X^Ty\\<br>\theta&amp;=(X^TX)^{-1}X^Ty\end{split}$$<br>至此，完成线性回归的正规方程推导，代码实现如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">NormalEquation</span><span class="params">(X,y)</span>:</span></span><br><span class="line"><span class="keyword">return</span> ((X.T@X).I)@X.T@y</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">path = <span class="string">'ex1data1.txt'</span></span><br><span class="line">data = pd.read_csv(path,header=<span class="keyword">None</span>,names=[<span class="string">'Population'</span>,<span class="string">'Profit'</span>])</span><br><span class="line"><span class="comment"># insert the column of x0</span></span><br><span class="line">data.insert(<span class="number">0</span>,<span class="string">'Ones'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="comment"># get the matrix of X and the matrix of y</span></span><br><span class="line">x = data.iloc[:,:<span class="number">-1</span>]</span><br><span class="line">y = data.iloc[:,<span class="number">-1</span>:]</span><br><span class="line">X = np.mat(x.values)</span><br><span class="line">y = np.mat(y.values)</span><br><span class="line">theta = NormalEquation(X,y)</span><br><span class="line">x = np.linspace(data.Population.min(),data.Population.max(),<span class="number">100</span>)</span><br><span class="line">f = theta[<span class="number">0</span>,<span class="number">0</span>] + theta[<span class="number">1</span>,<span class="number">0</span>] * x</span><br><span class="line"><span class="comment"># display the result</span></span><br><span class="line">fig,ax = plt.subplots(<span class="number">2</span>,<span class="number">1</span>,figsize=(<span class="number">8</span>,<span class="number">12</span>))</span><br><span class="line">ax[<span class="number">0</span>].scatter(data.Population,data.Profit)</span><br><span class="line">ax[<span class="number">0</span>].set_xlabel(<span class="string">'Population'</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_ylabel(<span class="string">'Profit'</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">'Training Data'</span>)</span><br><span class="line">ax[<span class="number">1</span>].plot(x,f,<span class="string">'r'</span>)</span><br><span class="line">ax[<span class="number">1</span>].scatter(data.Population,data.Profit)</span><br><span class="line">ax[<span class="number">1</span>].set_xlabel(<span class="string">'Population'</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_ylabel(<span class="string">'Profit'</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_title(<span class="string">'Prediction Profit vs. Population Size'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
-<p>输出结果如下：<br><img src="/images/1541914595148.png" alt="Alt text"></p>
+<p>不难发现，$(X^TX)$为方阵，则有$(X^TX)$的逆矩阵$(X^TX)^{-1}$，固在等式两边同时左乘$(X^TX)^{-1}$，并求出$\theta$<br>$$\begin{split}(X^TX)^{-1}X^TX\theta&amp;=(X^TX)^{-1}X^Ty\\<br>(X^TX)^{-1}(X^TX)\theta&amp;=(X^TX)^{-1}X^Ty\\<br>E\theta&amp;=(X^TX)^{-1}X^Ty\\<br>\theta&amp;=(X^TX)^{-1}X^Ty\end{split}$$<br>至此，完成线性回归的正规方程推导，代码实现如下，其中数据来源于斯坦福Andrew Ng公开课：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">NormalEquation</span><span class="params">(X,y)</span>:</span></span><br><span class="line"><span class="keyword">return</span> ((X.T@X).I)@X.T@y</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">path = <span class="string">'ex1data1.txt'</span></span><br><span class="line">data = pd.read_csv(path,header=<span class="keyword">None</span>,names=[<span class="string">'Population'</span>,<span class="string">'Profit'</span>])</span><br><span class="line"><span class="comment"># insert the column of x0</span></span><br><span class="line">data.insert(<span class="number">0</span>,<span class="string">'Ones'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="comment"># get the matrix of X and the matrix of y</span></span><br><span class="line">x = data.iloc[:,:<span class="number">-1</span>]</span><br><span class="line">y = data.iloc[:,<span class="number">-1</span>:]</span><br><span class="line">X = np.mat(x.values)</span><br><span class="line">y = np.mat(y.values)</span><br><span class="line">theta = NormalEquation(X,y)</span><br><span class="line">x = np.linspace(data.Population.min(),data.Population.max(),<span class="number">100</span>)</span><br><span class="line">f = theta[<span class="number">0</span>,<span class="number">0</span>] + theta[<span class="number">1</span>,<span class="number">0</span>] * x</span><br><span class="line"><span class="comment"># display the result</span></span><br><span class="line">fig,ax = plt.subplots(<span class="number">2</span>,<span class="number">1</span>,figsize=(<span class="number">8</span>,<span class="number">12</span>))</span><br><span class="line">ax[<span class="number">0</span>].scatter(data.Population,data.Profit)</span><br><span class="line">ax[<span class="number">0</span>].set_xlabel(<span class="string">'Population'</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_ylabel(<span class="string">'Profit'</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">'Training Data'</span>)</span><br><span class="line">ax[<span class="number">1</span>].plot(x,f,<span class="string">'r'</span>)</span><br><span class="line">ax[<span class="number">1</span>].scatter(data.Population,data.Profit)</span><br><span class="line">ax[<span class="number">1</span>].set_xlabel(<span class="string">'Population'</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_ylabel(<span class="string">'Profit'</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_title(<span class="string">'Prediction Profit vs. Population Size'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>输出结果如下：<br><img src="/images/练习/线性回归正规方程.png" alt="Alt text"></p>
 
       
     </div>
@@ -554,8 +554,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/10/机器学习/同方差性与异方差性/" rel="prev" title="同方差性与异方差性">
-                同方差性与异方差性 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/07/机器学习/信息论/" rel="prev" title="信息论与熵">
+                信息论与熵 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -631,7 +631,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -642,7 +642,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -653,7 +653,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
