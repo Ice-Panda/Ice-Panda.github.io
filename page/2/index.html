@@ -1265,7 +1265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/18/OpenCV/OpenCV学习笔记——基本使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/Sklearn/Sclearn学习笔记——特征降维/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1284,7 +1284,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/18/OpenCV/OpenCV学习笔记——基本使用/" itemprop="url">OpenCV学习笔记——基本使用</a></h1>
+                <a class="post-title-link" href="/2018/03/18/Sklearn/Sclearn学习笔记——特征降维/" itemprop="url">Sclearn学习笔记——特征降维</a></h1>
         
 
         <div class="post-meta">
@@ -1296,8 +1296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-18T19:32:12+08:00">
-                2017-03-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T21:45:22+08:00">
+                2018-03-18
               </time>
             
 
@@ -1319,8 +1319,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenCV/" itemprop="url" rel="index">
-                    <span itemprop="name">OpenCV</span>
+                  <a href="/categories/Sklearn/" itemprop="url" rel="index">
+                    <span itemprop="name">Sklearn</span>
                   </a>
                 </span>
 
@@ -1358,14 +1358,21 @@
       
         
           
-          OpenCV学习笔记——基本使用pip安装1pip install opencv-python
-导入OpenCV1import cv2 # 即OpenCV
-原图展示
-文件读取与展示OpenCV是以BGR的顺序读取图像，而matplotlib则是以RGB的顺序读取图像，于是蓝色和红色的通道颠倒了。1234import cv2import matplotlib.
+          Sclearn学习笔记——特征降维降维的定义降维是指在某些限定条件下，降低随机变量(特征)个数，得到一组“不相关”主变量的过程
+
+降低随机变量的个数
+相关特征(correlated feature)
+
+
+由于在进行训练的时使用特征进行学习，如果特征本身存在问题或者特征之间相关性较强，对于算法学习预测会影响较大。
+
+降维的原因
+使得数据集更易使用
+降低很多算法
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/18/OpenCV/OpenCV学习笔记——基本使用/#more" rel="contents">
+            <a class="btn" href="/2018/03/18/Sklearn/Sclearn学习笔记——特征降维/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1416,7 +1423,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/17/Pandas/Pandas学习笔记——高级处理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/Sklearn/Sklearn学习笔记——特征预处理/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1435,7 +1442,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/17/Pandas/Pandas学习笔记——高级处理/" itemprop="url">Pandas学习笔记——高级处理</a></h1>
+                <a class="post-title-link" href="/2018/03/18/Sklearn/Sklearn学习笔记——特征预处理/" itemprop="url">Sklearn学习笔记——特征预处理</a></h1>
         
 
         <div class="post-meta">
@@ -1447,8 +1454,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T22:55:01+08:00">
-                2017-03-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T20:20:12+08:00">
+                2018-03-18
               </time>
             
 
@@ -1470,8 +1477,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Pandas</span>
+                  <a href="/categories/Sklearn/" itemprop="url" rel="index">
+                    <span itemprop="name">Sklearn</span>
                   </a>
                 </span>
 
@@ -1509,23 +1516,22 @@
       
         
           
-          Pandas学习笔记——高级处理1.缺失值处理处理nan或者默认标记在pandas中我们处理起来非常容易
-
-判断数据是否为NaN
-pd.isnull(df),
-pd.notnull(df)处理方式：
-
-
-存在缺失值nan, 并且是np.nan:
-1 删除存在缺失值的：dropna(axis=’rows’)
-注：不会修改原数据，需要接受返回值
+          Sklearn学习笔记——特征预处理特征预处理定义通过一些转换函数将特征数据转换成更加适合算法模型的特征数据过程
+特征预处理内容：
+数据型数据的无量纲化
+归一化
+标准化
 
 
-2 替换缺失
+
+特征预处理的意义
+特征的单位或者大小相差较大，或者某特征的方差相比其他的特征要大出几个数量级，容易影响（支配）目标结果，使得一些算法无法学习到其它的特征
+
+特征预处理sklearn.p
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/17/Pandas/Pandas学习笔记——高级处理/#more" rel="contents">
+            <a class="btn" href="/2018/03/18/Sklearn/Sklearn学习笔记——特征预处理/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1576,7 +1582,7 @@ pd.notnull(df)处理方式：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/17/Pandas/Pandas学习笔记——文件读取与存储/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/Sklearn/Sclearn学习笔记——特征抽取/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1595,7 +1601,7 @@ pd.notnull(df)处理方式：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/17/Pandas/Pandas学习笔记——文件读取与存储/" itemprop="url">Pandas学习笔记——文件读取与存储</a></h1>
+                <a class="post-title-link" href="/2018/03/18/Sklearn/Sclearn学习笔记——特征抽取/" itemprop="url">Sclearn学习笔记——特征抽取</a></h1>
         
 
         <div class="post-meta">
@@ -1607,8 +1613,8 @@ pd.notnull(df)处理方式：
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T22:21:51+08:00">
-                2017-03-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T19:40:43+08:00">
+                2018-03-18
               </time>
             
 
@@ -1630,8 +1636,8 @@ pd.notnull(df)处理方式：
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Pandas</span>
+                  <a href="/categories/Sklearn/" itemprop="url" rel="index">
+                    <span itemprop="name">Sklearn</span>
                   </a>
                 </span>
 
@@ -1669,14 +1675,22 @@ pd.notnull(df)处理方式：
       
         
           
-          Pandas学习笔记——文件读取与存储文件读取与存储1.csv1.1.读取csv文件-read_csv()
-pandas.read_csv(filepath_or_buffer, sep =’,’ , delimiter = None)
-filepath_or_buffer:文件路径
-usecols:指定读取的列名，列表形式1.2.写入csv文件-to_cs
+          Sclearn学习笔记——特征抽取特征抽取
+sklearn.feature_extraction
+
+将任意数据（如文本或图像）转换为可用于机器学习的数字特征，即特征值化。特征值化是为了计算机更好的去理解数据。
+
+字典特征提取
+文本特征提取
+图像特征提取
+
+字典特征提取对字典数据进行特征值化
+
+sklearn.feature_extraction.DictVe
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/17/Pandas/Pandas学习笔记——文件读取与存储/#more" rel="contents">
+            <a class="btn" href="/2018/03/18/Sklearn/Sclearn学习笔记——特征抽取/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1727,7 +1741,7 @@ usecols:指定读取的列名，列表形式1.2.写入csv文件-to_cs
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/17/Pandas/Pandas学习笔记——Pandas画图/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/Sklearn/Sklearn学习笔记——特征工程/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1746,7 +1760,7 @@ usecols:指定读取的列名，列表形式1.2.写入csv文件-to_cs
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/17/Pandas/Pandas学习笔记——Pandas画图/" itemprop="url">Pandas学习笔记——Pandas画图</a></h1>
+                <a class="post-title-link" href="/2018/03/18/Sklearn/Sklearn学习笔记——特征工程/" itemprop="url">Sklearn学习笔记——特征工程</a></h1>
         
 
         <div class="post-meta">
@@ -1758,8 +1772,8 @@ usecols:指定读取的列名，列表形式1.2.写入csv文件-to_cs
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T21:51:32+08:00">
-                2017-03-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T19:30:15+08:00">
+                2018-03-18
               </time>
             
 
@@ -1781,8 +1795,8 @@ usecols:指定读取的列名，列表形式1.2.写入csv文件-to_cs
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Pandas</span>
+                  <a href="/categories/Sklearn/" itemprop="url" rel="index">
+                    <span itemprop="name">Sklearn</span>
                   </a>
                 </span>
 
@@ -1820,14 +1834,13 @@ usecols:指定读取的列名，列表形式1.2.写入csv文件-to_cs
       
         
           
-          Pandas学习笔记——Pandas画图Pandas画图1.pandas.DataFrame.plot
-DataFrame.plot(x=None, y=None, kind=’line’)
-x : label or position, default None
-y : label, position or list of label, positions,
+          Sklearn学习笔记——特征工程特征工程的定义(Feature Engineering)特征工程是使用专业背景只是和技巧处理数据，使得特征能在机器学习算法上发挥更好的作用的过程。即直接影响机器学习的效果。
+特征工程的作用
+Andrew Ng said；”Coming up with features is difficult, time-consuming
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/17/Pandas/Pandas学习笔记——Pandas画图/#more" rel="contents">
+            <a class="btn" href="/2018/03/18/Sklearn/Sklearn学习笔记——特征工程/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1913,7 +1926,7 @@ y : label, position or list of label, positions,
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1924,7 +1937,7 @@ y : label, position or list of label, positions,
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1935,7 +1948,7 @@ y : label, position or list of label, positions,
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

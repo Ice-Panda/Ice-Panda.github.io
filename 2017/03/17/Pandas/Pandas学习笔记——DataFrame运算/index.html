@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Veluvana">
 <meta property="og:description" content="Pandas学习笔记——DataFrame运算DataFrame运算1.算术运算 add(other) 比如进行数学运算加上具体一个数字 也可以加上某一列   sub(other) 比如进行数学运算加上具体一个数字 也可以减去某一列2.逻辑运算2.1.逻辑运算符号&amp;lt;、&amp;gt;、|、&amp;amp;、==   ==等于  大于   &amp;lt;小于 |或 &amp;amp;且  2.2.逻辑运算函数 query">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-18T11:00:22.000Z">
+<meta property="og:updated_time" content="2018-11-21T02:10:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pandas学习笔记——DataFrame运算">
 <meta name="twitter:description" content="Pandas学习笔记——DataFrame运算DataFrame运算1.算术运算 add(other) 比如进行数学运算加上具体一个数字 也可以加上某一列   sub(other) 比如进行数学运算加上具体一个数字 也可以减去某一列2.逻辑运算2.1.逻辑运算符号&amp;lt;、&amp;gt;、|、&amp;amp;、==   ==等于  大于   &amp;lt;小于 |或 &amp;amp;且  2.2.逻辑运算函数 query">
@@ -554,9 +554,13 @@
 <td style="text-align:left">idxmin</td>
 <td style="text-align:left">compute the index labels with the minimum</td>
 </tr>
+<tr>
+<td style="text-align:left">nunique</td>
+<td style="text-align:left">repeat for all columns</td>
+</tr>
 </tbody>
 </table>
-<p>对于单个函数去进行统计的时候，坐标轴还是按照这些默认为“columns” (axis=0, default)，如果要对行“index” 需要指定(axis=1)。<br>例如<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对列求结果</span></span><br><span class="line">df.min(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 对行求结果</span></span><br><span class="line">df.max(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
+<p>对于单个函数去进行统计的时候，坐标轴还是按照这些默认为“columns” (axis=0, default)，如果要对行“index” 需要指定(axis=1)。<br>例如<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对列求结果</span></span><br><span class="line">df.min(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 对行求结果</span></span><br><span class="line">df.max(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 对于一位数组或者列表，unique函数去重，并按元素由大到小返回一个新的无重复的元组或者列表</span></span><br><span class="line">pd.unique(df[column])</span><br><span class="line">df.nunique()[column]</span><br></pre></td></tr></table></figure></p>
 <h5 id="4-累计统计函数"><a href="#4-累计统计函数" class="headerlink" title="4.累计统计函数"></a>4.累计统计函数</h5><table>
 <thead>
 <tr>
@@ -709,7 +713,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -720,7 +724,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -731,7 +735,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
