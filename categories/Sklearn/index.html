@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -103,7 +103,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Veluvana">
-<meta property="og:url" content="http://yoursite.com/categories/Sklearn/index.html">
+<meta property="og:url" content="http://ice-panda.github.io/categories/Sklearn/index.html">
 <meta property="og:site_name" content="Veluvana">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -115,7 +115,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -187,7 +187,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Sklearn/">
+  <link rel="canonical" href="http://ice-panda.github.io/categories/Sklearn/">
 
 
 
@@ -343,11 +343,33 @@
   padding: 0 40px;
   color: #fff;
   background: #222;
-  border:4px solid #222
+  
 }
-.brand:hover {
-  color: #222;
-  background:rgba(255,255,255,0);
+.brand::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #FFF;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.brand:hover::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1);
 }
 </style>
  </div>
@@ -378,9 +400,217 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/03/18/Sklearn/Sclearn学习笔记——特征降维/" itemprop="url">
+            <a class="post-title-link" href="/2018/03/22/Sklearn/Sklearn学习笔记——岭回归(RR)/" itemprop="url">
               
-                <span itemprop="name">Sclearn学习笔记——特征降维</span>
+                <span itemprop="name">Sklearn学习笔记——岭回归(RR)</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-03-22T22:18:31+08:00" content="2018-03-22">
+          03-22
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/03/22/Sklearn/Sklearn学习笔记——线性回归(LR)/" itemprop="url">
+              
+                <span itemprop="name">Sklearn学习笔记——线性回归(LR)</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-03-22T20:25:11+08:00" content="2018-03-22">
+          03-22
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/03/21/Sklearn/Sklearn学习笔记——集成学习方法之随机森林(RF)/" itemprop="url">
+              
+                <span itemprop="name">Sklearn学习笔记——集成学习方法之随机森林(RF)</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-03-21T20:54:32+08:00" content="2018-03-21">
+          03-21
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/03/21/Sklearn/Sklearn学习笔记——决策树(DT)/" itemprop="url">
+              
+                <span itemprop="name">Sklearn学习笔记——决策树(DT)</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-03-21T19:12:25+08:00" content="2018-03-21">
+          03-21
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/03/20/Sklearn/Sklearn学习笔记——朴素贝叶斯(NB)/" itemprop="url">
+              
+                <span itemprop="name">Sklearn学习笔记——朴素贝叶斯(NB)</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-03-20T21:45:12+08:00" content="2018-03-20">
+          03-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/03/19/Sklearn/Sklearn学习笔记——K-近邻算法(KNN)/" itemprop="url">
+              
+                <span itemprop="name">Sklearn学习笔记——K-近邻算法(KNN)</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-03-19T20:45:16+08:00" content="2018-03-19">
+          03-19
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/03/19/Sklearn/Sklearn学习笔记——模型选择与调优/" itemprop="url">
+              
+                <span itemprop="name">Sklearn学习笔记——模型选择与调优</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-03-19T19:59:22+08:00" content="2018-03-19">
+          03-19
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/03/19/Sklearn/Sklearn学习笔记——转换器和估计器/" itemprop="url">
+              
+                <span itemprop="name">Sklearn学习笔记——转换器和估计器</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-03-19T19:31:11+08:00" content="2018-03-19">
+          03-19
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/03/18/Sklearn/Sklearn学习笔记——特征降维/" itemprop="url">
+              
+                <span itemprop="name">Sklearn学习笔记——特征降维</span>
               
             </a>
         
@@ -423,84 +653,6 @@
 
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/18/Sklearn/Sclearn学习笔记——特征抽取/" itemprop="url">
-              
-                <span itemprop="name">Sclearn学习笔记——特征抽取</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-03-18T19:40:43+08:00" content="2018-03-18">
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/18/Sklearn/Sklearn学习笔记——特征工程/" itemprop="url">
-              
-                <span itemprop="name">Sklearn学习笔记——特征工程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-03-18T19:30:15+08:00" content="2018-03-18">
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/18/Sklearn/Sklearn学习笔记——scikit-learn介绍/" itemprop="url">
-              
-                <span itemprop="name">Sklearn学习笔记——scikit-learn介绍</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-03-18T19:12:01+08:00" content="2018-03-18">
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
     </div>
 
   </div>
@@ -509,6 +661,10 @@
   
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/categories/Sklearn/page/2/">2</a><a class="extend next" rel="next" href="/categories/Sklearn/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
 
@@ -551,7 +707,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">60</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -562,7 +718,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -573,7 +729,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -630,7 +786,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Gemini
   </a>
 </div>
 -->
@@ -719,6 +875,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
     <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

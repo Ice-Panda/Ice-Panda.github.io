@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -103,7 +103,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Veluvana">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="http://ice-panda.github.io/page/2/index.html">
 <meta property="og:site_name" content="Veluvana">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -115,7 +115,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -187,7 +187,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/2/">
+  <link rel="canonical" href="http://ice-panda.github.io/page/2/">
 
 
 
@@ -345,11 +345,33 @@
   padding: 0 40px;
   color: #fff;
   background: #222;
-  border:4px solid #222
+  
 }
-.brand:hover {
-  color: #222;
-  background:rgba(255,255,255,0);
+.brand::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #FFF;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.brand:hover::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1);
 }
 </style>
  </div>
@@ -375,7 +397,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/10/机器学习/回归问题/">
+    <link itemprop="mainEntityOfPage" href="http://ice-panda.github.io/2018/05/11/Statistical Learning/点到超平面距离/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -394,7 +416,155 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/10/机器学习/回归问题/" itemprop="url">回归问题</a></h1>
+                <a class="post-title-link" href="/2018/05/11/Statistical Learning/点到超平面距离/" itemprop="url">点到超平面距离</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-11T20:21:10+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Statistical-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          点到超平面距离首先给出以下定义：输入空间(特征空间) $X\subseteq\mathbb{R}^n$输出空间 $Y= \lbrace +1,-1 \rbrace $特征向量 $x\in{X}$类别 $y\in{Y}$权值(权值向量) $w\in\mathbb{R}^n$偏置 $b\in\mathbb{R}$给出线性方程：$$w\cdot{x}+b=0$$此
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/11/Statistical Learning/点到超平面距离/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ice-panda.github.io/2018/05/10/Statistical Learning/回归问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ice-Panda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Veluvana">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/10/Statistical Learning/回归问题/" itemprop="url">回归问题</a></h1>
         
 
         <div class="post-meta">
@@ -429,8 +599,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/Statistical-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Learning</span>
                   </a>
                 </span>
 
@@ -472,7 +642,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/10/机器学习/回归问题/#more" rel="contents">
+            <a class="btn" href="/2018/05/10/Statistical Learning/回归问题/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -523,7 +693,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/10/机器学习/标注问题/">
+    <link itemprop="mainEntityOfPage" href="http://ice-panda.github.io/2018/05/10/Statistical Learning/标注问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -542,7 +712,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/10/机器学习/标注问题/" itemprop="url">标注问题</a></h1>
+                <a class="post-title-link" href="/2018/05/10/Statistical Learning/标注问题/" itemprop="url">标注问题</a></h1>
         
 
         <div class="post-meta">
@@ -577,8 +747,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/Statistical-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Learning</span>
                   </a>
                 </span>
 
@@ -620,7 +790,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/10/机器学习/标注问题/#more" rel="contents">
+            <a class="btn" href="/2018/05/10/Statistical Learning/标注问题/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -671,7 +841,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/08/机器学习/分类问题/">
+    <link itemprop="mainEntityOfPage" href="http://ice-panda.github.io/2018/05/08/Statistical Learning/分类问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -690,7 +860,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/08/机器学习/分类问题/" itemprop="url">分类问题</a></h1>
+                <a class="post-title-link" href="/2018/05/08/Statistical Learning/分类问题/" itemprop="url">分类问题</a></h1>
         
 
         <div class="post-meta">
@@ -725,8 +895,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/Statistical-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Learning</span>
                   </a>
                 </span>
 
@@ -768,7 +938,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/08/机器学习/分类问题/#more" rel="contents">
+            <a class="btn" href="/2018/05/08/Statistical Learning/分类问题/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -819,7 +989,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/06/机器学习/生成模型与判别模型/">
+    <link itemprop="mainEntityOfPage" href="http://ice-panda.github.io/2018/05/06/Statistical Learning/生成模型与判别模型/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -838,7 +1008,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/06/机器学习/生成模型与判别模型/" itemprop="url">生成模型与判别模型</a></h1>
+                <a class="post-title-link" href="/2018/05/06/Statistical Learning/生成模型与判别模型/" itemprop="url">生成模型与判别模型</a></h1>
         
 
         <div class="post-meta">
@@ -873,8 +1043,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/Statistical-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Learning</span>
                   </a>
                 </span>
 
@@ -916,7 +1086,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/06/机器学习/生成模型与判别模型/#more" rel="contents">
+            <a class="btn" href="/2018/05/06/Statistical Learning/生成模型与判别模型/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -967,7 +1137,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/机器学习/正则化/">
+    <link itemprop="mainEntityOfPage" href="http://ice-panda.github.io/2018/05/05/Statistical Learning/正则化/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -986,7 +1156,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/05/机器学习/正则化/" itemprop="url">正则化</a></h1>
+                <a class="post-title-link" href="/2018/05/05/Statistical Learning/正则化/" itemprop="url">正则化</a></h1>
         
 
         <div class="post-meta">
@@ -1021,8 +1191,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/Statistical-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Learning</span>
                   </a>
                 </span>
 
@@ -1064,7 +1234,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/05/机器学习/正则化/#more" rel="contents">
+            <a class="btn" href="/2018/05/05/Statistical Learning/正则化/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1115,7 +1285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/机器学习/欠拟合与过拟合/">
+    <link itemprop="mainEntityOfPage" href="http://ice-panda.github.io/2018/05/05/Machine Learning/欠拟合与过拟合/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1134,7 +1304,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/05/机器学习/欠拟合与过拟合/" itemprop="url">欠拟合与过拟合</a></h1>
+                <a class="post-title-link" href="/2018/05/05/Machine Learning/欠拟合与过拟合/" itemprop="url">欠拟合与过拟合</a></h1>
         
 
         <div class="post-meta">
@@ -1169,8 +1339,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
                   </a>
                 </span>
 
@@ -1214,7 +1384,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/05/机器学习/欠拟合与过拟合/#more" rel="contents">
+            <a class="btn" href="/2018/05/05/Machine Learning/欠拟合与过拟合/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1265,7 +1435,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/Sklearn/Sclearn学习笔记——特征降维/">
+    <link itemprop="mainEntityOfPage" href="http://ice-panda.github.io/2018/03/23/Project/项目实战——波士顿房价预测/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1284,7 +1454,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/18/Sklearn/Sclearn学习笔记——特征降维/" itemprop="url">Sclearn学习笔记——特征降维</a></h1>
+                <a class="post-title-link" href="/2018/03/23/Project/项目实战——波士顿房价预测/" itemprop="url">项目实战——波士顿房价预测</a></h1>
         
 
         <div class="post-meta">
@@ -1296,8 +1466,190 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T21:45:22+08:00">
-                2018-03-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-23T00:25:13+08:00">
+                2018-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Project/" itemprop="url" rel="index">
+                    <span itemprop="name">Project</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          项目实战——波士顿房价预测数据介绍
+
+
+字段名
+描述
+
+
+
+
+CRIM
+城镇人均犯罪率
+
+
+ZN
+占地面积超过2.5万平方英尺的住宅用地比例
+
+
+INDUS
+城镇非零售业务地区的比例
+
+
+CHAS
+查尔斯河虚拟变量(=1 如果土地在河边;否则是0)
+
+
+NOX
+一氧化氮浓度(每1000万份)
+
+
+RM
+平均每居民房数
+
+
+AGE
+在1940年之前建成的所有者
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/23/Project/项目实战——波士顿房价预测/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ice-panda.github.io/2018/03/22/Sklearn/Sklearn学习笔记——岭回归(RR)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ice-Panda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Veluvana">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/22/Sklearn/Sklearn学习笔记——岭回归(RR)/" itemprop="url">Sklearn学习笔记——岭回归(RR)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T22:18:31+08:00">
+                2018-03-22
               </time>
             
 
@@ -1358,21 +1710,13 @@
       
         
           
-          Sclearn学习笔记——特征降维降维的定义降维是指在某些限定条件下，降低随机变量(特征)个数，得到一组“不相关”主变量的过程
-
-降低随机变量的个数
-相关特征(correlated feature)
-
-
-由于在进行训练的时使用特征进行学习，如果特征本身存在问题或者特征之间相关性较强，对于算法学习预测会影响较大。
-
-降维的原因
-使得数据集更易使用
-降低很多算法
+          Sklearn学习笔记——岭回归(RR)岭回归的定义岭回归，即在线性回归的基础上加上了L2正则化的限制，从而达到降低过拟合的效果。正则化时，一般不对$\theta_0$进行惩罚，正则化的本质即是减少$\theta_j$的平方范数，从而降低模型复杂度。
+岭回归API
+sklearn.linear_model.Ridge(alpha=1.0,fit_interc
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/18/Sklearn/Sclearn学习笔记——特征降维/#more" rel="contents">
+            <a class="btn" href="/2018/03/22/Sklearn/Sklearn学习笔记——岭回归(RR)/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1423,7 +1767,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/Sklearn/Sklearn学习笔记——特征预处理/">
+    <link itemprop="mainEntityOfPage" href="http://ice-panda.github.io/2018/03/22/Sklearn/Sklearn学习笔记——线性回归(LR)/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1442,7 +1786,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/18/Sklearn/Sklearn学习笔记——特征预处理/" itemprop="url">Sklearn学习笔记——特征预处理</a></h1>
+                <a class="post-title-link" href="/2018/03/22/Sklearn/Sklearn学习笔记——线性回归(LR)/" itemprop="url">Sklearn学习笔记——线性回归(LR)</a></h1>
         
 
         <div class="post-meta">
@@ -1454,8 +1798,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T20:20:12+08:00">
-                2018-03-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T20:25:11+08:00">
+                2018-03-22
               </time>
             
 
@@ -1516,331 +1860,14 @@
       
         
           
-          Sklearn学习笔记——特征预处理特征预处理定义通过一些转换函数将特征数据转换成更加适合算法模型的特征数据过程
-特征预处理内容：
-数据型数据的无量纲化
-归一化
-标准化
+          Sklearn学习笔记——线性回归(LR)线性回归的原理目标值是连续变量同时目标值(因变量)与特征值(自变量)呈线性关系
+线性回归的定义“回归”即拟合。线性回归(Linear regression)是利用回归方程(函数)对一个或多个自变量(特征值)和因变量(目标值)之间关系进行建模的一种分析方式。
 
-
-
-特征预处理的意义
-特征的单位或者大小相差较大，或者某特征的方差相比其他的特征要大出几个数量级，容易影响（支配）目标结果，使得一些算法无法学习到其它的特征
-
-特征预处理sklearn.p
+只有一个自变量的情况称为单变量回归，多个自变量的情况称为多
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/18/Sklearn/Sklearn学习笔记——特征预处理/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/Sklearn/Sclearn学习笔记——特征抽取/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice-Panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Veluvana">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/18/Sklearn/Sclearn学习笔记——特征抽取/" itemprop="url">Sclearn学习笔记——特征抽取</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T19:40:43+08:00">
-                2018-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Sklearn/" itemprop="url" rel="index">
-                    <span itemprop="name">Sklearn</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Sclearn学习笔记——特征抽取特征抽取
-sklearn.feature_extraction
-
-将任意数据（如文本或图像）转换为可用于机器学习的数字特征，即特征值化。特征值化是为了计算机更好的去理解数据。
-
-字典特征提取
-文本特征提取
-图像特征提取
-
-字典特征提取对字典数据进行特征值化
-
-sklearn.feature_extraction.DictVe
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/18/Sklearn/Sclearn学习笔记——特征抽取/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/Sklearn/Sklearn学习笔记——特征工程/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice-Panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Veluvana">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/18/Sklearn/Sklearn学习笔记——特征工程/" itemprop="url">Sklearn学习笔记——特征工程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T19:30:15+08:00">
-                2018-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Sklearn/" itemprop="url" rel="index">
-                    <span itemprop="name">Sklearn</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Sklearn学习笔记——特征工程特征工程的定义(Feature Engineering)特征工程是使用专业背景只是和技巧处理数据，使得特征能在机器学习算法上发挥更好的作用的过程。即直接影响机器学习的效果。
-特征工程的作用
-Andrew Ng said；”Coming up with features is difficult, time-consuming
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/18/Sklearn/Sklearn学习笔记——特征工程/#more" rel="contents">
+            <a class="btn" href="/2018/03/22/Sklearn/Sklearn学习笔记——线性回归(LR)/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1882,7 +1909,7 @@ Andrew Ng said；”Coming up with features is difficult, time-consuming
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1926,7 +1953,7 @@ Andrew Ng said；”Coming up with features is difficult, time-consuming
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">60</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1937,7 +1964,7 @@ Andrew Ng said；”Coming up with features is difficult, time-consuming
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1948,7 +1975,7 @@ Andrew Ng said；”Coming up with features is difficult, time-consuming
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -2005,7 +2032,7 @@ Andrew Ng said；”Coming up with features is difficult, time-consuming
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Gemini
   </a>
 </div>
 -->
@@ -2094,6 +2121,13 @@ Andrew Ng said；”Coming up with features is difficult, time-consuming
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
     <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
