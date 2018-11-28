@@ -5,9 +5,9 @@
   
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
@@ -103,7 +103,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Veluvana">
-<meta property="og:url" content="http://yoursite.com/archives/2018/10/index.html">
+<meta property="og:url" content="https://ice-panda.github.io/archives/2018/10/index.html">
 <meta property="og:site_name" content="Veluvana">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -115,7 +115,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -187,13 +187,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/10/">
+  <link rel="canonical" href="https://ice-panda.github.io/archives/2018/10/">
 
 
 
 
 
-  <title>Archive | Veluvana</title>
+  <title>Archive | Veluvana</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -218,7 +218,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -343,11 +343,33 @@
   padding: 0 40px;
   color: #fff;
   background: #222;
-  border:4px solid #222
+  
 }
-.brand:hover {
-  color: #222;
-  background:rgba(255,255,255,0);
+.brand::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #FFF;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.brand:hover::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1);
 }
 </style>
  </div>
@@ -369,10 +391,9 @@
       <span class="archive-page-counter">
         
         
-        
+         
           
-        
-        Um..! 3 posts in total. Keep on posting.
+        Nice! 65 posts in total. Keep on posting.
       </span>
 
       
@@ -396,87 +417,17 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/10/30/线性回归的正规方程/" itemprop="url">
+            <a class="post-title-link" href="/2018/10/27/MapReduce/大数据与MapReduce学习笔记——MapReduce/" itemprop="url">
               
-                <span itemprop="name">线性回归的正规方程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-30T21:46:22+08:00" content="2018-10-30">
-          10-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/30/线性回归代价函数的梯度下降算法/" itemprop="url">
-              
-                <span itemprop="name">线性回归代价函数的梯度下降算法</span>
+                <span itemprop="name">大数据与MapReduce学习笔记——MapReduce</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-30T21:46:22+08:00" content="2018-10-30">
-          10-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/30/积分微分表/" itemprop="url">
-              
-                <span itemprop="name">积分微分表</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-30T21:46:22+08:00" content="2018-10-30">
-          10-30
+        <time class="post-time" itemprop="dateCreated" datetime="2018-10-27T23:54:12+08:00" content="2018-10-27">
+          10-27
         </time>
       </div>
 
@@ -536,7 +487,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -547,7 +498,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -558,7 +509,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -569,19 +520,6 @@
         
 
         <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://blog.csdn.net/qq_37738656" target="_blank" title="CSDN">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                    
-                      CSDN
-                    
-                </a>
-              </span>
-            
           
         </div>
 
@@ -628,7 +566,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Gemini
   </a>
 </div>
 -->
@@ -717,6 +655,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   
@@ -1120,7 +1065,7 @@
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>
