@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet" style="background:#000000">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="TensorFlow,TFRecords,Reader,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="TensorFlow学习笔记——TFRecordsTFRecords文件介绍TFRecords其实是一种二进制文件，虽然它不如其他格式好理解，但是它能更好得利用内存，更方便复制和移动，并且不需要单独的标签文件文件格式  *.tfrecords  使用步骤  获取数据 将数据填入到Example协议内存块(protocol buffer) 将协议内存块序列化为字符串，并且通过tf.python_io">
+<meta name="keywords" content="TensorFlow,TFRecords,Reader">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow学习笔记——TFRecords">
+<meta property="og:url" content="https://ice-panda.github.io/2018/04/05/TensorFlow/TensorFlow学习笔记——TFRecords/index.html">
+<meta property="og:site_name" content="Veluvana">
+<meta property="og:description" content="TensorFlow学习笔记——TFRecordsTFRecords文件介绍TFRecords其实是一种二进制文件，虽然它不如其他格式好理解，但是它能更好得利用内存，更方便复制和移动，并且不需要单独的标签文件文件格式  *.tfrecords  使用步骤  获取数据 将数据填入到Example协议内存块(protocol buffer) 将协议内存块序列化为字符串，并且通过tf.python_io">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://ice-panda.github.io/images/TensorFlow/Example结构解析.png">
+<meta property="og:updated_time" content="2018-12-08T07:46:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow学习笔记——TFRecords">
+<meta name="twitter:description" content="TensorFlow学习笔记——TFRecordsTFRecords文件介绍TFRecords其实是一种二进制文件，虽然它不如其他格式好理解，但是它能更好得利用内存，更方便复制和移动，并且不需要单独的标签文件文件格式  *.tfrecords  使用步骤  获取数据 将数据填入到Example协议内存块(protocol buffer) 将协议内存块序列化为字符串，并且通过tf.python_io">
+<meta name="twitter:image" content="https://ice-panda.github.io/images/TensorFlow/Example结构解析.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<style>
+.pace .pace-progress:before {
+    content: attr(data-progress-text);
+    text-align: center;
+    color: #000;
+    background: rgba(0,0,0,0.2);
+    font-family: "Helvetica Neue",sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    padding: 20% 0 7px;
+    width: 50%;
+    height: 40%;
+    margin: 10px 0 0 30px;
+    z-index: 999;
+}
+.pace .pace-activity {
+    font-size: 15px;
+    line-height: 1;
+    z-index: 2000;
+    -webkit-animation: pace-theme-center-atom-spin 2s linear infinite;
+    -moz-animation: pace-theme-center-atom-spin 2s linear infinite;
+    -o-animation: pace-theme-center-atom-spin 2s linear infinite;
+    animation: pace-theme-center-atom-spin 2s linear infinite;
+    border: 5px solid rgba(0,0,0,0.5);
+    content: ' ';
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100px
+}
+.pace .pace-activity:after {
+    border-radius: 50%;
+    border: 5px solid rgba(0,0,0,0.4);
+    -webkit-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+    -o-transform: rotate(60deg);
+    transform: rotate(60deg)
+}
+
+.pace .pace-activity:before {
+    border-radius: 50%;
+    border: 5px solid rgba(0,0,0,0.3);
+    -webkit-transform: rotate(120deg);
+    -moz-transform: rotate(120deg);
+    -o-transform: rotate(120deg);
+    transform: rotate(120deg)
+}
+
+</style>
+
+
+
+
+  <link rel="canonical" href="https://ice-panda.github.io/2018/04/05/TensorFlow/TensorFlow学习笔记——TFRecords/">
+
+
+
+
+
+  <title>TensorFlow学习笔记——TFRecords | Veluvana</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Veluvana</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+<style>
+.brand {
+  position: relative;
+  display: inline-block;
+  padding: 0 40px;
+  color: #fff;
+  background: #222;
+  
+}
+.brand::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #FFF;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.brand:hover::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1);
+}
+</style>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2018/04/05/TensorFlow/TensorFlow学习笔记——TFRecords/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ice-Panda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Veluvana">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TensorFlow学习笔记——TFRecords</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-05T22:31:45+08:00">
+                2018-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/TensorFlow/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="TensorFlow学习笔记——TFRecords"><a href="#TensorFlow学习笔记——TFRecords" class="headerlink" title="TensorFlow学习笔记——TFRecords"></a>TensorFlow学习笔记——TFRecords</h3><h4 id="TFRecords文件介绍"><a href="#TFRecords文件介绍" class="headerlink" title="TFRecords文件介绍"></a>TFRecords文件介绍</h4><p>TFRecords其实是一种二进制文件，虽然它不如其他格式好理解，但是它能更好得利用内存，更方便复制和移动，并且不需要单独的标签文件<br>文件格式</p>
+<ul>
+<li>*.tfrecords</li>
+</ul>
+<p>使用步骤</p>
+<ul>
+<li>获取数据</li>
+<li>将数据填入到Example协议内存块(protocol buffer)</li>
+<li>将协议内存块序列化为字符串，并且通过tf.python_io.TFRecordWriter写入到TFRecord文件</li>
+</ul>
+<h4 id="Example结构解析"><a href="#Example结构解析" class="headerlink" title="Example结构解析"></a>Example结构解析</h4><p>这种结构很好地实现了数据和标签(训练的类别标签)或者其他属性数据存储在同一个文件中<br><img src="/images/TensorFlow/Example结构解析.png" alt="Alt text"></p>
+<ul>
+<li>tf.train.Example：协议内存块(protocol buffer)(协议内存块包含了字段 Features)</li>
+<li>Features：包含了一个 Feature 字段</li>
+<li>Feature：包含要写入的数据、并指明数据类型<ul>
+<li>这是一个样本结构，批数据需要循环存入这样的结构</li>
+</ul>
+</li>
+</ul>
+<h5 id="TFRecords文件写入API"><a href="#TFRecords文件写入API" class="headerlink" title="TFRecords文件写入API"></a>TFRecords文件写入API</h5><ul>
+<li>tf.python_io.TFRecordWriter(path)<ul>
+<li>写入TFRecords文件</li>
+<li>path：TFRecords文件的路径</li>
+<li>return 写入器对象 writer<ul>
+<li>method方法<ul>
+<li>write(record)：向文件中写入一个example</li>
+<li>close()：关闭文件写入器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tf.train.Example(features=None)<ul>
+<li>写入tfrecords文件</li>
+<li>features：tf.train.Features类型的特征实例</li>
+<li>return example格式协议块</li>
+</ul>
+</li>
+<li>tf.train.Features(feature=None)<ul>
+<li>构建每个样本的信息键值对</li>
+<li>feature：字典数据，key为要保存的名字，value为tf.train.Feature实例</li>
+<li>return Features类型</li>
+</ul>
+</li>
+<li>tf.train.Feature(options)<ul>
+<li>options：例如<ul>
+<li>bytes_list = tf.train.BytesList(value=[Bytes])</li>
+<li>int64_list = tf.train.Int64List(value=[Value])</li>
+</ul>
+</li>
+<li>支持存入的类型<ul>
+<li>tf.train.Int64List(value=[Value])</li>
+<li>tf.train.BytesList(value=[Bytes])</li>
+<li>tf.train.FloatList(value=[Value])</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">example = tf.train.Example(features=tf.train.Features(feature=&#123;</span><br><span class="line">                <span class="string">"image"</span>: tf.train.Feature(bytes_list=tf.train.BytesList(value=[image])),</span><br><span class="line">                <span class="string">"label"</span>: tf.train.Feature(int64_list=tf.train.Int64List(value=[label])),</span><br><span class="line">            &#125;))</span><br></pre></td></tr></table></figure>
+<h5 id="TFRecords文件读取API"><a href="#TFRecords文件读取API" class="headerlink" title="TFRecords文件读取API"></a>TFRecords文件读取API</h5><p>读取TFRecords文件的过程与其他文件一样，只不过需要有个解析Example的步骤。从TFRecords文件中获取数据，可以使用tf.TFRecordReader的tf.parse_single_example解析器。这个操作可以将Example协议内存块(protocol buffer)解析为张量</p>
+<ul>
+<li>tf.parse_single_example(serialized, features=None, name=None)<ul>
+<li>解析一个单一的Example原型</li>
+<li>serialized：标量字符串Tensor，一个序列化的Example</li>
+<li>feature：dict字典数据，键为读取的名字，值为FixedLenFeature</li>
+<li>return 一个键值对组成的字典，键为读取的名字</li>
+</ul>
+</li>
+<li>tf.FixedLenFeature(shape, dtype)<ul>
+<li>shape：输入数据的形状，一般不指定，为空列表</li>
+<li>dtype：输入数据类型，与存储进文件的类型要一致</li>
+<li>类型只能是float32，int64，string</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">feature = tf.parse_single_example(values, features=&#123;</span><br><span class="line">    <span class="string">"image"</span>: tf.FixedLenFeature([], tf.string),</span><br><span class="line">    <span class="string">"label"</span>: tf.FixedLenFeature([], tf.int64)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h4><p>将读取后的CIFAR10二进制数据存储为TFRecord文件以及读取TFRecord文件为例，进行流程分析</p>
+<h5 id="二进制文件读取及解码流程"><a href="#二进制文件读取及解码流程" class="headerlink" title="二进制文件读取及解码流程"></a>二进制文件读取及解码流程</h5><ul>
+<li>构造文件队列</li>
+<li>读取数据并进行解码</li>
+<li>处理数据形状，放入批处理队列</li>
+<li>开启会话线程运行</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_and_decode</span><span class="params">(file_list)</span>:</span></span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">	二进制文件读取及解码</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">    <span class="comment"># 1.构造文件队列</span></span><br><span class="line">    file_queue = tf.train.string_input_producer(file_list)</span><br><span class="line">    <span class="comment"># 2.读取数据</span></span><br><span class="line">    <span class="comment"># 2.1.实例化读取器，tf.FixedLengthRecordReader()，传入一个样本(1+3*32*32)</span></span><br><span class="line">    reader = tf.FixedLengthRecordReader(<span class="number">1</span>+<span class="number">3</span>*<span class="number">32</span>*<span class="number">32</span>)</span><br><span class="line">    <span class="comment"># 2.2.传入文件队列，调用read方法，返回(key, value)元组</span></span><br><span class="line">    key, value = reader.read(file_queue)</span><br><span class="line">    <span class="comment"># 3.解码(按行)为tf.uint8</span></span><br><span class="line">    data = tf.decode_raw(value, tf.uint8)</span><br><span class="line">    <span class="comment"># 4.数据处理</span></span><br><span class="line">    <span class="comment"># 4.1.切片分离标签与特征值，tf.slice(input_, begin, size, name=None)</span></span><br><span class="line">    label = tf.cast(tf.slice(data, [<span class="number">0</span>], [<span class="number">1</span>]), tf.int32)</span><br><span class="line">    image = tf.slice(data, [<span class="number">1</span>], [<span class="number">3</span>*<span class="number">32</span>*<span class="number">32</span>])</span><br><span class="line">    <span class="comment"># 4.2.改变图像形状</span></span><br><span class="line">    image_major = tf.reshape(image, [<span class="number">3</span>,<span class="number">32</span>,<span class="number">32</span>])</span><br><span class="line">    image_trans = tf.transpose(image_major, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>])</span><br><span class="line">    <span class="comment"># 5.批处理(传入列表)</span></span><br><span class="line">    label_batch, image_batch = tf.train.batch([label_batch, image_trans], batch_size=<span class="number">100</span>, num_threads=<span class="number">1</span>, capacity=<span class="number">100</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> label_batch,image_batch</span><br></pre></td></tr></table></figure>
+<h5 id="写入TFRecords文件流程"><a href="#写入TFRecords文件流程" class="headerlink" title="写入TFRecords文件流程"></a>写入TFRecords文件流程</h5><ul>
+<li>构造存储实例(写入器)<ul>
+<li>tf.python_io.TFRecordWriter(path)</li>
+<li>path：TFRecords文件的路径(需要指定文件名)</li>
+<li>reutrn 写入器对象 writer<ul>
+<li>method 方法<ul>
+<li>write(record)：向文件中写入一个example</li>
+<li>close()：关闭文件写入器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>循环将数据填入到 Eaxmpel 协议内存块(protocol buffer)</li>
+<li>关闭文件</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_to_tfrecords</span><span class="params">(image_batch,label_batch)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    写入TFRecords文件</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 进行类型转换，转成tf.uint8，节省空间</span></span><br><span class="line">    label_batch = tf.cast(label_batch, tf.uint8)</span><br><span class="line">    image_batch = tf.cast(image_batch, tf.uint8)</span><br><span class="line">    <span class="comment"># 1.构造tfrecords的存储实例</span></span><br><span class="line">    writer = tf.python_io.TFRecordWriter(<span class="string">'./data/cifar.tfrecords'</span>)</span><br><span class="line">    <span class="comment"># 2.循环将每个样本写入到文件中</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        <span class="comment"># 准备特征值，特征值必须是bytes类型，tostring()</span></span><br><span class="line">        <span class="comment"># 需要取出真正的值而不是张量，所以要在会话中运行函数</span></span><br><span class="line">        image = image_batch[i].eval().tostring()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 准备目标值，int</span></span><br><span class="line">        <span class="comment"># eval() =&gt; [6] =&gt; 6</span></span><br><span class="line">        label = label_batch[i].eval()[<span class="number">0</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 绑定每个样本的属性</span></span><br><span class="line">        example = tf.train.Example(features=tf.train.Features(feature=&#123;</span><br><span class="line">            <span class="string">'image'</span>:tf.train.Feature(bytes_list=tf.train.BytesList(value=[image])),</span><br><span class="line">            <span class="string">'label'</span>:tf.train.Feature(int64_list=tf.train.Int64List(value=[label]))</span><br><span class="line">        &#125;))</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 写入每个样本的example</span></span><br><span class="line">        writer.write(example.SerializeToString())</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 关闭文件</span></span><br><span class="line">    writer.close()</span><br></pre></td></tr></table></figure>
+<h5 id="读取TFRecords文件流程"><a href="#读取TFRecords文件流程" class="headerlink" title="读取TFRecords文件流程"></a>读取TFRecords文件流程</h5><ul>
+<li>构造文件队列<ul>
+<li>tf.train.string_input_producer</li>
+</ul>
+</li>
+<li>读取数据并进行解析<ul>
+<li>tf.TFRecordReader读取TFRecords数据</li>
+<li>tf.parse_single_example解析</li>
+</ul>
+</li>
+<li>数据解码<ul>
+<li>tf.decode_raw解码</li>
+<li>类型是bytes类型需要解码</li>
+<li>其他类型不需要解码</li>
+</ul>
+</li>
+<li>处理图片数据形状以及数据类型，加入处理队列</li>
+<li>开启会话线程运行</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_tfrecords</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    读取TFRecords的数据</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 1.构造文件队列</span></span><br><span class="line">    file_queue = tf.train.string_input_producer([<span class="string">'./data/cifar.tfrecords'</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 2.构造tfrecords读取器，读取队列</span></span><br><span class="line">    reader = tf.TFRecordReader()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 默认读取一个样本</span></span><br><span class="line">    key, value = reader.read(file_queue)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># tfrecords</span></span><br><span class="line">    <span class="comment"># 解析Example</span></span><br><span class="line">    feature = tf.parse_single_example(value, features=&#123;</span><br><span class="line">        <span class="string">'image'</span>:tf.FixedLenFeature([],tf.string),</span><br><span class="line">        <span class="string">'label'</span>:tf.FixedLenFeature([],tf.int64)</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 取出feature里面的特征值和目标值</span></span><br><span class="line">    image = feature[<span class="string">'image'</span>]</span><br><span class="line">    label = feature[<span class="string">'label'</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 3.解码</span></span><br><span class="line">    <span class="comment"># 对于image是一个bytes类型，所以需要decode_raw去解码成uint8张量</span></span><br><span class="line">    <span class="comment"># 对于label是一个int类型，不需要解码</span></span><br><span class="line">    image = tf.decode_raw(image, tf.uint8)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 从原来的[32, 32, 3]的bytes形式直接变成[32, 32, 3]</span></span><br><span class="line">    <span class="comment"># 处理image形状和类型</span></span><br><span class="line">    image_reshape = tf.reshape(image, [<span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>])</span><br><span class="line">    <span class="comment"># 处理label形状和类型</span></span><br><span class="line">    label = tf.cast(label, tf.int32)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 批处理</span></span><br><span class="line">    image_batch, label_batch = tf.train.batch([image_reshape, label], batch_size=<span class="number">10</span>, num_threads=<span class="number">1</span>, capacity=<span class="number">10</span> )</span><br><span class="line">    <span class="keyword">return</span> label,image_batch</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TensorFlow/" rel="tag"><i class="fa fa-tag"></i> TensorFlow</a>
+          
+            <a href="/tags/TFRecords/" rel="tag"><i class="fa fa-tag"></i> TFRecords</a>
+          
+            <a href="/tags/Reader/" rel="tag"><i class="fa fa-tag"></i> Reader</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/04/TensorFlow/TensorFlow学习笔记——图片数据/" rel="next" title="TensorFlow学习笔记——图片数据">
+                <i class="fa fa-chevron-left"></i> TensorFlow学习笔记——图片数据
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/06/Project/项目实战——Mnist手写数字识别/" rel="prev" title="项目实战——Mnist手写数字识别">
+                项目实战——Mnist手写数字识别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ice-Panda">
+          <p class="site-author-name" itemprop="name">Ice-Panda</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow学习笔记——TFRecords"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow学习笔记——TFRecords</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TFRecords文件介绍"><span class="nav-number">1.1.</span> <span class="nav-text">TFRecords文件介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example结构解析"><span class="nav-number">1.2.</span> <span class="nav-text">Example结构解析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TFRecords文件写入API"><span class="nav-number">1.2.1.</span> <span class="nav-text">TFRecords文件写入API</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TFRecords文件读取API"><span class="nav-number">1.2.2.</span> <span class="nav-text">TFRecords文件读取API</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Demo"><span class="nav-number">1.3.</span> <span class="nav-text">Demo</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#二进制文件读取及解码流程"><span class="nav-number">1.3.1.</span> <span class="nav-text">二进制文件读取及解码流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#写入TFRecords文件流程"><span class="nav-number">1.3.2.</span> <span class="nav-text">写入TFRecords文件流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#读取TFRecords文件流程"><span class="nav-number">1.3.3.</span> <span class="nav-text">读取TFRecords文件流程</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice-Panda</span>
+</div>
+
+
+<!-- <div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+-->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

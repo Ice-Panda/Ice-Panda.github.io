@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="神经网络,激活函数,">
+  <meta name="keywords" content="Nerual Network,Activation Function,">
 
 
 
@@ -101,13 +101,13 @@
 
 
 
-<meta name="description" content="激活函数1.定义神经网络中的每个节点接受输入值，并将输入值传递给下一层，输入节点会将输入属性值直接传递给下一层(隐层或输出层)。在神经网络中，隐层和输出层节点的输入和输出之间具有函数关系，这个函数称之为激活函数。 2.作用如果不适用激活函数，每一层输出都是上一层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合，这种情况就是最原始的感知机(Perceptron)。如果使用激活函数，激活函">
-<meta name="keywords" content="神经网络,激活函数">
+<meta name="description" content="激活函数定义神经网络中的每个节点接受输入值，并将输入值传递给下一层，输入节点会将输入属性值直接传递给下一层(隐层或输出层)。在神经网络中，隐层和输出层节点的输入和输出之间具有函数关系，这个函数称之为激活函数。 作用如果不适用激活函数，每一层输出都是上一层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合，这种情况就是最原始的感知机(Perceptron)。如果使用激活函数，激活函数给神经">
+<meta name="keywords" content="Nerual Network,Activation Function">
 <meta property="og:type" content="article">
 <meta property="og:title" content="激活函数">
 <meta property="og:url" content="https://ice-panda.github.io/2018/06/21/Machine Learning/激活函数/index.html">
 <meta property="og:site_name" content="Veluvana">
-<meta property="og:description" content="激活函数1.定义神经网络中的每个节点接受输入值，并将输入值传递给下一层，输入节点会将输入属性值直接传递给下一层(隐层或输出层)。在神经网络中，隐层和输出层节点的输入和输出之间具有函数关系，这个函数称之为激活函数。 2.作用如果不适用激活函数，每一层输出都是上一层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合，这种情况就是最原始的感知机(Perceptron)。如果使用激活函数，激活函">
+<meta property="og:description" content="激活函数定义神经网络中的每个节点接受输入值，并将输入值传递给下一层，输入节点会将输入属性值直接传递给下一层(隐层或输出层)。在神经网络中，隐层和输出层节点的输入和输出之间具有函数关系，这个函数称之为激活函数。 作用如果不适用激活函数，每一层输出都是上一层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合，这种情况就是最原始的感知机(Perceptron)。如果使用激活函数，激活函数给神经">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://ice-panda.github.io/images/激活函数/sigmoid.png">
 <meta property="og:image" content="https://ice-panda.github.io/images/激活函数/tanh.png">
@@ -116,10 +116,10 @@
 <meta property="og:image" content="https://ice-panda.github.io/images/激活函数/relu.png">
 <meta property="og:image" content="https://ice-panda.github.io/images/激活函数/elu.png">
 <meta property="og:image" content="https://ice-panda.github.io/images/激活函数/lrelu.png">
-<meta property="og:updated_time" content="2018-11-23T08:09:17.000Z">
+<meta property="og:updated_time" content="2018-12-09T13:26:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="激活函数">
-<meta name="twitter:description" content="激活函数1.定义神经网络中的每个节点接受输入值，并将输入值传递给下一层，输入节点会将输入属性值直接传递给下一层(隐层或输出层)。在神经网络中，隐层和输出层节点的输入和输出之间具有函数关系，这个函数称之为激活函数。 2.作用如果不适用激活函数，每一层输出都是上一层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合，这种情况就是最原始的感知机(Perceptron)。如果使用激活函数，激活函">
+<meta name="twitter:description" content="激活函数定义神经网络中的每个节点接受输入值，并将输入值传递给下一层，输入节点会将输入属性值直接传递给下一层(隐层或输出层)。在神经网络中，隐层和输出层节点的输入和输出之间具有函数关系，这个函数称之为激活函数。 作用如果不适用激活函数，每一层输出都是上一层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合，这种情况就是最原始的感知机(Perceptron)。如果使用激活函数，激活函数给神经">
 <meta name="twitter:image" content="https://ice-panda.github.io/images/激活函数/sigmoid.png">
 
 
@@ -497,13 +497,13 @@
       
 
       
-        <h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><h4 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h4><p>神经网络中的每个节点接受输入值，并将输入值传递给下一层，输入节点会将输入属性值直接传递给下一层(隐层或输出层)。在神经网络中，隐层和输出层节点的输入和输出之间具有函数关系，这个函数称之为激活函数。</p>
-<h4 id="2-作用"><a href="#2-作用" class="headerlink" title="2.作用"></a>2.作用</h4><p>如果不适用激活函数，每一层输出都是上一层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合，这种情况就是最原始的感知机(Perceptron)。<br>如果使用激活函数，激活函数给神经元引入了非线性因素，使得神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中。</p>
-<h4 id="3-常用的激活函数"><a href="#3-常用的激活函数" class="headerlink" title="3.常用的激活函数"></a>3.常用的激活函数</h4><h5 id="3-1-Sigmoid函数"><a href="#3-1-Sigmoid函数" class="headerlink" title="3.1.Sigmoid函数"></a>3.1.Sigmoid函数</h5><p>Sigmoid函数是一个在生物学中常见的S型函数，也称为S型生长曲线。在信息科学中，由于其单增以及反函数单增等性质，Sigmoid函数常被用作神经网络的阈值函数，将变量映射到0,1之间。公式如下：<br>$$f(x)=\frac{1}{1+e^{-x}}$$<br>函数图像如下：<br><img src="/images/激活函数/sigmoid.png" alt="Alt text"></p>
-<h5 id="3-2-tanh函数"><a href="#3-2-tanh函数" class="headerlink" title="3.2.tanh函数"></a>3.2.tanh函数</h5><p>tanh是上去西安函数中的一个，tanh()为双曲正切。在数学中，双曲正切tanh是由基本双曲函数双曲正弦和双曲余弦推导而来。<br>公式如下：<br>$$f(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}=\frac{2}{1+e^{-2x}}-1=2sigmoid(2x)-1$$<br>函数图像如下：<br><img src="/images/激活函数/tanh.png" alt="Alt text"></p>
-<h5 id="3-3-softplus函数"><a href="#3-3-softplus函数" class="headerlink" title="3.3.softplus函数"></a>3.3.softplus函数</h5><p>公式如下：<br>$$f(x)=log(1+e^x)$$<br>函数图像如下：<br><img src="/images/激活函数/softplus.png" alt="Alt text"></p>
-<h5 id="3-4-softsign函数"><a href="#3-4-softsign函数" class="headerlink" title="3.4.softsign函数"></a>3.4.softsign函数</h5><p>公式如下：<br>$$f(x)=\frac{x}{|x|+1}$$<br>函数图像如下：<br><img src="/images/激活函数/softsign.png" alt="Alt text"></p>
-<h5 id="3-5-ReLU函数"><a href="#3-5-ReLU函数" class="headerlink" title="3.5.ReLU函数"></a>3.5.ReLU函数</h5><p>Relu激活函数(Rectified Linear Unit)，线性整流函数，又称修正线性单元，用于隐层神经元输出。<br>ReLU函数其实就是一个取最大值函数，注意这并不是全区间可导的，但是我们可以取sub-gradient。<br>ReLU虽然简单，但是却是近几年的重要成果，有以下几大优点：</p>
+        <h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>神经网络中的每个节点接受输入值，并将输入值传递给下一层，输入节点会将输入属性值直接传递给下一层(隐层或输出层)。在神经网络中，隐层和输出层节点的输入和输出之间具有函数关系，这个函数称之为激活函数。</p>
+<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>如果不适用激活函数，每一层输出都是上一层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合，这种情况就是最原始的感知机(Perceptron)。<br>如果使用激活函数，激活函数给神经元引入了非线性因素，使得神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中。</p>
+<h4 id="常用的激活函数"><a href="#常用的激活函数" class="headerlink" title="常用的激活函数"></a>常用的激活函数</h4><h5 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h5><p>Sigmoid函数是一个在生物学中常见的S型函数，也称为S型生长曲线。在信息科学中，由于其单增以及反函数单增等性质，Sigmoid函数常被用作神经网络的阈值函数，将变量映射到0,1之间。公式如下：<br>$$f(x)=\frac{1}{1+e^{-x}}$$<br>函数图像如下：<br><img src="/images/激活函数/sigmoid.png" alt="Alt text"></p>
+<h5 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h5><p>tanh是上去西安函数中的一个，tanh()为双曲正切。在数学中，双曲正切tanh是由基本双曲函数双曲正弦和双曲余弦推导而来。<br>公式如下：<br>$$f(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}=\frac{2}{1+e^{-2x}}-1=2sigmoid(2x)-1$$<br>函数图像如下：<br><img src="/images/激活函数/tanh.png" alt="Alt text"></p>
+<h5 id="softplus函数"><a href="#softplus函数" class="headerlink" title="softplus函数"></a>softplus函数</h5><p>公式如下：<br>$$f(x)=log(1+e^x)$$<br>函数图像如下：<br><img src="/images/激活函数/softplus.png" alt="Alt text"></p>
+<h5 id="softsign函数"><a href="#softsign函数" class="headerlink" title="softsign函数"></a>softsign函数</h5><p>公式如下：<br>$$f(x)=\frac{x}{|x|+1}$$<br>函数图像如下：<br><img src="/images/激活函数/softsign.png" alt="Alt text"></p>
+<h5 id="ReLU函数"><a href="#ReLU函数" class="headerlink" title="ReLU函数"></a>ReLU函数</h5><p>ReLU激活函数(Rectified Linear Unit)，线性整流函数，又称修正线性单元，用于隐层神经元输出。<br>ReLU函数其实就是一个取最大值函数，注意这并不是全区间可导的，但是我们可以取sub-gradient。<br>ReLU虽然简单，但是却是近几年的重要成果，有以下几大优点：</p>
 <ul>
 <li>1.解决了gradient vanishing问题 (在正区间) </li>
 <li>2.计算速度非常快，只需要判断输入是否大于0 </li>
@@ -515,10 +515,10 @@
 <li>2.Dead ReLU Problem，指的是某些神经元可能永远不会被激活，导致相应的参数永远不能被更新。有两个主要原因可能导致这种情况产生：<br>1.非常不幸的参数初始化，这种情况比较少见<br>2.learning rate太高导致在训练过程中参数更新太大，不幸使网络进入这种状态。<br>解决方法是可以采用Xavier初始化方法，以及避免将learning rate设置太大或使用adagrad等自动调节learning rate的算法。</li>
 </ul>
 <p>公式如下：<br>$$f(x)=max(0,x)$$<br>函数图像如下：<br><img src="/images/激活函数/relu.png" alt="Alt text"></p>
-<h5 id="3-6-ELU函数"><a href="#3-6-ELU函数" class="headerlink" title="3.6.ELU函数"></a>3.6.ELU函数</h5><p>Exponential Linear unit，指数线性单元，ELU函数是针对ReLU函数的一个改进型，相对于ReLU函数，在输入为复数的情况下，是有一定的输出的，而且这部分输出还具有一定的抗干扰能力。这样可以消除ReLU死掉的问题，不过还是有梯度消失和指数运算的问题。<br>公式如下：<br>$$f(x)=\begin{cases}<br>x,&amp; x&gt;0\<br>\alpha(e^x-1),&amp; x \leq 0<br>\end{cases} $$<br>函数图像如下：<br><img src="/images/激活函数/elu.png" alt="Alt text"></p>
-<h5 id="3-7-LReLU函数"><a href="#3-7-LReLU函数" class="headerlink" title="3.7.LReLU函数"></a>3.7.LReLU函数</h5><p>即Leaky ReLU，泄漏整流线性单元，为了解决ReLU的死去问题，提出了将ReLU的前半段设为$\alpha{x}$而非0，通常$\alpha=0.01$。理论上来讲，LReLU函数有ReLU的所有优点，外加不会有ReLU死去问题，但是在实际操作当中，并没有完全证明LReLU总是优于ReLU。<br>公式如下：<br>$$f(x)=\begin{cases}<br>x,&amp; x&gt;0\<br>\alpha{x},&amp; x \leq 0<br>\end{cases} $$<br>其中$\alpha$是固定值，默认$\alpha=0.01$<br>函数图像如下：<br><img src="/images/激活函数/lrelu.png" alt="Alt text"></p>
-<h5 id="3-8-PReLU函数"><a href="#3-8-PReLU函数" class="headerlink" title="3.8.PReLU函数"></a>3.8.PReLU函数</h5><p>另外一种解决ReLU死去问题的直观的想法是基于参数的方法，即Parametric ReLU函数，参数化修正线性单元。<br>公式如下：<br>$$f(x)=\begin{cases}<br>x,&amp; x&gt;0\<br>\alpha{x},&amp; x \leq 0<br>\end{cases} $$<br>其中$\alpha$是可以学习的。如果$\alpha=0$，那么PReLU退化为ReLU；如果$\alpha$是一个很小的固定值(如$\alpha=0.01$)，则PReLU退化为Leaky ReLU(LReLU)。<br>PReLU只增加了极少量的参数，也就意味着网络的计算量以及过拟合的危险性都只增加了一点点。特别的，当不同通道使用相同的$\alpha$时候，参数就更少了。BP更新$\alpha$时，采用的是带动量的更新方式。</p>
-<h5 id="3-9-RReLU函数"><a href="#3-9-RReLU函数" class="headerlink" title="3.9.RReLU函数"></a>3.9.RReLU函数</h5><p>即Randomized Leaky ReLU函数，随机带泄露的修正线性单元，与Leaky ReLU以及PReLU很相似，为负责输入添加了一个线性项。而最关键的区别是，这个线性项的斜率在每一个节点上都是随机分配的(通常服从均匀分布)。</p>
+<h5 id="ELU函数"><a href="#ELU函数" class="headerlink" title="ELU函数"></a>ELU函数</h5><p>Exponential Linear unit，指数线性单元，ELU函数是针对ReLU函数的一个改进型，相对于ReLU函数，在输入为复数的情况下，是有一定的输出的，而且这部分输出还具有一定的抗干扰能力。这样可以消除ReLU死掉的问题，不过还是有梯度消失和指数运算的问题。<br>公式如下：<br>$$f(x)=\begin{cases}<br>x,&amp; x&gt;0\<br>\alpha(e^x-1),&amp; x \leq 0<br>\end{cases} $$<br>函数图像如下：<br><img src="/images/激活函数/elu.png" alt="Alt text"></p>
+<h5 id="LReLU函数"><a href="#LReLU函数" class="headerlink" title="LReLU函数"></a>LReLU函数</h5><p>即Leaky ReLU，泄漏整流线性单元，为了解决ReLU的死去问题，提出了将ReLU的前半段设为$\alpha{x}$而非0，通常$\alpha=0.01$。理论上来讲，LReLU函数有ReLU的所有优点，外加不会有ReLU死去问题，但是在实际操作当中，并没有完全证明LReLU总是优于ReLU。<br>公式如下：<br>$$f(x)=\begin{cases}<br>x,&amp; x&gt;0\<br>\alpha{x},&amp; x \leq 0<br>\end{cases} $$<br>其中$\alpha$是固定值，默认$\alpha=0.01$<br>函数图像如下：<br><img src="/images/激活函数/lrelu.png" alt="Alt text"></p>
+<h5 id="PReLU函数"><a href="#PReLU函数" class="headerlink" title="PReLU函数"></a>PReLU函数</h5><p>另外一种解决ReLU死去问题的直观的想法是基于参数的方法，即Parametric ReLU函数，参数化修正线性单元。<br>公式如下：<br>$$f(x)=\begin{cases}<br>x,&amp; x&gt;0\<br>\alpha{x},&amp; x \leq 0<br>\end{cases} $$<br>其中$\alpha$是可以学习的。如果$\alpha=0$，那么PReLU退化为ReLU；如果$\alpha$是一个很小的固定值(如$\alpha=0.01$)，则PReLU退化为Leaky ReLU(LReLU)。<br>PReLU只增加了极少量的参数，也就意味着网络的计算量以及过拟合的危险性都只增加了一点点。特别的，当不同通道使用相同的$\alpha$时候，参数就更少了。BP更新$\alpha$时，采用的是带动量的更新方式。</p>
+<h5 id="RReLU函数"><a href="#RReLU函数" class="headerlink" title="RReLU函数"></a>RReLU函数</h5><p>即Randomized Leaky ReLU函数，随机带泄露的修正线性单元，与Leaky ReLU以及PReLU很相似，为负责输入添加了一个线性项。而最关键的区别是，这个线性项的斜率在每一个节点上都是随机分配的(通常服从均匀分布)。</p>
 <table>
 <thead>
 <tr>
@@ -572,9 +572,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+            <a href="/tags/Nerual-Network/" rel="tag"><i class="fa fa-tag"></i> Nerual Network</a>
           
-            <a href="/tags/激活函数/" rel="tag"><i class="fa fa-tag"></i> 激活函数</a>
+            <a href="/tags/Activation-Function/" rel="tag"><i class="fa fa-tag"></i> Activation Function</a>
           
         </div>
       
@@ -674,7 +674,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">82</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -696,7 +696,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -731,7 +731,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#激活函数"><span class="nav-number">1.</span> <span class="nav-text">激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-定义"><span class="nav-number">1.1.</span> <span class="nav-text">1.定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-作用"><span class="nav-number">1.2.</span> <span class="nav-text">2.作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-常用的激活函数"><span class="nav-number">1.3.</span> <span class="nav-text">3.常用的激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-Sigmoid函数"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1.Sigmoid函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-tanh函数"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2.tanh函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-softplus函数"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3.softplus函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-softsign函数"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4.softsign函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-ReLU函数"><span class="nav-number">1.3.5.</span> <span class="nav-text">3.5.ReLU函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-ELU函数"><span class="nav-number">1.3.6.</span> <span class="nav-text">3.6.ELU函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-7-LReLU函数"><span class="nav-number">1.3.7.</span> <span class="nav-text">3.7.LReLU函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-8-PReLU函数"><span class="nav-number">1.3.8.</span> <span class="nav-text">3.8.PReLU函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-9-RReLU函数"><span class="nav-number">1.3.9.</span> <span class="nav-text">3.9.RReLU函数</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#激活函数"><span class="nav-number">1.</span> <span class="nav-text">激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用"><span class="nav-number">1.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的激活函数"><span class="nav-number">1.3.</span> <span class="nav-text">常用的激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Sigmoid函数"><span class="nav-number">1.3.1.</span> <span class="nav-text">Sigmoid函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tanh函数"><span class="nav-number">1.3.2.</span> <span class="nav-text">tanh函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#softplus函数"><span class="nav-number">1.3.3.</span> <span class="nav-text">softplus函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#softsign函数"><span class="nav-number">1.3.4.</span> <span class="nav-text">softsign函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ReLU函数"><span class="nav-number">1.3.5.</span> <span class="nav-text">ReLU函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ELU函数"><span class="nav-number">1.3.6.</span> <span class="nav-text">ELU函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LReLU函数"><span class="nav-number">1.3.7.</span> <span class="nav-text">LReLU函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PReLU函数"><span class="nav-number">1.3.8.</span> <span class="nav-text">PReLU函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RReLU函数"><span class="nav-number">1.3.9.</span> <span class="nav-text">RReLU函数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
