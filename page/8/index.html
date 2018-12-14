@@ -397,7 +397,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/08/Matplotlib/Matplotlib学习笔记——饼图绘制(pie)/">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/17/Pandas/Pandas学习笔记——文件读取与存储/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -416,7 +416,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/08/Matplotlib/Matplotlib学习笔记——饼图绘制(pie)/" itemprop="url">Matplotlib学习笔记——饼图绘制(scatter)</a></h1>
+                <a class="post-title-link" href="/2017/03/17/Pandas/Pandas学习笔记——文件读取与存储/" itemprop="url">Pandas学习笔记——文件读取与存储</a></h1>
         
 
         <div class="post-meta">
@@ -428,8 +428,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-08T00:07:12+08:00">
-                2017-03-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T22:21:51+08:00">
+                2017-03-17
               </time>
             
 
@@ -451,8 +451,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Matplotlib/" itemprop="url" rel="index">
-                    <span itemprop="name">Matplotlib</span>
+                  <a href="/categories/Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Pandas</span>
                   </a>
                 </span>
 
@@ -490,14 +490,14 @@
       
         
           
-          Matplotlib学习笔记——饼图绘制(pie)饼图广泛得应用在各个领域，用于表示不同分类的占比情况，通过弧度大小来对比各种分类。饼图通过将一个圆饼按照分类的占比划分成多个区块，整个圆饼代表数据的总量，每个区块（圆弧）表示该分类占总体的比例大小，所有区块（圆弧）的加和等于 100%。
-1.饼图绘制与显示
-注意显示的百分比的位数
-plt.pie(x, lab
+          Pandas学习笔记——文件读取与存储文件读取与存储1.csv1.1.读取csv文件-read_csv()
+pandas.read_csv(filepath_or_buffer, sep =’,’ , delimiter = None)
+filepath_or_buffer:文件路径
+usecols:指定读取的列名，列表形式1.2.写入csv文件-to_cs
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/08/Matplotlib/Matplotlib学习笔记——饼图绘制(pie)/#more" rel="contents">
+            <a class="btn" href="/2017/03/17/Pandas/Pandas学习笔记——文件读取与存储/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -548,7 +548,7 @@ plt.pie(x, lab
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/07/Matplotlib/Matplotlib学习笔记——直方图绘制(histogram)/">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/17/Pandas/Pandas学习笔记——Pandas画图/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -567,7 +567,7 @@ plt.pie(x, lab
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——直方图绘制(histogram)/" itemprop="url">Matplotlib学习笔记——直方图绘制(scatter)</a></h1>
+                <a class="post-title-link" href="/2017/03/17/Pandas/Pandas学习笔记——Pandas画图/" itemprop="url">Pandas学习笔记——Pandas画图</a></h1>
         
 
         <div class="post-meta">
@@ -579,8 +579,8 @@ plt.pie(x, lab
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T23:43:26+08:00">
-                2017-03-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T21:51:32+08:00">
+                2017-03-17
               </time>
             
 
@@ -602,8 +602,8 @@ plt.pie(x, lab
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Matplotlib/" itemprop="url" rel="index">
-                    <span itemprop="name">Matplotlib</span>
+                  <a href="/categories/Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Pandas</span>
                   </a>
                 </span>
 
@@ -641,13 +641,14 @@ plt.pie(x, lab
       
         
           
-          Matplotlib学习笔记——直方图绘制(histogram)直方图，形状类似柱状图却有着与柱状图完全不同的含义。直方图涉及统计学概念，首先要对数据进行分组，然后统计每个分组内数据元的数量。在坐标系中，横轴标出每个组的端点，纵轴表示频数，每个矩形的高代表对应的频数，称这样的统计图为频数分布直方图。
-1.相关概念
-组数：在统计数据时，我们把数据按照不同的范围
+          Pandas学习笔记——Pandas画图Pandas画图1.pandas.DataFrame.plot
+DataFrame.plot(x=None, y=None, kind=’line’)
+x : label or position, default None
+y : label, position or list of label, positions,
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——直方图绘制(histogram)/#more" rel="contents">
+            <a class="btn" href="/2017/03/17/Pandas/Pandas学习笔记——Pandas画图/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -698,7 +699,7 @@ plt.pie(x, lab
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/07/Matplotlib/Matplotlib学习笔记——柱状图绘制(bar)/">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/17/Pandas/Pandas学习笔记——DataFrame运算/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -717,7 +718,7 @@ plt.pie(x, lab
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——柱状图绘制(bar)/" itemprop="url">Matplotlib学习笔记——柱状图绘制(scatter)</a></h1>
+                <a class="post-title-link" href="/2017/03/17/Pandas/Pandas学习笔记——DataFrame运算/" itemprop="url">Pandas学习笔记——DataFrame运算</a></h1>
         
 
         <div class="post-meta">
@@ -729,8 +730,8 @@ plt.pie(x, lab
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T22:52:35+08:00">
-                2017-03-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T21:23:27+08:00">
+                2017-03-17
               </time>
             
 
@@ -752,8 +753,8 @@ plt.pie(x, lab
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Matplotlib/" itemprop="url" rel="index">
-                    <span itemprop="name">Matplotlib</span>
+                  <a href="/categories/Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Pandas</span>
                   </a>
                 </span>
 
@@ -791,21 +792,29 @@ plt.pie(x, lab
       
         
           
-          Matplotlib学习笔记——柱状图绘制(bar)1.柱状图绘制与显示
-plt.bar(x, width, align=’center’, **kwargs)
-Parameters:x : sequence of scalars.
+          Pandas学习笔记——DataFrame运算DataFrame运算1.算术运算
+add(other)
+比如进行数学运算加上具体一个数字
+也可以加上某一列
 
 
+sub(other)
+比如进行数学运算加上具体一个数字
+也可以减去某一列2.逻辑运算2.1.逻辑运算符号&lt;、&gt;、|、&amp;、==
 
 
-width : scalar or array-like, optional柱状图的宽度
+==等于
+
+大于
 
 
-align : {‘ce
+&lt;小于
+|或
+&amp
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——柱状图绘制(bar)/#more" rel="contents">
+            <a class="btn" href="/2017/03/17/Pandas/Pandas学习笔记——DataFrame运算/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -856,7 +865,7 @@ align : {‘ce
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/07/Matplotlib/Matplotlib学习笔记——散点图绘制(scatter)/">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/17/Pandas/Pandas学习笔记——基本数据操作/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -875,7 +884,7 @@ align : {‘ce
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——散点图绘制(scatter)/" itemprop="url">Matplotlib学习笔记——散点图绘制(scatter)</a></h1>
+                <a class="post-title-link" href="/2017/03/17/Pandas/Pandas学习笔记——基本数据操作/" itemprop="url">Pandas学习笔记——基本数据操作</a></h1>
         
 
         <div class="post-meta">
@@ -887,8 +896,8 @@ align : {‘ce
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T22:37:26+08:00">
-                2017-03-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T20:41:25+08:00">
+                2017-03-17
               </time>
             
 
@@ -910,8 +919,8 @@ align : {‘ce
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Matplotlib/" itemprop="url" rel="index">
-                    <span itemprop="name">Matplotlib</span>
+                  <a href="/categories/Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Pandas</span>
                   </a>
                 </span>
 
@@ -949,11 +958,12 @@ align : {‘ce
       
         
           
-          Matplotlib学习笔记——散点图绘制(scatter)1.散点图绘制与显示12345678910import matplotlib.pylab as plt# 1.准备数据x = [6.1101,5.5277,8.5186,7.0032,5.8598,8.3829,7.4764,8.5781,6.4862,5.0546,5.7107,14.164,]y
+          Pandas学习笔记——基本数据操作基本数据操作1.索引操作Numpy当中我们已经讲过使用索引选取序列和切片选择，pandas也支持类似的操作，也可以直接使用列名、行名称，甚至组合使用。
+1.1.直接使用行列索引(先列后行)1234567891011121314151617&gt;&gt;&gt; df = pd.DataFrame(&#123;'month
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——散点图绘制(scatter)/#more" rel="contents">
+            <a class="btn" href="/2017/03/17/Pandas/Pandas学习笔记——基本数据操作/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1004,7 +1014,7 @@ align : {‘ce
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/07/Matplotlib/Matplotlib学习笔记——折线图绘制与保存图片(plot)/">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/17/Pandas/Pandas学习笔记——MultiIndex、Panel与Series/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1023,7 +1033,7 @@ align : {‘ce
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——折线图绘制与保存图片(plot)/" itemprop="url">Matplotlib学习笔记——折线图绘制(plot)</a></h1>
+                <a class="post-title-link" href="/2017/03/17/Pandas/Pandas学习笔记——MultiIndex、Panel与Series/" itemprop="url">Pandas学习笔记——MultiIndex、Panel与Series</a></h1>
         
 
         <div class="post-meta">
@@ -1035,8 +1045,8 @@ align : {‘ce
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T22:12:31+08:00">
-                2017-03-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T20:04:21+08:00">
+                2017-03-17
               </time>
             
 
@@ -1058,8 +1068,8 @@ align : {‘ce
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Matplotlib/" itemprop="url" rel="index">
-                    <span itemprop="name">Matplotlib</span>
+                  <a href="/categories/Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Pandas</span>
                   </a>
                 </span>
 
@@ -1097,12 +1107,11 @@ align : {‘ce
       
         
           
-          Matplotlib学习笔记——折线图绘制(plot)1.matplotlib.pyplot模块matplotlib.pytplot包含了一系列类似于matlab的画图函数。 它的函数作用于当前图形(figure)的当前坐标系(axes)。1import matplotlib.pyplot as plt
-2.折线图绘制与显示12345678910111213
+          Pandas学习笔记——MultiIndex、Panel与Series1234567891011121314151617181920&gt;&gt;&gt; df = pd.DataFrame(&#123;'month': [1, 4, 7, 10],'year': [2012, 2014, 2013, 2014],'sale':[55, 40, 84, 3
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——折线图绘制与保存图片(plot)/#more" rel="contents">
+            <a class="btn" href="/2017/03/17/Pandas/Pandas学习笔记——MultiIndex、Panel与Series/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1153,7 +1162,7 @@ align : {‘ce
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/07/Matplotlib/Matplotlib学习笔记——Matplotlib介绍/">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/17/Pandas/Pandas学习笔记——DataFrame/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1172,7 +1181,7 @@ align : {‘ce
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——Matplotlib介绍/" itemprop="url">Matplotlib学习笔记——Matplotlib介绍</a></h1>
+                <a class="post-title-link" href="/2017/03/17/Pandas/Pandas学习笔记——DataFrame/" itemprop="url">Pandas学习笔记——DataFrame</a></h1>
         
 
         <div class="post-meta">
@@ -1184,8 +1193,8 @@ align : {‘ce
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T21:22:51+08:00">
-                2017-03-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T19:24:56+08:00">
+                2017-03-17
               </time>
             
 
@@ -1207,8 +1216,8 @@ align : {‘ce
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Matplotlib/" itemprop="url" rel="index">
-                    <span itemprop="name">Matplotlib</span>
+                  <a href="/categories/Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Pandas</span>
                   </a>
                 </span>
 
@@ -1246,21 +1255,11 @@ align : {‘ce
       
         
           
-          Matplotlib学习笔记——Matplotlib介绍Matplotlib基本介绍
-专门用于开发2D图表(包括3D图表)
-使用起来及其简单
-以渐进、交互式方式实现数据可视化
-
-Matplotlib作用可视化是在整个数据挖掘的关键辅助工具，可以清晰的理解数据，从而调整我们的分析方法。
-
-能将数据进行可视化,更直观的呈现
-使数据更加客观、更具说服力
-
-Matp
+          Pandas学习笔记——DataFrame1.DataFrame123456789101112131415&gt;&gt;&gt; import numpy as np&gt;&gt;&gt; import pandas as pd&gt;&gt;&gt; a = np.random.normal(0,1,10).reshape(2,5)&gt;&gt;&g
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/07/Matplotlib/Matplotlib学习笔记——Matplotlib介绍/#more" rel="contents">
+            <a class="btn" href="/2017/03/17/Pandas/Pandas学习笔记——DataFrame/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1311,7 +1310,7 @@ Matp
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/05/Utils/Jupyter Notebook使用/">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/12/Numpy/Numpy学习笔记——数组间运算/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1330,7 +1329,7 @@ Matp
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/05/Utils/Jupyter Notebook使用/" itemprop="url">Jupyter Notebook使用</a></h1>
+                <a class="post-title-link" href="/2017/03/12/Numpy/Numpy学习笔记——数组间运算/" itemprop="url">Numpy学习笔记——数组间运算</a></h1>
         
 
         <div class="post-meta">
@@ -1342,8 +1341,8 @@ Matp
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T19:21:56+08:00">
-                2017-03-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-12T12:42:56+08:00">
+                2017-03-12
               </time>
             
 
@@ -1365,8 +1364,8 @@ Matp
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Utils/" itemprop="url" rel="index">
-                    <span itemprop="name">Utils</span>
+                  <a href="/categories/Numpy/" itemprop="url" rel="index">
+                    <span itemprop="name">Numpy</span>
                   </a>
                 </span>
 
@@ -1404,25 +1403,11 @@ Matp
       
         
           
-          Jupyter Notebook使用使用pip命令安装
-
-pip install jupyter
-
-
-支持conda虚拟环境
-
-
- conda install nb_conda 
-
-打开Jupyter Notebook
-
-#  终端输入jupyter notebook
-
-本地notebook的默认URL为：http://localhost:8888想让not
+          Numpy学习笔记——数组间运算1.数组与数的运算123456789101112&gt;&gt;&gt; A = np.array([[1,2,3,4,5],[6,7,8,9,10]])&gt;&gt;&gt; Aarray([[ 1,  2,  3,  4,  5],       [ 6,  7,  8,  9, 10]])       &gt;&gt;&
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/05/Utils/Jupyter Notebook使用/#more" rel="contents">
+            <a class="btn" href="/2017/03/12/Numpy/Numpy学习笔记——数组间运算/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1473,7 +1458,7 @@ pip install jupyter
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2016/12/15/Python/图的拓扑排序/">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/11/Numpy/Numpy学习笔记——ndarray运算/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1492,7 +1477,7 @@ pip install jupyter
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/12/15/Python/图的拓扑排序/" itemprop="url">图的拓扑排序</a></h1>
+                <a class="post-title-link" href="/2017/03/11/Numpy/Numpy学习笔记——ndarray运算/" itemprop="url">Numpy学习笔记——ndarray运算</a></h1>
         
 
         <div class="post-meta">
@@ -1504,8 +1489,8 @@ pip install jupyter
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-15T23:51:41+08:00">
-                2016-12-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T22:52:36+08:00">
+                2017-03-11
               </time>
             
 
@@ -1527,8 +1512,8 @@ pip install jupyter
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Numpy/" itemprop="url" rel="index">
+                    <span itemprop="name">Numpy</span>
                   </a>
                 </span>
 
@@ -1566,13 +1551,11 @@ pip install jupyter
       
         
           
-          Python有向无环图的拓扑排序拓扑排序的官方定义为：由某个集合上的一个偏序得到该集合上的一个全序，这个操作称之为拓扑排序。而个人认为，拓扑排序即是在图的基本遍历法上引入了入度的概念并围绕入度来实现的排序方法，拓扑排序与Python多继承中mro规则的排序类似，若想深入研究mro规则的C3算法，不妨了解一下 DAG(有向无环图) 的拓扑排序。
-
-入度：指有向
+          Numpy学习笔记——ndarray运算1.逻辑运算1234567891011121314# 生成数据&gt;&gt;&gt; A = np.random.normal(0,1,(2,2))&gt;&gt;&gt; Aarray([[-0.7572373 ,  2.13520462],       [-0.72749164, -1.20845879]])# 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/12/15/Python/图的拓扑排序/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Numpy/Numpy学习笔记——ndarray运算/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1623,7 +1606,7 @@ pip install jupyter
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2016/12/11/Python/图的BFS与DFS/">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/11/Numpy/Numpy学习笔记——数组的基本操作/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1642,7 +1625,7 @@ pip install jupyter
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/12/11/Python/图的BFS与DFS/" itemprop="url">图的BFS与DFS</a></h1>
+                <a class="post-title-link" href="/2017/03/11/Numpy/Numpy学习笔记——数组的基本操作/" itemprop="url">Numpy学习笔记——基本操作</a></h1>
         
 
         <div class="post-meta">
@@ -1654,8 +1637,8 @@ pip install jupyter
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-11T00:05:53+08:00">
-                2016-12-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T21:48:33+08:00">
+                2017-03-11
               </time>
             
 
@@ -1677,8 +1660,8 @@ pip install jupyter
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Numpy/" itemprop="url" rel="index">
+                    <span itemprop="name">Numpy</span>
                   </a>
                 </span>
 
@@ -1716,14 +1699,15 @@ pip install jupyter
       
         
           
-          Python图的BFS与DFS
-BFS:Breadth First Search，广度优先搜索DFS:Depth First Search，深度优先搜索
-
-BFS与DFS都属于图算法，BFS与DFS分别由队列和堆栈来实现，基本的定义与实现过程见前一篇文章，本篇文章基于树的BFS与DFS进行扩展，实现无向图(即没有指定方向的图结构)的BFS与DFS。以一个无向
+          Numpy学习笔记——基本操作1.生成0和1的数组
+empty(shape[, dtype, order]) empty_like(a[, dtype, order, subok])eye(N[, M, k, dtype, order])
+identity(n[, dtype])
+ones(shape[, dtype, order])
+ones_like(a
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/12/11/Python/图的BFS与DFS/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Numpy/Numpy学习笔记——数组的基本操作/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1774,7 +1758,7 @@ BFS与DFS都属于图算法，BFS与DFS分别由队列和堆栈来实现，基�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2016/12/07/Python/树的BFS与DFS/">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2017/03/11/Numpy/Numpy学习笔记——ndarray属性和类型/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice-Panda">
@@ -1793,7 +1777,7 @@ BFS与DFS都属于图算法，BFS与DFS分别由队列和堆栈来实现，基�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/12/07/Python/树的BFS与DFS/" itemprop="url">树的BFS与DFS</a></h1>
+                <a class="post-title-link" href="/2017/03/11/Numpy/Numpy学习笔记——ndarray属性和类型/" itemprop="url">Numpy学习笔记——ndarray属性和类型</a></h1>
         
 
         <div class="post-meta">
@@ -1805,8 +1789,8 @@ BFS与DFS都属于图算法，BFS与DFS分别由队列和堆栈来实现，基�
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-07T23:01:27+08:00">
-                2016-12-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T20:15:25+08:00">
+                2017-03-11
               </time>
             
 
@@ -1828,8 +1812,8 @@ BFS与DFS都属于图算法，BFS与DFS分别由队列和堆栈来实现，基�
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Numpy/" itemprop="url" rel="index">
+                    <span itemprop="name">Numpy</span>
                   </a>
                 </span>
 
@@ -1867,18 +1851,41 @@ BFS与DFS都属于图算法，BFS与DFS分别由队列和堆栈来实现，基�
       
         
           
-          Python树的BFS与DFS
-BFS:Breadth First Search，广度优先搜索DFS:Depth First Search，深度优先搜索
+          Numpy学习笔记——ndarray属性和类型ndarray属性
 
-BFS与树的层序遍历类似，DFS则与树的后序遍历有着区别。
-BFS(广度优先搜索)：
 
-使用队列实现
-每次从队列的头部取出一个元素，查看这个元素所有的下一级元素，再把它们放到队列的末尾。并把这个元素记为它
+属性名字
+属性解释
+返回类型
+
+
+
+
+ndarray.shape
+数组维度
+tuple
+
+
+ndarray.ndim
+数组维度(空间)
+int
+
+
+ndarray.size
+数组中的元素数量
+int
+
+
+ndarray.itemsize
+一个数组元素的长度(字节)
+int
+
+
+ndarra
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/12/07/Python/树的BFS与DFS/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Numpy/Numpy学习笔记——ndarray属性和类型/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1920,7 +1927,7 @@ BFS(广度优先搜索)：
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1964,7 +1971,7 @@ BFS(广度优先搜索)：
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">93</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1975,7 +1982,7 @@ BFS(广度优先搜索)：
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1986,7 +1993,7 @@ BFS(广度优先搜索)：
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

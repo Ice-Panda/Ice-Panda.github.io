@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet" style="background:#000000">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Convolution Neural Network,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="经典分类卷积网络结构 LeNet-5网络结构  激活层默认不画网络图当中，这个网络结构当时使用的是sigmoid和Tanh函数，还没有出现Relu函数 将卷积、激活、池化视作一层，即使池化没有参数  参数形状   &amp;amp;nbsp shape size parameters     input (32,32,3) 3072 0   Conv1(f=5,s=1) (28,28,6) 4704 45">
+<meta name="keywords" content="Convolution Neural Network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="经典分类卷积网络结构">
+<meta property="og:url" content="https://ice-panda.github.io/2018/04/12/DeepLearning/经典分类卷积网络结构/index.html">
+<meta property="og:site_name" content="Veluvana">
+<meta property="og:description" content="经典分类卷积网络结构 LeNet-5网络结构  激活层默认不画网络图当中，这个网络结构当时使用的是sigmoid和Tanh函数，还没有出现Relu函数 将卷积、激活、池化视作一层，即使池化没有参数  参数形状   &amp;amp;nbsp shape size parameters     input (32,32,3) 3072 0   Conv1(f=5,s=1) (28,28,6) 4704 45">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://ice-panda.github.io/images/DeepLearning/经典分类卷积网络结构.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/DeepLearning/LeNet-5.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/DeepLearning/1544781091724.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/DeepLearning/VGG.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/DeepLearning/GoogleNet.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/DeepLearning/Inception层.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/DeepLearning/Inception改进.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/DeepLearning/GoogleNetInception模块.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/DeepLearning/GoogleNet完整结构.png">
+<meta property="og:updated_time" content="2018-12-14T10:33:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="经典分类卷积网络结构">
+<meta name="twitter:description" content="经典分类卷积网络结构 LeNet-5网络结构  激活层默认不画网络图当中，这个网络结构当时使用的是sigmoid和Tanh函数，还没有出现Relu函数 将卷积、激活、池化视作一层，即使池化没有参数  参数形状   &amp;amp;nbsp shape size parameters     input (32,32,3) 3072 0   Conv1(f=5,s=1) (28,28,6) 4704 45">
+<meta name="twitter:image" content="https://ice-panda.github.io/images/DeepLearning/经典分类卷积网络结构.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<style>
+.pace .pace-progress:before {
+    content: attr(data-progress-text);
+    text-align: center;
+    color: #000;
+    background: rgba(0,0,0,0.2);
+    font-family: "Helvetica Neue",sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    padding: 20% 0 7px;
+    width: 50%;
+    height: 40%;
+    margin: 10px 0 0 30px;
+    z-index: 999;
+}
+.pace .pace-activity {
+    font-size: 15px;
+    line-height: 1;
+    z-index: 2000;
+    -webkit-animation: pace-theme-center-atom-spin 2s linear infinite;
+    -moz-animation: pace-theme-center-atom-spin 2s linear infinite;
+    -o-animation: pace-theme-center-atom-spin 2s linear infinite;
+    animation: pace-theme-center-atom-spin 2s linear infinite;
+    border: 5px solid rgba(0,0,0,0.5);
+    content: ' ';
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100px
+}
+.pace .pace-activity:after {
+    border-radius: 50%;
+    border: 5px solid rgba(0,0,0,0.4);
+    -webkit-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+    -o-transform: rotate(60deg);
+    transform: rotate(60deg)
+}
+
+.pace .pace-activity:before {
+    border-radius: 50%;
+    border: 5px solid rgba(0,0,0,0.3);
+    -webkit-transform: rotate(120deg);
+    -moz-transform: rotate(120deg);
+    -o-transform: rotate(120deg);
+    transform: rotate(120deg)
+}
+
+</style>
+
+
+
+
+  <link rel="canonical" href="https://ice-panda.github.io/2018/04/12/DeepLearning/经典分类卷积网络结构/">
+
+
+
+
+
+  <title>经典分类卷积网络结构 | Veluvana</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Veluvana</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+<style>
+.brand {
+  position: relative;
+  display: inline-block;
+  padding: 0 40px;
+  color: #fff;
+  background: #222;
+  
+}
+.brand::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #FFF;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.brand:hover::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1);
+}
+</style>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2018/04/12/DeepLearning/经典分类卷积网络结构/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ice-Panda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Veluvana">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">经典分类卷积网络结构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T20:53:57+08:00">
+                2018-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="经典分类卷积网络结构"><a href="#经典分类卷积网络结构" class="headerlink" title="经典分类卷积网络结构"></a>经典分类卷积网络结构</h3><p><img src="/images/DeepLearning/经典分类卷积网络结构.png" alt="Alt text"></p>
+<h4 id="LeNet-5"><a href="#LeNet-5" class="headerlink" title="LeNet-5"></a>LeNet-5</h4><h5 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h5><p><img src="/images/DeepLearning/LeNet-5.png" alt="Alt text"></p>
+<ul>
+<li>激活层默认不画网络图当中，这个网络结构当时使用的是sigmoid和Tanh函数，还没有出现Relu函数</li>
+<li>将卷积、激活、池化视作一层，即使池化没有参数</li>
+</ul>
+<h5 id="参数形状"><a href="#参数形状" class="headerlink" title="参数形状"></a>参数形状</h5><table>
+<thead>
+<tr>
+<th style="text-align:center">&amp;nbsp</th>
+<th>shape</th>
+<th style="text-align:center">size</th>
+<th style="text-align:center">parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">input</td>
+<td>(32,32,3)</td>
+<td style="text-align:center">3072</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">Conv1(f=5,s=1)</td>
+<td>(28,28,6)</td>
+<td style="text-align:center">4704</td>
+<td style="text-align:center">450+6</td>
+</tr>
+<tr>
+<td style="text-align:center">Pool1</td>
+<td>(14,14,6)</td>
+<td style="text-align:center">1176</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">Conv2(f=5,s=1)</td>
+<td>(10,10,16)</td>
+<td style="text-align:center">1600</td>
+<td style="text-align:center">2400+16</td>
+</tr>
+<tr>
+<td style="text-align:center">Pool2</td>
+<td>(5,5,16)</td>
+<td style="text-align:center">400</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">FC3</td>
+<td>(120,1)</td>
+<td style="text-align:center">120</td>
+<td style="text-align:center">48000+120</td>
+</tr>
+<tr>
+<td style="text-align:center">FC4</td>
+<td>(84,1)</td>
+<td style="text-align:center">84</td>
+<td style="text-align:center">10080+84</td>
+</tr>
+<tr>
+<td style="text-align:center">output:softmax</td>
+<td>(10,1)</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">840+10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>FC层特征变化不宜过快，容易造成过拟合</li>
+</ul>
+<h4 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h4><p><img src="/images/DeepLearning/1544781091724.png" alt="Alt text"></p>
+<ul>
+<li>总参数量：60M=6000万，5层卷积+3层全连接</li>
+<li>使用了非线性激活函数：ReLU</li>
+<li>防止过拟合的方法：Dropout，数据扩充(Data augmentation)</li>
+<li>批标准化层的使用(BN)</li>
+</ul>
+<h4 id="卷积网络结构的优化"><a href="#卷积网络结构的优化" class="headerlink" title="卷积网络结构的优化"></a>卷积网络结构的优化</h4><ul>
+<li>NIN:引入1 * 1卷积</li>
+<li>VGG，斩获2014年分类第二（第一是GoogLeNet），定位任务第一。<ul>
+<li>参数量巨大,140M = 1.4亿</li>
+<li>19layers</li>
+<li>VGG 版本<ul>
+<li>VGG16</li>
+<li>VGG19</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/DeepLearning/VGG.png" alt="Alt text"></p>
+<ul>
+<li>GoogleNet，2014年比赛冠军的model，这个model证明了一件事：用更多的卷积，更深的层次可以得到更好的结构。（当然，它并没有证明浅的层次不能达到这样的效果）<ul>
+<li>500万的参数量</li>
+<li>22layers</li>
+<li>引入了Inception模块<ul>
+<li>Inception V1</li>
+<li>Inception V2</li>
+<li>Inception V3</li>
+<li>Inception V4</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/DeepLearning/GoogleNet.png" alt="Alt text"></p>
+<h4 id="Inception-结构"><a href="#Inception-结构" class="headerlink" title="Inception 结构"></a>Inception 结构</h4><h5 id="MLP卷积-1-x-1卷积"><a href="#MLP卷积-1-x-1卷积" class="headerlink" title="MLP卷积(1 x 1卷积)"></a>MLP卷积(1 x 1卷积)</h5><ul>
+<li>目的:提出了一种新的深度网络结构，称为“网络中的网络”（NIN），增强接受域内局部贴片的模型判别能力。</li>
+<li>做法<ul>
+<li>对于传统线性卷积核：采用线性滤波器，然后采用非线性激活。</li>
+<li>提出MLP卷积取代传统线性卷积核</li>
+</ul>
+</li>
+<li>作用或优点：<ul>
+<li>多个1x1的卷积核级联加上配合激活函数，将feature map由多通道的线性组合变为非线性组合（信息整合），提高特征抽象能力（Multilayer Perceptron,缩写MLP,就是一个多层神经网络）</li>
+<li>1x1的卷积核操作还可以实现卷积核通道数的降维和升维，实现参数的减小化</li>
+</ul>
+</li>
+</ul>
+<h5 id="1-x-1卷积"><a href="#1-x-1卷积" class="headerlink" title="1 x 1卷积"></a>1 x 1卷积</h5><p>可以看作是对n个通道进行了线性组合，对应通道对应权重进行卷积并求所有的加权和。<br>通常在卷积之后会加入非线性激活函数，在这里之后加入激活函数，就可以理解成一个简单的MLP网络了。</p>
+<h5 id="通道数变化"><a href="#通道数变化" class="headerlink" title="通道数变化"></a>通道数变化</h5><p>1x1、3x3、5x5的Filter也能对通道数进行更改，1x1的参数量较少</p>
+<ul>
+<li>保持通道数不变</li>
+<li>提升通道数</li>
+<li>减少通道数</li>
+</ul>
+<h5 id="Inception层"><a href="#Inception层" class="headerlink" title="Inception层"></a>Inception层</h5><p>这个结构其实还有名字叫盗梦空间结构</p>
+<ul>
+<li>目的：<ul>
+<li>代替人手工去确定到底使用1x1,3x3,5x5还是是否需要max_pooling层，由网络自动去寻找适合的结构。并且节省计算。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/DeepLearning/Inception层.png" alt="Alt text"></p>
+<ul>
+<li>特点：<ul>
+<li>是每一个卷积/池化最终结果的长、宽大小一致</li>
+<li>特殊的池化层，需要增加padding，步长为1来使得输出大小一致，并且选择32的通道数</li>
+<li>最终结果28 x 28 x 256<ul>
+<li>使用更少的参数，达到跟AlexNet或者VGG同样类似的输出结果</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="Inception改进"><a href="#Inception改进" class="headerlink" title="Inception改进"></a>Inception改进</h5><p>改进目的：减少计算，如5x5卷积的计算量<br><img src="/images/DeepLearning/Inception改进.png" alt="Alt text"></p>
+<ul>
+<li>上面的参数：5 x 5 x 32 x 192 =153600</li>
+<li>下面的参数：192 x 16 + 5 x 5 x 16 x 32 = 3072 + 12800 = 15872</li>
+</ul>
+<p>所以上面的结构会需要大量的计算，我们把这种改进的结构称之为网络的”瓶颈”,网络缩小后扩大。<br>这样改变并没有太大影响网络的性能和效果。GoogleNet就是如此，获得了非常好的效果。所以合理的设计网络当中的Inception结构能够减少计算，实现更好的效果。<br><img src="/images/DeepLearning/GoogleNetInception模块.png" alt="Alt text"><br>完整结构如下<br><img src="/images/DeepLearning/GoogleNet完整结构.png" alt="Alt text"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Convolution-Neural-Network/" rel="tag"><i class="fa fa-tag"></i> Convolution Neural Network</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/08/Project/项目实战——基于Estimator的CNNMnist手写数字识别/" rel="next" title="项目实战——基于Estimator的CNNMnist手写数字识别">
+                <i class="fa fa-chevron-left"></i> 项目实战——基于Estimator的CNNMnist手写数字识别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/12/DeepLearning/迁移学习/" rel="prev" title="迁移学习">
+                迁移学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ice-Panda">
+          <p class="site-author-name" itemprop="name">Ice-Panda</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">93</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#经典分类卷积网络结构"><span class="nav-number">1.</span> <span class="nav-text">经典分类卷积网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LeNet-5"><span class="nav-number">1.1.</span> <span class="nav-text">LeNet-5</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#网络结构"><span class="nav-number">1.1.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数形状"><span class="nav-number">1.1.2.</span> <span class="nav-text">参数形状</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AlexNet"><span class="nav-number">1.2.</span> <span class="nav-text">AlexNet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积网络结构的优化"><span class="nav-number">1.3.</span> <span class="nav-text">卷积网络结构的优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inception-结构"><span class="nav-number">1.4.</span> <span class="nav-text">Inception 结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#MLP卷积-1-x-1卷积"><span class="nav-number">1.4.1.</span> <span class="nav-text">MLP卷积(1 x 1卷积)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-x-1卷积"><span class="nav-number">1.4.2.</span> <span class="nav-text">1 x 1卷积</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通道数变化"><span class="nav-number">1.4.3.</span> <span class="nav-text">通道数变化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Inception层"><span class="nav-number">1.4.4.</span> <span class="nav-text">Inception层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Inception改进"><span class="nav-number">1.4.5.</span> <span class="nav-text">Inception改进</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice-Panda</span>
+</div>
+
+
+<!-- <div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+-->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

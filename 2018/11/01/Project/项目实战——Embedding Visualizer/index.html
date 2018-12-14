@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet" style="background:#000000">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Convolution Neural Network,TensorFlow,Mnist,Embedding Visualizer,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="项目实战——Embedding Visualizer TensorBoard提供了PROJECTOR界面来可视化高维向量之间的关系。 在PROJECTOR中，通过展示MNIST图片信息以及每张图片对应的真实标签，PROJECTOR要求用户准备一个sprite图像(所谓sprite图像就是将一组图片组合成一整张大图片)和一个tsv(tab seperated file)文件给出每张图片对应的标签信息">
+<meta name="keywords" content="Convolution Neural Network,TensorFlow,Mnist,Embedding Visualizer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目实战——Embedding Visualizer">
+<meta property="og:url" content="https://ice-panda.github.io/2018/11/01/Project/项目实战——Embedding Visualizer/index.html">
+<meta property="og:site_name" content="Veluvana">
+<meta property="og:description" content="项目实战——Embedding Visualizer TensorBoard提供了PROJECTOR界面来可视化高维向量之间的关系。 在PROJECTOR中，通过展示MNIST图片信息以及每张图片对应的真实标签，PROJECTOR要求用户准备一个sprite图像(所谓sprite图像就是将一组图片组合成一整张大图片)和一个tsv(tab seperated file)文件给出每张图片对应的标签信息">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://ice-panda.github.io/images/Project/embedding.gif">
+<meta property="og:updated_time" content="2018-12-12T07:10:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="项目实战——Embedding Visualizer">
+<meta name="twitter:description" content="项目实战——Embedding Visualizer TensorBoard提供了PROJECTOR界面来可视化高维向量之间的关系。 在PROJECTOR中，通过展示MNIST图片信息以及每张图片对应的真实标签，PROJECTOR要求用户准备一个sprite图像(所谓sprite图像就是将一组图片组合成一整张大图片)和一个tsv(tab seperated file)文件给出每张图片对应的标签信息">
+<meta name="twitter:image" content="https://ice-panda.github.io/images/Project/embedding.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<style>
+.pace .pace-progress:before {
+    content: attr(data-progress-text);
+    text-align: center;
+    color: #000;
+    background: rgba(0,0,0,0.2);
+    font-family: "Helvetica Neue",sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    padding: 20% 0 7px;
+    width: 50%;
+    height: 40%;
+    margin: 10px 0 0 30px;
+    z-index: 999;
+}
+.pace .pace-activity {
+    font-size: 15px;
+    line-height: 1;
+    z-index: 2000;
+    -webkit-animation: pace-theme-center-atom-spin 2s linear infinite;
+    -moz-animation: pace-theme-center-atom-spin 2s linear infinite;
+    -o-animation: pace-theme-center-atom-spin 2s linear infinite;
+    animation: pace-theme-center-atom-spin 2s linear infinite;
+    border: 5px solid rgba(0,0,0,0.5);
+    content: ' ';
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100px
+}
+.pace .pace-activity:after {
+    border-radius: 50%;
+    border: 5px solid rgba(0,0,0,0.4);
+    -webkit-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+    -o-transform: rotate(60deg);
+    transform: rotate(60deg)
+}
+
+.pace .pace-activity:before {
+    border-radius: 50%;
+    border: 5px solid rgba(0,0,0,0.3);
+    -webkit-transform: rotate(120deg);
+    -moz-transform: rotate(120deg);
+    -o-transform: rotate(120deg);
+    transform: rotate(120deg)
+}
+
+</style>
+
+
+
+
+  <link rel="canonical" href="https://ice-panda.github.io/2018/11/01/Project/项目实战——Embedding Visualizer/">
+
+
+
+
+
+  <title>项目实战——Embedding Visualizer | Veluvana</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Veluvana</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+<style>
+.brand {
+  position: relative;
+  display: inline-block;
+  padding: 0 40px;
+  color: #fff;
+  background: #222;
+  
+}
+.brand::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #FFF;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.brand:hover::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1);
+}
+</style>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ice-panda.github.io/2018/11/01/Project/项目实战——Embedding Visualizer/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ice-Panda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Veluvana">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">项目实战——Embedding Visualizer</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-01T23:54:31+08:00">
+                2018-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Project/" itemprop="url" rel="index">
+                    <span itemprop="name">Project</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="项目实战——Embedding-Visualizer"><a href="#项目实战——Embedding-Visualizer" class="headerlink" title="项目实战——Embedding Visualizer"></a>项目实战——Embedding Visualizer</h3><ul>
+<li>TensorBoard提供了PROJECTOR界面来可视化高维向量之间的关系。</li>
+<li>在PROJECTOR中，通过展示MNIST图片信息以及每张图片对应的真实标签，PROJECTOR要求用户准备一个sprite图像(所谓sprite图像就是将一组图片组合成一整张大图片)和一个tsv(tab seperated file)文件给出每张图片对应的标签信息(通过定义各类标签颜色来区分)。</li>
+</ul>
+<p>代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> ssl</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tensorflow.contrib.tensorboard.plugins <span class="keyword">import</span> projector</span><br><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</span><br><span class="line"></span><br><span class="line">ssl._create_default_https_context = ssl._create_unverified_context</span><br><span class="line"></span><br><span class="line">tf.app.flags.DEFINE_boolean(<span class="string">'init'</span>, <span class="keyword">False</span>, <span class="string">'是否开启文件初始化过程'</span>)</span><br><span class="line">tf.app.flags.DEFINE_string(<span class="string">'log_dir'</span>, <span class="string">'log'</span>, <span class="string">'日志文件目录'</span>)</span><br><span class="line">tf.app.flags.DEFINE_string(<span class="string">'pic_name'</span>, <span class="string">'meta_sprite.png'</span>, <span class="string">'保存的sprite图片名称'</span>)</span><br><span class="line">tf.app.flags.DEFINE_string(<span class="string">'color_name'</span>, <span class="string">'meta_color.tsv'</span>, <span class="string">'保存的color文件名称'</span>)</span><br><span class="line">tf.app.flags.DEFINE_string(<span class="string">'variable_name'</span>, <span class="string">'meta_variable'</span>, <span class="string">'需要展示的变量名称'</span>)</span><br><span class="line"><span class="comment"># tf.app.flags.DEFINE_integer('count', '5000', '显示数量')</span></span><br><span class="line">tf.app.flags.DEFINE_integer(<span class="string">'max_step'</span>, <span class="string">'500'</span>, <span class="string">'最大迭代次数'</span>)</span><br><span class="line"></span><br><span class="line">FLAGS = tf.app.flags.FLAGS</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Spriter</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.log_dir = FLAGS.log_dir</span><br><span class="line">        self.pic_name = FLAGS.pic_name</span><br><span class="line">        self.color_name = FLAGS.color_name</span><br><span class="line">        <span class="keyword">assert</span> self.color_name.endswith(<span class="string">'.tsv'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_sprite_image</span><span class="params">(self, images)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        返回一个sprite图像，该图像由作为参数传递的图像组成。图像需要保证高x宽y</span></span><br><span class="line"><span class="string">        :param images: images matrix</span></span><br><span class="line"><span class="string">        :return: sprite image</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(images, list):</span><br><span class="line">            images = np.array(images)</span><br><span class="line">        <span class="comment"># 获取图片高和宽</span></span><br><span class="line">        img_h = images.shape[<span class="number">1</span>]</span><br><span class="line">        img_w = images.shape[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># sprite图像可以理解成是小图片平成的大正方形矩阵，大正方形矩阵中的每一个元素就是原来的小图片。于是这个正方形的边长就是sqrt(n),其中n为小图片的数量。</span></span><br><span class="line">        <span class="comment"># 获取图片数量，并组织成x*x的sprite图像</span></span><br><span class="line">        n_plots = int(np.ceil(np.sqrt(images.shape[<span class="number">0</span>])))</span><br><span class="line">        spriteimage = np.ones((img_h * n_plots, img_w * n_plots))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n_plots):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(n_plots):</span><br><span class="line">                this_filter = i * n_plots + j</span><br><span class="line">                <span class="keyword">if</span> this_filter &lt; images.shape[<span class="number">0</span>]:</span><br><span class="line">                    this_img = images[this_filter]</span><br><span class="line">                    spriteimage[i * img_h:(i + <span class="number">1</span>) * img_h,</span><br><span class="line">                    j * img_w:(j + <span class="number">1</span>) * img_w] = this_img</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> spriteimage</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">vector_to_matrix_mnist</span><span class="params">(self, inputs)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        reshape mnist数据矩阵</span></span><br><span class="line"><span class="string">        :param inpust : [batch, h * w]</span></span><br><span class="line"><span class="string">        :return: [batch, h, w]</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">return</span> np.reshape(inputs, (<span class="number">-1</span>, <span class="number">28</span>, <span class="number">28</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">invert_grayscale</span><span class="params">(self, inputs)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        反转灰度</span></span><br><span class="line"><span class="string">        :param inputs : inputs (0, 1)</span></span><br><span class="line"><span class="string">        :return: 1 =&gt; 0, 0 =&gt; 1</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> - inputs</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save_sprite_image</span><span class="params">(self, batch_xs)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        生成并保存sprite图像</span></span><br><span class="line"><span class="string">        :param batch_xs: Variables that need to visualise</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        to_visualise = batch_xs</span><br><span class="line">        to_visualise = self.vector_to_matrix_mnist(to_visualise)</span><br><span class="line">        to_visualise = self.invert_grayscale(to_visualise)</span><br><span class="line">        sprite_image = self.create_sprite_image(to_visualise)</span><br><span class="line">        plt.imsave(os.path.join(self.log_dir, self.pic_name), sprite_image, cmap=<span class="string">'gray'</span>)</span><br><span class="line">        plt.imshow(sprite_image, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save_color_data</span><span class="params">(self, batch_ys)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        嵌入可视化工具需要提供每个标签对应的颜色。保存在“TSV(标签分离)”文件中。</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">with</span> open(os.path.join(self.log_dir, self.color_name), <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(<span class="string">"Index\tLabel\n"</span>)</span><br><span class="line">            <span class="keyword">for</span> index, label <span class="keyword">in</span> enumerate(batch_ys):</span><br><span class="line">                print(index, label)</span><br><span class="line">                f.write(<span class="string">"%d\t%d\n"</span> % (index, label))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mnist</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.W = <span class="keyword">None</span></span><br><span class="line">        self.b = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">weight_variable</span><span class="params">(self, shape)</span>:</span></span><br><span class="line">        initial = tf.truncated_normal(shape, stddev=<span class="number">0.1</span>)</span><br><span class="line">        <span class="keyword">return</span> tf.Variable(initial)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bias_variable</span><span class="params">(self, shape)</span>:</span></span><br><span class="line">        initial = tf.constant(<span class="number">0.1</span>, shape=shape)</span><br><span class="line">        <span class="keyword">return</span> tf.Variable(initial)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inputs</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">'''准备数据'''</span></span><br><span class="line">        <span class="comment"># x [None, 28*28]; y_true [None, 10]</span></span><br><span class="line">        X = tf.placeholder(tf.float32, [<span class="keyword">None</span>, <span class="number">28</span> * <span class="number">28</span>])</span><br><span class="line">        y_true = tf.placeholder(tf.float32, [<span class="keyword">None</span>, <span class="number">10</span>])</span><br><span class="line">        <span class="keyword">return</span> X, y_true</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">conv_model</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        卷积网络结构建模</span></span><br><span class="line"><span class="string">        :return: x, y_true, y_predict</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="comment"># 1.conv1</span></span><br><span class="line">        <span class="keyword">with</span> tf.variable_scope(<span class="string">'conv1'</span>):</span><br><span class="line">            <span class="comment"># 随机初始化权重[5, 5, 1, 32](其中的1为输入的通道数), 偏置[32]</span></span><br><span class="line">            w_conv1 = self.weight_variable([<span class="number">5</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">32</span>])</span><br><span class="line">            b_conv1 = self.bias_variable([<span class="number">32</span>])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 首先进行卷积计算, K=32, F=5, S=1, P="SAME"</span></span><br><span class="line">            <span class="comment"># x [None, 784] =&gt; [None, 28, 28, 1] x_conv1 =&gt; [None, 28, 28, 32]</span></span><br><span class="line">            <span class="comment"># -1 can also be used to infer the shape</span></span><br><span class="line">            x_conv1_reshape = tf.reshape(x, [<span class="number">-1</span>, <span class="number">28</span>, <span class="number">28</span>, <span class="number">1</span>])</span><br><span class="line">            <span class="comment"># input =&gt; 4D</span></span><br><span class="line">            x_conv1 = tf.nn.conv2d(x_conv1_reshape, w_conv1, strides=[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], padding=<span class="string">"SAME"</span>) + b_conv1</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 进行激活函数计算</span></span><br><span class="line">            <span class="comment"># x_relu1 =&gt; [None, 28, 28, 32]</span></span><br><span class="line">            x_relu1 = tf.nn.relu(x_conv1)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 进行池化层计算</span></span><br><span class="line">            <span class="comment"># F=2, S=2</span></span><br><span class="line">            <span class="comment"># [None, 28, 28, 32] =&gt; [None, 14, 14, 32]</span></span><br><span class="line">            x_pool1 = tf.nn.max_pool(x_relu1, ksize=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], padding=<span class="string">"SAME"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 2.conv2</span></span><br><span class="line">        <span class="comment"># input =&gt; [None, 14, 14, 32]</span></span><br><span class="line">        <span class="keyword">with</span> tf.variable_scope(<span class="string">'conv2'</span>):</span><br><span class="line">            <span class="comment"># 每个filter带32张5*5的观察权重，一共有64个filter</span></span><br><span class="line">            <span class="comment"># 随机初始化权重[5, 5, 32, 64](其中的32为输入的通道数), 偏置[64]</span></span><br><span class="line">            w_conv2 = self.weight_variable([<span class="number">5</span>, <span class="number">5</span>, <span class="number">32</span>, <span class="number">64</span>])</span><br><span class="line">            b_conv2 = self.bias_variable([<span class="number">64</span>])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 首先进行卷积计算, K=64, F=5, S=1, P="SAME"</span></span><br><span class="line">            <span class="comment"># x [None, 14, 14, 32]; x_conv2 =&gt; [None, 14, 14, 64]</span></span><br><span class="line">            <span class="comment"># input =&gt; 4D</span></span><br><span class="line">            x_conv2 = tf.nn.conv2d(x_pool1, w_conv2, strides=[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], padding=<span class="string">"SAME"</span>) + b_conv2</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 进行激活函数计算</span></span><br><span class="line">            <span class="comment"># x_relu2 =&gt; [None, 14, 14, 64]</span></span><br><span class="line">            x_relu2 = tf.nn.relu(x_conv2)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 进行池化层计算</span></span><br><span class="line">            <span class="comment"># F=2, S=2</span></span><br><span class="line">            <span class="comment"># [None, 14, 14, 64] =&gt; [None, 7, 7, 64]</span></span><br><span class="line">            x_pool2 = tf.nn.max_pool(x_relu2, ksize=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], padding=<span class="string">"SAME"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 3.fc</span></span><br><span class="line">        <span class="comment"># 每个样本输出类别的个数10个结束</span></span><br><span class="line">        <span class="comment"># input =&gt; x_pool2 [None, 7, 7, 64]</span></span><br><span class="line">        <span class="comment"># 矩阵运算 [None, 7*7*64] * [7*7*64, 10] + [10] = [None, 10]</span></span><br><span class="line">        <span class="keyword">with</span> tf.variable_scope(<span class="string">'fc'</span>):</span><br><span class="line">            <span class="comment"># 确定全连接权重和偏置</span></span><br><span class="line">            w_fc = self.weight_variable([<span class="number">7</span> * <span class="number">7</span> * <span class="number">64</span>, <span class="number">10</span>])</span><br><span class="line">            b_fc = self.bias_variable([<span class="number">10</span>])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 对上一层的输出结果的形状进行处理成2维形状</span></span><br><span class="line">            x_fc = tf.reshape(x_pool2, [<span class="number">-1</span>, <span class="number">7</span> * <span class="number">7</span> * <span class="number">64</span>])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 进行全连接运算</span></span><br><span class="line">            y_predict = tf.matmul(x_fc, w_fc) + b_fc</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> y_predict</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross_entropy</span><span class="params">(self, y_true, y_pre)</span>:</span></span><br><span class="line">        <span class="string">'''softmax回归以及交叉熵损失计算'''</span></span><br><span class="line">        <span class="comment"># labels=标签值; logits=样本加权之后的值</span></span><br><span class="line">        loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_true, logits=y_pre))</span><br><span class="line">        <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sgd_op</span><span class="params">(self, loss)</span>:</span></span><br><span class="line">        <span class="comment"># optimizer = tf.train.AdamOptimizer(0.1).minimize(loss)</span></span><br><span class="line">        optimizer = tf.train.GradientDescentOptimizer(<span class="number">0.1</span>).minimize(loss)</span><br><span class="line">        <span class="keyword">return</span> optimizer</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">evaluation</span><span class="params">(self, y_true, y_pre)</span>:</span></span><br><span class="line">        equal_list = tf.equal(tf.argmax(y_true, <span class="number">1</span>), tf.argmax(y_pre, <span class="number">1</span>))</span><br><span class="line">        accuracy = tf.reduce_mean(tf.cast(equal_list, tf.float32))</span><br><span class="line">        <span class="keyword">return</span> accuracy</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge_summary</span><span class="params">(self, loss, accuracy)</span>:</span></span><br><span class="line">        <span class="string">'''收集合并变量'''</span></span><br><span class="line">        <span class="comment"># 收集损失和准确率</span></span><br><span class="line">        tf.summary.scalar(<span class="string">'loss'</span>, loss)</span><br><span class="line">        tf.summary.scalar(<span class="string">'acc'</span>, accuracy)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 合并所有变量op</span></span><br><span class="line">        merged = tf.summary.merge_all()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> merged</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(self, mnist)</span>:</span></span><br><span class="line">        <span class="comment"># 创建默认图</span></span><br><span class="line">        g = tf.get_default_graph()</span><br><span class="line">        <span class="keyword">with</span> g.as_default():</span><br><span class="line">            <span class="string">'''将g图作为默认图'''</span></span><br><span class="line">            X, y_true = self.inputs()</span><br><span class="line">            <span class="comment"># 全连接层神经网络计算</span></span><br><span class="line">            y_pre = self.conv_model(X)</span><br><span class="line">            <span class="comment"># 交叉熵损失</span></span><br><span class="line">            loss = self.cross_entropy(y_true, y_pre)</span><br><span class="line">            <span class="comment"># 梯度下降优化</span></span><br><span class="line">            optimizer = self.sgd_op(loss)</span><br><span class="line">            <span class="comment"># 评估准确率</span></span><br><span class="line">            accuracy = self.evaluation(y_true, y_pre)</span><br><span class="line">            <span class="comment"># 创建saver对象</span></span><br><span class="line">            saver = tf.train.Saver()</span><br><span class="line">            <span class="comment"># 开启会话</span></span><br><span class="line">            <span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">                <span class="comment"># 初始化变量</span></span><br><span class="line">                sess.run(tf.global_variables_initializer())</span><br><span class="line">                <span class="comment"># 检查模型</span></span><br><span class="line">                checkpoint = tf.train.latest_checkpoint(FLAGS.log_dir)</span><br><span class="line">                <span class="keyword">if</span> checkpoint:</span><br><span class="line">                    print(<span class="string">'restore'</span>, checkpoint)</span><br><span class="line">                    <span class="comment"># 加载模型</span></span><br><span class="line">                    saver.restore(sess, checkpoint)</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(FLAGS.max_step):</span><br><span class="line">                    batch_xs, batch_ys = mnist.train.next_batch(<span class="number">50</span>)</span><br><span class="line">                    sess.run(optimizer, feed_dict=&#123;X: batch_xs, y_true: batch_ys&#125;)</span><br><span class="line">                    print(<span class="string">'训练第%d步的准确率为:%f, 损失为%f'</span> % (</span><br><span class="line">                        i + <span class="number">1</span>, sess.run(accuracy, feed_dict=&#123;X: batch_xs, y_true: batch_ys&#125;),</span><br><span class="line">                        sess.run(loss, feed_dict=&#123;X: batch_xs, y_true: batch_ys&#125;)))</span><br><span class="line">                    <span class="keyword">if</span> i%<span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">                        saver.save(sess, os.path.join(FLAGS.log_dir, <span class="string">'model.ckpt'</span>), <span class="number">1</span>)</span><br><span class="line">                res = sess.run(y_pre, feed_dict=&#123;X: mnist.test.images&#125;)</span><br><span class="line">                <span class="comment"># print(res)</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Embedding</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visualise</span><span class="params">(self, batch_xs)</span>:</span></span><br><span class="line">        <span class="comment"># 创建embeddings</span></span><br><span class="line">        embedding = tf.Variable(batch_xs, name=FLAGS.variable_name)</span><br><span class="line">        writer = tf.summary.FileWriter(FLAGS.log_dir)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 创建embedding projector</span></span><br><span class="line">        config = projector.ProjectorConfig()</span><br><span class="line">        <span class="comment"># 增加需要可视化的embedding结果</span></span><br><span class="line">        embedding_config = config.embeddings.add()</span><br><span class="line">        <span class="comment"># 指定embedding张量名称</span></span><br><span class="line">        embedding_config.tensor_name = embedding.name</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 指定tsv文件路径(此处会自动拼接tensorboard --logdir的路径)</span></span><br><span class="line">        embedding_config.metadata_path = FLAGS.color_name</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 指定sprite图像路径(此处会自动拼接tensorboard --logdir的路径)</span></span><br><span class="line">        embedding_config.sprite.image_path = FLAGS.pic_name</span><br><span class="line">        print(embedding_config.sprite.image_path)</span><br><span class="line">        <span class="comment"># 指定单个缩略图的高度和宽度</span></span><br><span class="line">        embedding_config.sprite.single_image_dim.extend([<span class="number">28</span>, <span class="number">28</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 指定可视化的writer与config</span></span><br><span class="line">        projector.visualize_embeddings(writer, config)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(argv)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> FLAGS.init:</span><br><span class="line">        mnist = input_data.read_data_sets(<span class="string">'../data/mnist'</span>, one_hot=<span class="keyword">False</span>)</span><br><span class="line">        batch_xs, batch_ys = mnist.test.images,mnist.test.labels <span class="comment"># [batch, 784]</span></span><br><span class="line">        spriter = Spriter()</span><br><span class="line">        spriter.save_sprite_image(batch_xs)</span><br><span class="line">        spriter.save_color_data(batch_ys)</span><br><span class="line">    m = input_data.read_data_sets(<span class="string">'../data/mnist'</span>, one_hot=<span class="keyword">True</span>)</span><br><span class="line">    embedding = Embedding()</span><br><span class="line">    mnist = Mnist()</span><br><span class="line">    visual_batch = mnist.train(m)</span><br><span class="line">    embedding.visualise(visual_batch)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    tf.app.run()</span><br></pre></td></tr></table></figure></p>
+<p>在terminal中打开tensorboard<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir=<span class="string">'模型保存位置'</span></span><br></pre></td></tr></table></figure></p>
+<p>在浏览器中输入localhost:6006出现如下PCA投影到三维空间的结果<br><img src="/images/Project/embedding.gif" alt="Alt text"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Convolution-Neural-Network/" rel="tag"><i class="fa fa-tag"></i> Convolution Neural Network</a>
+          
+            <a href="/tags/TensorFlow/" rel="tag"><i class="fa fa-tag"></i> TensorFlow</a>
+          
+            <a href="/tags/Mnist/" rel="tag"><i class="fa fa-tag"></i> Mnist</a>
+          
+            <a href="/tags/Embedding-Visualizer/" rel="tag"><i class="fa fa-tag"></i> Embedding Visualizer</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/29/ArtificialIntelligence/人工智能六大领域/" rel="next" title="人工智能六大领域">
+                <i class="fa fa-chevron-left"></i> 人工智能六大领域
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ice-Panda">
+          <p class="site-author-name" itemprop="name">Ice-Panda</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">93</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目实战——Embedding-Visualizer"><span class="nav-number">1.</span> <span class="nav-text">项目实战——Embedding Visualizer</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice-Panda</span>
+</div>
+
+
+<!-- <div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+-->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

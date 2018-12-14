@@ -109,20 +109,20 @@
 <meta property="og:site_name" content="Veluvana">
 <meta property="og:description" content="OpenCV学习笔记——基本使用pip安装1pip install opencv-python 导入OpenCV1import cv2 # 即OpenCV 原图展示 文件读取与展示OpenCV是以BGR的顺序读取图像，而matplotlib则是以RGB的顺序读取图像，于是蓝色和红色的通道颠倒了。1234import cv2import matplotlib.pylab as pltinput_im">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV基本操作/1.png">
-<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV基本操作/2.png">
-<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV基本操作/3.png">
-<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV基本操作/4.png">
-<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV基本操作/5.png">
-<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV基本操作/6.png">
-<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV基本操作/7.png">
-<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV基本操作/8.png">
-<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV基本操作/9.png">
-<meta property="og:updated_time" content="2018-11-18T10:56:10.000Z">
+<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV/1.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV/2.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV/3.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV/4.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV/5.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV/6.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV/7.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV/8.png">
+<meta property="og:image" content="https://ice-panda.github.io/images/OpenCV/9.png">
+<meta property="og:updated_time" content="2018-12-12T14:19:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCV学习笔记——基本使用">
 <meta name="twitter:description" content="OpenCV学习笔记——基本使用pip安装1pip install opencv-python 导入OpenCV1import cv2 # 即OpenCV 原图展示 文件读取与展示OpenCV是以BGR的顺序读取图像，而matplotlib则是以RGB的顺序读取图像，于是蓝色和红色的通道颠倒了。1234import cv2import matplotlib.pylab as pltinput_im">
-<meta name="twitter:image" content="https://ice-panda.github.io/images/OpenCV基本操作/1.png">
+<meta name="twitter:image" content="https://ice-panda.github.io/images/OpenCV/1.png">
 
 
 
@@ -501,9 +501,9 @@
       
         <h3 id="OpenCV学习笔记——基本使用"><a href="#OpenCV学习笔记——基本使用" class="headerlink" title="OpenCV学习笔记——基本使用"></a>OpenCV学习笔记——基本使用</h3><h4 id="pip安装"><a href="#pip安装" class="headerlink" title="pip安装"></a>pip安装</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install opencv-python</span><br></pre></td></tr></table></figure>
 <h4 id="导入OpenCV"><a href="#导入OpenCV" class="headerlink" title="导入OpenCV"></a>导入OpenCV</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="comment"># 即OpenCV</span></span><br></pre></td></tr></table></figure>
-<p>原图展示<br><img src="/images/OpenCV基本操作/1.png" alt="Alt text"></p>
+<p>原图展示<br><img src="/images/OpenCV/1.png" alt="Alt text"></p>
 <h4 id="文件读取与展示"><a href="#文件读取与展示" class="headerlink" title="文件读取与展示"></a>文件读取与展示</h4><p>OpenCV是以BGR的顺序读取图像，而matplotlib则是以RGB的顺序读取图像，于是蓝色和红色的通道颠倒了。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> plt</span><br><span class="line">input_image = cv2.imread(<span class="string">'test.jpeg'</span>)</span><br><span class="line">plt.imshow(input_image)</span><br></pre></td></tr></table></figure></p>
-<p>输出图像：<br><img src="/images/OpenCV基本操作/2.png" alt="Alt text"></p>
+<p>输出图像：<br><img src="/images/OpenCV/2.png" alt="Alt text"></p>
 <h4 id="图像的大小、尺寸和类型参数"><a href="#图像的大小、尺寸和类型参数" class="headerlink" title="图像的大小、尺寸和类型参数"></a>图像的大小、尺寸和类型参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'size'</span>,input_image.size)</span><br><span class="line">print(<span class="string">'shape'</span>,input_image.shape)</span><br><span class="line">print(<span class="string">'dtype'</span>,input_image.dtype)</span><br></pre></td></tr></table></figure>
 <p>输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">size <span class="number">1195350</span></span><br><span class="line">shape (<span class="number">613</span>, <span class="number">650</span>, <span class="number">3</span>)</span><br><span class="line">dtype uint8</span><br></pre></td></tr></table></figure></p>
 <blockquote>
@@ -514,30 +514,30 @@
 <p>注意：一般计算机中显示图像是由蓝色、绿色和红色三个色层叠加而成的，这也使得我们可以分离三个颜色通道，即在分离时，使用b,g,r的顺序获取。 在OpenCV中，可以使用 split 函数分离，使用 merge 合并。</p>
 </blockquote>
 <h4 id="分离"><a href="#分离" class="headerlink" title="分离"></a>分离</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分离</span></span><br><span class="line">b,g,r=cv2.split(input_image)</span><br><span class="line"><span class="comment"># 展示其中一种颜色 (此处展示了红色，你可以用b来展示蓝色)</span></span><br><span class="line">plt.imshow(r, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-<p>输出图像：<br><img src="/images/OpenCV基本操作/3.png" alt="Alt text"></p>
+<p>输出图像：<br><img src="/images/OpenCV/3.png" alt="Alt text"></p>
 <h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">merged=cv2.merge([r,g,b])</span><br><span class="line"><span class="comment"># 合并采用单通道矩阵数组</span></span><br><span class="line">plt.imshow(merged)</span><br></pre></td></tr></table></figure>
-<p>输出图像：<br><img src="/images/OpenCV基本操作/4.png" alt="Alt text"><br>除了以上合并方法，OpenCV还有专门解决这一问题的功能，即 CORLYBBGR2RGB 。于是我们不用通过手动拆分合并就能显示正确的颜色，它的使用方式如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opencv_merged=cv2.cvtColor(input_image, cv2.COLOR_BGR2RGB)</span><br><span class="line">plt.imshow(opencv_merged)</span><br></pre></td></tr></table></figure></p>
-<p>输出图像：<br><img src="/images/OpenCV基本操作/5.png" alt="Alt text"></p>
+<p>输出图像：<br><img src="/images/OpenCV/4.png" alt="Alt text"><br>除了以上合并方法，OpenCV还有专门解决这一问题的功能，即 CORLYBBGR2RGB 。于是我们不用通过手动拆分合并就能显示正确的颜色，它的使用方式如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opencv_merged=cv2.cvtColor(input_image, cv2.COLOR_BGR2RGB)</span><br><span class="line">plt.imshow(opencv_merged)</span><br></pre></td></tr></table></figure></p>
+<p>输出图像：<br><img src="/images/OpenCV/5.png" alt="Alt text"></p>
 <h4 id="获取图像数据和设置图像数据"><a href="#获取图像数据和设置图像数据" class="headerlink" title="获取图像数据和设置图像数据"></a>获取图像数据和设置图像数据</h4><p>Python OpenCV中的图像是以Numpy数组的形式保存。类似于Numpy中的数组索引，我们也可以提取和更改每个像素点的数值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pixel = input_image[<span class="number">100</span>,<span class="number">100</span>]</span><br><span class="line">print(pixel)</span><br></pre></td></tr></table></figure></p>
 <p>输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ <span class="number">26</span>  <span class="number">84</span> <span class="number">243</span>]</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">input_image[<span class="number">100</span>,<span class="number">100</span>] = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">pixelnew = input_image[<span class="number">100</span>,<span class="number">100</span>]</span><br><span class="line">print(pixelnew)</span><br></pre></td></tr></table></figure>
 <p>输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
 <h4 id="获取和设置图像区域"><a href="#获取和设置图像区域" class="headerlink" title="获取和设置图像区域"></a>获取和设置图像区域</h4><p>我们可以得到或设置单个像素，同样地，我们可以获取或设置图像的区域。这类似于Numpy中的数组切片：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">center = opencv_merged[<span class="number">201</span>:<span class="number">501</span>, <span class="number">202</span>:<span class="number">502</span>]</span><br><span class="line">plt.imshow(center)</span><br></pre></td></tr></table></figure></p>
-<p>输出图像：<br><img src="/images/OpenCV基本操作/6.png" alt="Alt text"></p>
+<p>输出图像：<br><img src="/images/OpenCV/6.png" alt="Alt text"></p>
 <blockquote>
 <p>注意：图像切片选取的方向与Numpy数组索引的方向也是一致的，在上述代码中，“201:501”表示竖直向下201至501的像素行，“202:502”表示水平向右202至502列的像素。</p>
 </blockquote>
 <p>同样，我们也可以对选中的区域进行修改：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fresh_image=opencv_merged.copy() <span class="comment"># 复制一张图像</span></span><br><span class="line">fresh_image[<span class="number">20</span>:<span class="number">20</span>+center.shape[<span class="number">0</span>], <span class="number">30</span>:<span class="number">30</span>+center.shape[<span class="number">1</span>]]=center <span class="comment"># 修改选中区域</span></span><br><span class="line">print(center.shape)</span><br><span class="line">plt.imshow(fresh_image)</span><br></pre></td></tr></table></figure></p>
-<p>输出图像：<br><img src="/images/OpenCV基本操作/7.png" alt="Alt text"></p>
+<p>输出图像：<br><img src="/images/OpenCV/7.png" alt="Alt text"></p>
 <blockquote>
 <p>注意：在对选中区域进行修改时，选中的区域必须与传入的图像大小一致，故可以在切片时使用[a:a+test.shape[0],b:b+test.shape[1]]来确保选中区域的大小与传入图像大小一致。</p>
 </blockquote>
 <h4 id="矩阵切片"><a href="#矩阵切片" class="headerlink" title="矩阵切片"></a>矩阵切片</h4><p>在OpenCV Python风格中，正如我所提到的，图像是Numpy数组。在Numpy教程中有一些很棒的数组操作：如果你以前没有做过，那么这是一个很好的介绍。上面的区域的获取和设置使用切片，尽管如此，我还是想把这本书的内容更详细地讲完。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">freshim2 = opencv_merged.copy()</span><br><span class="line">crop = freshim2[<span class="number">100</span>:<span class="number">200</span>, <span class="number">130</span>:<span class="number">400</span>] </span><br><span class="line">plt.imshow(crop)</span><br></pre></td></tr></table></figure></p>
-<p>输出图像：<br><img src="/images/OpenCV基本操作/8.png" alt="Alt text"></p>
+<p>输出图像：<br><img src="/images/OpenCV/8.png" alt="Alt text"></p>
 <blockquote>
 <p>切片可以由以下几种方式：<br>[top_y:bottom_y, left_x:right_x]<br>或者<br>[y:y+height, x:x+width]<br>同时，您也可以在切片时，直接提取颜色<br>[y:y+height, x:x+width, channel]<br>其中channel你感兴趣的颜色。这里定义 0=蓝色，1=绿色，2=红色。<br>下面我们采用第三种方式获取切片，并转换到HSV的例子。 HSV（色相，饱和度，明度）为另一种色彩空间，有兴趣可以了解色彩空间理论！<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hsvim=cv2.cvtColor(freshim2,cv2.COLOR_BGR2HSV)</span><br><span class="line">bcrop =hsvim[<span class="number">100</span>:<span class="number">200</span>, <span class="number">130</span>:<span class="number">400</span>, <span class="number">1</span>]</span><br><span class="line">plt.imshow(bcrop, cmap=<span class="string">"gray"</span>)</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p>输出图像：<br><img src="/images/OpenCV基本操作/9.png" alt="Alt text"></p>
+<p>输出图像：<br><img src="/images/OpenCV/9.png" alt="Alt text"></p>
 
       
     </div>
@@ -578,8 +578,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/03/Python/闭包/" rel="prev" title="闭包">
-                闭包 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/20/Books/OpenCV官方教程中文版/" rel="prev" title="OpenCV官方教程中文版">
+                OpenCV官方教程中文版 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -655,7 +655,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">93</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -666,7 +666,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -677,7 +677,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
